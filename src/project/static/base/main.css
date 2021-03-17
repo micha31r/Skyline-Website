@@ -1,0 +1,133 @@
+:root {
+	--color-one: rgb(42,95,251);
+	--color-two: rgb(244,247,255);
+	--color-three: rgb(255,66,104);
+	--color-four: rgb(2,55,211);
+	--color-gray: rgb(204,204,204);
+	--color-fill-gray: rgb(245,245,245);
+	--color-transparent-gray: rgba(0,0,0,0.2);
+}
+
+body {
+	background: #FFF;
+}
+
+* {
+	font-family: "Roboto", sans-serif;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+p {
+	line-height: 1.2rem;
+}
+
+hr {
+	border-style: solid;
+	border-color: var(--color-fill-gray);
+}
+
+button {
+	background: transparent;
+	border: 0;
+}
+
+.d-button, .d-button-fill {
+	display: inline-block;
+	color: var(--color-one);
+	border-color: var(--color-one);
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 10px;
+	padding: 10px;
+	text-decoration: none;
+	transition: color background;
+	transition-duration: 0.2s;
+}
+
+.d-button:hover {
+	color: #FFF;
+	background: var(--color-one);
+}
+
+.d-button-fill {
+	color: #FFF;
+	background: var(--color-one);
+}
+
+.d-button-fill:hover {
+	border-color: var(--color-four);
+	background: var(--color-four);
+}
+
+/* CSS for ".base" elements are defined in this file */
+
+.d-container-wrapper {
+	padding: 40px 0;
+}
+
+.d-container {
+	max-width: 1200px;
+	margin: auto;
+}
+
+.d-heading {
+	width: fit-content;
+	margin-bottom: 40px;
+}
+
+.d-padding {
+	padding: 0 40px;
+}
+
+.d-message {
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+	color: var(--color-one);
+	padding: 10px;
+	margin: 0;
+	text-align: center;
+}
+
+.d-message a {
+	color: var(--color-five);
+}
+
+#d-prompt {
+	display: none;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	border-width: 2px;
+	border-color: var(--color-one);
+	border-style: solid;
+	background: rgba(0,0,0,0.6);
+	box-sizing: border-box;
+	padding: 25px;
+	overflow-y: scroll;
+	z-index: 201;
+}
+
+#d-prompt > div {
+	width: 100%;
+	max-width: 300px;
+	border-radius: 20px;
+	background: #FFF;
+	padding: 25px;
+	margin: auto;
+}
+
+@media only screen and (max-width: 400px) {
+	.container-wrapper {
+		padding: 60px 0;
+	}
+	.d-padding {
+		padding: 0 30px;
+	}
+}

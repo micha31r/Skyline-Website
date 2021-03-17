@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'home/main.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div class="intro-bg" style="background-image: url('{% static 'home/gondola.jpg' %}')">
+		<div class="d-container-wrapper intro-container-wrapper">
+			<div class="intro d-container d-padding">
+				<div class="grid">
+					<h1 class="heading">Rotorua Skyline</h1>
+					<h2>Enjoyment for the whole family!</h2>
+					<a class="d-button-fill" href="#">Book Tickets Now</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="d-container-wrapper about-container-wrapper">
+		<div class="about d-container d-padding">
+		</div>
+	</div> -->
+{% endblock %}
