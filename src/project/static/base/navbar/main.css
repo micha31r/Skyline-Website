@@ -1,0 +1,130 @@
+nav {
+	position: sticky;
+	top: 0;
+	background: #FFF;
+	border-width: 0 0 1px;
+	border-style: solid;
+	border-color: #DDD;
+	padding: 0 20px;
+	overflow: auto;
+	z-index: 101;
+}
+
+nav * {
+	font-family: proxima-nova, sans-serif;
+	font-weight: bold;
+}
+
+nav .grid {
+	display: grid;
+	grid-template-columns: 1fr auto;
+}
+
+nav .left {
+	display: flex;
+	padding: 10px 0;
+}
+
+nav .right {
+	display: flex;
+	padding: 10px 0;
+}
+
+nav ul {
+	display: inline-flex;
+	padding: 0;
+	margin: auto 0;
+	box-sizing: border-box;
+}
+
+nav ul li {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+
+nav .brand {
+	font-family: "Poppins", sans-serif;
+	font-weight: 500;
+	display: flex;
+	transition: color;
+	transition-duration: 0.2s;
+	text-decoration: none;
+	margin: auto 0;
+}
+
+nav .brand:hover {
+	color: var(--color-one);
+}
+
+nav .brand img {
+	height: 3.5em;
+	margin: auto 20px 0 0;
+}
+
+nav .right li {
+	padding: 0 0 0 10px;
+}
+
+nav .right a {
+	display: inline-block;
+	border-radius: 10px;
+	padding: 8px 12px;
+	display: flex;
+}
+
+nav .right li:nth-last-child(1) a {
+	padding-right: 0;
+}
+
+nav .right svg {
+	margin-left: 5px;
+}
+
+.activities {
+	font-family: proxima-nova, sans-serif;
+	font-weight: bold;
+	padding: 15px 0;
+	border-width: 0 0 1px;
+	border-style: solid;
+	border-color: #DDD;
+	overflow-x: auto;
+}
+
+.activities .flex {
+	display: flex;
+	min-width: max-content;
+	justify-content: space-between;	
+	padding: 0 20px;
+}
+
+.activities .flex a {
+	color: #CCC;
+	transition: color 0.2s;
+	margin: 0 20px;
+}
+
+.activities .flex a:nth-child(1), .activities .flex a:nth-last-child(1) {
+	margin: 0;
+}
+
+.activities .flex a:hover {
+	color: var(--color-one);
+}
+
+@media only screen and (max-width: 500px) {
+	nav .brand img {
+		margin: auto 10px 0 0;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	nav .brand img {
+		display: none;
+	}
+}
+
+
+
+
+
