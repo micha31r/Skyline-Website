@@ -89,6 +89,7 @@ nav .right svg {
 	border-style: solid;
 	border-color: #DDD;
 	overflow-x: auto;
+	background-color: #000;
 }
 
 .activities .flex {
@@ -99,7 +100,7 @@ nav .right svg {
 }
 
 .activities .flex a {
-	color: #CCC;
+	color: #EEE;
 	transition: color 0.2s;
 	margin: 0 20px;
 }
