@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'booking/activities/main.css' %}">
+{% endblock %}
+
+{% block content %}
+	<script type="text/javascript" src="{% static 'base/no_resubmission.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'booking/activities/main.js' %}"></script>
+
+	<div class="d-container-wrapper activities-container-wrapper">
+		<div class="activities d-container d-padding">
+			<div class="grid">
+				{% for obj in qs %}
+					<div class="card">
+						<h1 class="heading"><a href="#">{{ obj.name }}</a></h1>
+						<h3 class="subheading">{{ obj.description }}</h3>
+						<p class="content">
+							Adult Price: <b>${{ obj.adult_price }}</b>
+							<br>
+							Child Price: <b>${{ obj.child_price }}</b>
+						</p>
+						<form method="post">
+							{% csrf_token %}
+							<div class="grid">
+								<label>Adult (15+ years)</label>
+								<input placeholder="0-15" type="number" min="0" max="15" required="true">
+								<label>Child (5-14 years)</label>
+								<input placeholder="0-15" type="number" min="0" max="15" required="true">
+							</div>
+							<button class="d-button-fill" type=submit><b>Add to cart</b></button>
+						</form>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

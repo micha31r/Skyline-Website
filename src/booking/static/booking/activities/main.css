@@ -1,0 +1,89 @@
+.activities * {
+	font-family: proxima-nova, sans-serif;
+}
+
+.activities > .grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+.activities .card {
+	display: flex;
+	flex-direction: column;
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.05);
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	padding: 20px;
+	transition: box-shadow transform;
+	transition-duration: 0.1s;
+}
+
+.activities .card:hover {
+	position: relative;
+	transform: translate(5px, 5px);
+	box-shadow: none;
+}
+
+.activities .card > * {
+	margin: 0 0 20px;
+}
+
+.activities .card > *:nth-last-child(1) {
+	margin: 0;
+}
+
+.activities form {
+	margin-top: auto !important;
+}
+
+.activities form > .grid {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-column-gap: 20px;
+	grid-row-gap: 5px;
+}
+
+.activities form label {
+	margin: auto 0;
+}
+
+.activities form input {
+	border: 0;
+	border-radius: 5px;
+	background: #EEE;
+	padding: 5px;
+}
+
+.activities form input::placeholder {
+	color: #BBB;
+}
+
+.activities form button {
+	width: 100%;
+	margin-top: 20px;
+}
+
+@media only screen and (max-width: 1100px) {
+	.activities .grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.activities .grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media only screen and (max-width: 550px) {
+	.activities .grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+
+
+
+
