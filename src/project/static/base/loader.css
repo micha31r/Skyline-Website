@@ -1,23 +1,23 @@
-@keyframes rotate {
+@keyframes scale {
     from {
-        transform: translate(-50%,-50%) rotate(0deg);
+        transform: translate(-50%,-50%) scale(1.1);
     }
     to {
-        transform: translate(-50%,-50%) rotate(360deg);
+        transform: translate(-50%,-50%) scale(0.9);
     }
 }
 
 #loader {
     position: fixed;
-    min-width: 60px;
+    min-width: 150px;
     width: 10vw;
-    max-width: 80px;
+    max-width: 200px;
     top: 50%;
     left: 50%;
-    animation-name: rotate;
+    animation-name: scale;
     animation-duration: 0.5s;
-    animation-fill-mode: forwards;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
-    animation-timing-function: linear;
     z-index: 200;
 }
