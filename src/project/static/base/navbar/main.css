@@ -81,7 +81,7 @@ nav .right svg {
 	margin-left: 5px;
 }
 
-.activities {
+.nav-activities {
 	font-family: proxima-nova, sans-serif;
 	font-weight: bold;
 	padding: 15px 0;
@@ -92,24 +92,24 @@ nav .right svg {
 	background-color: #000;
 }
 
-.activities .flex {
+.nav-activities .flex {
 	display: flex;
 	min-width: max-content;
 	justify-content: space-between;	
 	padding: 0 20px;
 }
 
-.activities .flex a {
+.nav-activities .flex a {
 	color: #EEE;
 	transition: color 0.2s;
 	margin: 0 20px;
 }
 
-.activities .flex a:nth-child(1), .activities .flex a:nth-last-child(1) {
+.nav-activities .flex a:nth-child(1), .nav-activities .flex a:nth-last-child(1) {
 	margin: 0;
 }
 
-.activities .flex a:hover {
+.nav-activities .flex a:hover {
 	color: var(--color-one);
 }
 

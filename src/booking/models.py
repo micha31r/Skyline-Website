@@ -6,16 +6,16 @@ from project.utils import slug_generator
 
 class Activity(models.Model):
 	class Meta:
-		ordering = ['name', 'product_id', 'price']
+		ordering = ['name', 'product_id', 'adult_price', 'child_price']
 
 	name = models.CharField(max_length=128)
-	price = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(500)])
+	adult_price = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(500)])
+	child_price = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(500)])
 	description = models.CharField(max_length=255)
 	product_id = models.CharField(max_length=16)
 
 	def __str__(self):
 		return f"{self.name} / {self.product_id}"
-
 
 class Ticket(models.Model):
 	class Meta:
@@ -32,6 +32,9 @@ class Ticket(models.Model):
 		related_name="ticket_activity",
 		on_delete = models.CASCADE,
 	)
+
+	adult_count = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(15)])
+	child_count = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(15)])
 
 	expiry_date = models.DateTimeField(blank=True, null=True)
 	activated = models.BooleanField(default=False)
