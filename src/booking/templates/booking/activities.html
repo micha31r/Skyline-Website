@@ -26,11 +26,12 @@
 							{% csrf_token %}
 							<div class="grid">
 								<label>Adult (15+ years)</label>
-								<input placeholder="0-15" type="number" min="0" max="15" required="true">
+								<input name="adult_count" placeholder="0-15" type="number" min="0" max="15" required="true">
 								<label>Child (5-14 years)</label>
-								<input placeholder="0-15" type="number" min="0" max="15" required="true">
+								<input name="child_count" placeholder="0-15" type="number" min="0" max="15" required="true">
+								<input hidden name="product_id" value="{{ obj.product_id }}">
 							</div>
-							<button class="d-button-fill" type=submit><b>Add to cart</b></button>
+							<button class="d-button-fill" type="submit"><b>Add to cart</b></button>
 						</form>
 					</div>
 				{% endfor %}
