@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'booking/checkout_status.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'booking/checkout/main.css' %}">
+{% endblock %}
+
+{% block content %}
+	<script type="text/javascript" src="{% static 'base/no_resubmission.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'base/prompt.js' %}"></script>
+
+	{% include 'booking/checkout_status.html' %}
+
+	<div class="d-container-wrapper checkout-container-wrapper">
+		<div class="checkout d-container d-padding">
+			<div class="grid">
+				<div class="container">
+					<form method="post">
+						{% csrf_token %}
+
+						{% if form.errors %}
+							<div class="d-message-container">
+								{% for field in form %}
+									{% for error in field.errors %}
+							        	<p class="d-message">{{ error }}</p>
+								    {% endfor %}
+								{% endfor %}
+							</div>
+						{% endif %}
+
+						<div class="grid">
+							<h3>{{ form.first_name.label }}</h3>
+							{{ form.first_name }}
+							<h3>{{ form.last_name.label }}</h3>
+							{{ form.last_name }}
+							<h3>{{ form.email.label }}</h3>
+							{{ form.email }}
+							<h3>{{ form.phone.label }}</h3>
+							{{ form.phone }}
+							<h3>{{ form.date.label }}</h3>
+							{{ form.date }}
+							<h3>{{ form.date_repeat.label }}</h3>
+							{{ form.date_repeat }}
+						</div>
+						<button class="d-button-fill" type="submit"><b>Next Step</b></button>
+					</form>
+				</div>
+				<div class="card">
+					<h2>Order Summary</h2>
+					<p>
+						You have order a total of <b>{{ card_items_count }} item{% if card_items_count > 1 %}s{% endif %}</b>:
+						<br>
+						{% for obj in cart %}
+							{{ obj.name }},
+						{% endfor %}
+					</p>
+					<h2>Your cart total is <span>${{ total }}</span></h2>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

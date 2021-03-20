@@ -9,7 +9,7 @@ class Profile(models.Model):
 	first_name = models.CharField(max_length=64)
 	last_name = models.CharField(max_length=128)
 	email = models.EmailField(max_length=255)
-	phone = models.CharField(max_length=10)
+	phone = models.CharField(max_length=13)
 	slug = models.SlugField(max_length=32, blank=True, null=True)
 
 	# Timestamp

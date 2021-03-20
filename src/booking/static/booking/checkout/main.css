@@ -1,0 +1,94 @@
+:root {
+	--progress-bar-width: 90% !important;
+}
+
+.checkout {
+	max-width: 900px;
+}
+
+.checkout * {
+	font-family: proxima-nova, sans-serif;
+}
+
+.checkout span {
+	color: var(--color-one);
+}
+
+.checkout > .grid {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-column-gap: 40px;
+}
+
+.checkout form {
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	padding: 30px;
+}
+
+.checkout form > * {
+	margin: 0 0 20px;
+}
+
+.checkout form > *:nth-last-child(1) {
+	margin: 0;
+}
+
+.checkout form .grid {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+.checkout form h3 {
+	margin: auto 0;
+}
+
+.checkout form input {
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	padding: 15px 20px;
+}
+
+.checkout form input::placeholder {
+	color: #BBB;
+}
+
+.checkout form button {
+	width: 100%;
+}
+
+.checkout .card {
+	max-width: 250px;
+	height: max-content;
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.checkout .card > * {
+	margin: 0 0 20px;
+}
+
+.checkout .card > *:nth-last-child(1) {
+	margin: 0;
+}
+
+@media only screen and (max-width: 1000px) {
+	.checkout > .grid {
+		grid-column-gap: 20px;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	.checkout > .grid {
+		grid-template-columns: 1fr;
+		grid-row-gap: 20px;
+	}
+	.checkout .card {
+		max-width: none;
+		grid-row-start: 1;
+		grid-row-end: 2;
+	}
+}
