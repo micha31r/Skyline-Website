@@ -67,6 +67,7 @@
 
 @media only screen and (max-width: 850px) {
 	.cart .item {
+		padding: 20px 20px 10px;
 		grid-template-columns: 1fr max-content;
 	}
 	.cart .item > *:not(form) {
@@ -76,6 +77,7 @@
 		margin: 0;
 	}
 	.cart .item form {
+		margin: 0;
 		grid-column-start: 2;
 		grid-column-end: 3;
 		grid-row-start: 1;
