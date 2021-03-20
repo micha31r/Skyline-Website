@@ -90,19 +90,31 @@ class PaymentForm(forms.Form):
 	    ),
 	    label="CVV"
 	)
+	expiry_date = forms.DateTimeField(
+		widget=forms.TextInput(
+	        attrs={
+	            "placeholder":"Expiry Date",
+	            "type": "date"
+	        }
+	    ),
+	    label="Expiry Date"
+	)
 
 	def clean(self):
 		data = super().clean()
 		fn = data.get("full_name").replace(" ", "")
 		cn = data.get("card_number")
 		cvv = data.get("cvv")
-		if fn and cn and cvv:
+		ed = data.get("expiry_date")
+		if fn and cn and cvv and ed:
 			if not fn.isalpha():
 				self._errors["full_name"] = ["First name can only contain A-z and less than 27 letters"]
 			if not cn.isnumeric():
 				self._errors["card_number"] = ["Card number can only contain 0-9"]
 			if not cvv.isnumeric():
 				self._errors["cvv"] = ["CVV can only contain 0-9"]
+			if ed.date() <= datetime.date.today():
+				self._errors["expiry_date"] = ["Expiry date must a future date"]
 		else:
 			self._errors["full_name"] = ["Invalid form data!"]
 		return data
