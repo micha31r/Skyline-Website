@@ -1,0 +1,66 @@
+:root {
+	--progress-bar-width: calc(100% / 3);
+}
+
+.checkout-status {
+	font-family: proxima-nova, sans-serif;
+	font-weight: bold;
+	position: sticky;
+	top: 77px;
+	background: #CCC;
+	overflow-x: auto;
+	z-index: 100;
+}
+
+.checkout-status .bg {
+	background: #000;
+	padding: 15px 0;
+}
+
+.checkout-status .flex {
+	display: flex;
+	min-width: max-content;
+	justify-content: space-around;	
+	padding: 0 20px;
+}
+
+.checkout-status .flex a {
+	color: #FFF;
+	transition: color 0.2s;
+	margin: 0 20px;
+}
+
+.checkout-status .flex a svg {
+	margin-left: 10px;
+	vertical-align: middle;
+}
+
+.checkout-status .flex a:not(.active-link) {
+	color: #999;
+}
+
+.checkout-status .flex a:nth-child(1), .checkout-status .flex a:nth-last-child(1) {
+	margin: 0;
+}
+
+.checkout-status .flex a:not(.active-link):hover {
+	color: var(--color-one);
+}
+
+@keyframes grow {
+	from {
+		width: 0;
+	}
+	to {
+		width: var(--progress-bar-width);
+	}
+}
+
+.progress-bar {
+	width: 0;
+	height: 5px;
+	animation: grow 1s forwards;
+	animation-delay: 1s;
+	background: var(--color-four);
+}
+

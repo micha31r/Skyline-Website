@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'booking/checkout_status.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'booking/cart/main.css' %}">
+{% endblock %}
+
+{% block content %}
+	<script type="text/javascript" src="{% static 'base/no_resubmission.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'booking/activities/main.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'base/prompt.js' %}"></script>
+
+	{% include 'booking/checkout_status.html' %}
+
+	<div class="d-container-wrapper cart-container-wrapper">
+		<div class="cart d-container d-padding">
+			{% if not cart %}
+		        <p class="d-message">Your cart is empty! <a href="{% url 'booking:activities' %}">Continue shopping</a>?</p>
+			{% else %}
+				<div class="grid">
+					<div class="container">
+						{% for obj in cart %}
+							<div class="item">
+								<h3 class="heading"><a href="#">{{ obj.name }}</a></h3>
+								<p>{{ obj.description|truncatechars:50 }}</p>
+								<span>Adult x {{ obj.adult_count }}</span>
+								<span>Child x {{ obj.child_count }}</span>
+								<p><b>${{ obj.total }}</b></p>
+								<form method="post">
+									{% csrf_token %}
+									<input hidden name="product_id" value="{{ obj.product_id }}">
+									<input hidden name="adult_count" value="{{ obj.adult_count }}">
+									<input hidden name="child_count" value="{{ obj.child_count }}">
+									<button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></button>
+								</form>
+							</div>
+						{% endfor %}
+					</div>
+					<div class="card">
+						<h2>Order Summary</h2>
+						<p>
+							You have order a total of <b>{{ card_items_count }} item{% if card_items_count > 1 %}s{% endif %}</b>:
+							<br>
+							{% for obj in cart %}
+								{{ obj.name }},
+							{% endfor %}
+						</p>
+						<h2>Your cart total is <span>${{ total }}</span></h2>
+						<a class="d-button" href="#"><b>Proceed to checkout</b></a>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

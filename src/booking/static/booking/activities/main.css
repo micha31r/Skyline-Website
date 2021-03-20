@@ -34,33 +34,41 @@
 	margin: 0;
 }
 
-.activities form {
+.activities .prompt-toggle {
 	margin-top: auto !important;
 }
 
-.activities form > .grid {
+.d-prompt .heading span {
+	color: var(--color-one);
+}
+
+.d-prompt .info {
+	color: #AAA;
+}
+
+.d-prompt form > .grid {
 	display: grid;
 	grid-template-columns: 1fr auto;
 	grid-column-gap: 20px;
 	grid-row-gap: 5px;
 }
 
-.activities form label {
+.d-prompt form label {
 	margin: auto 0;
 }
 
-.activities form input {
+.d-prompt form input {
 	border: 0;
 	border-radius: 5px;
 	background: #EEE;
 	padding: 5px;
 }
 
-.activities form input::placeholder {
+.d-prompt form input::placeholder {
 	color: #BBB;
 }
 
-.activities form button {
+.d-prompt form button {
 	width: 100%;
 	margin-top: 20px;
 }
