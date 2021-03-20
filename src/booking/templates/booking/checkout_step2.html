@@ -44,6 +44,8 @@
 							{{ form.card_number }}
 							<h3>{{ form.cvv.label }}</h3>
 							{{ form.cvv }}
+							<h3>{{ form.expiry_date.label }}</h3>
+							{{ form.expiry_date }}
 						</div>
 						<button class="d-button-fill" type="submit"><b>Confirm Payment</b></button>
 						<a class="go-back d-button" href="{% url 'booking:checkout-step1' %}"><b>Previous Step</b></a>
