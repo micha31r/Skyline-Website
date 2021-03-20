@@ -26,9 +26,8 @@
 						{% for obj in cart %}
 							<div class="item">
 								<h3 class="heading"><a href="#">{{ obj.name }}</a></h3>
-								<p>{{ obj.description|truncatechars:50 }}</p>
-								<span>Adult x {{ obj.adult_count }}</span>
-								<span>Child x {{ obj.child_count }}</span>
+								<p class="description">{{ obj.description|truncatechars:50 }}</p>
+								<span>Adult x {{ obj.adult_count }}, Child x {{ obj.child_count }}</span>
 								<p><b>${{ obj.total }}</b></p>
 								<form method="post">
 									{% csrf_token %}
