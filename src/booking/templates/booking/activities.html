@@ -10,6 +10,10 @@
 
 	<script type="text/javascript" src="{% static 'booking/activities/main.js' %}"></script>
 
+	<script type="text/javascript" src="{% static 'base/prompt.js' %}"></script>
+
+	{% include 'booking/checkout_status.html' %}
+
 	<div class="d-container-wrapper activities-container-wrapper">
 		<div class="activities d-container d-padding">
 			<div class="grid">
@@ -22,20 +26,30 @@
 							<br>
 							Child Price: <b>${{ obj.child_price }}</b>
 						</p>
-						<form method="post">
-							{% csrf_token %}
-							<div class="grid">
-								<label>Adult (15+ years)</label>
-								<input name="adult_count" placeholder="0-15" type="number" min="0" max="15" required="true">
-								<label>Child (5-14 years)</label>
-								<input name="child_count" placeholder="0-15" type="number" min="0" max="15" required="true">
-								<input hidden name="product_id" value="{{ obj.product_id }}">
-							</div>
-							<button class="d-button-fill" type="submit"><b>Add to cart</b></button>
-						</form>
+						<button class="prompt-toggle d-button" id="{{ obj.product_id }}" type="submit"><b>Select Item</b></button>
 					</div>
 				{% endfor %}
 			</div>
 		</div>
 	</div>
+
+	{% for obj in qs %}
+		<div class="d-prompt" id="d-prompt-{{ obj.product_id }}">
+			<div class="container">
+				<h2 class="heading">You are selecting <span>{{ obj.name }}</span></h2>
+				<p class="info">Please enter the number of adults and/or children</p>
+				<form method="post">
+					{% csrf_token %}
+					<div class="grid">
+						<label>Adult (15+ years) <b>${{ obj.adult_price }}</b></label>
+						<input name="adult_count" placeholder="0-15" type="number" min="0" max="15" required="true">
+						<label>Child (5-14 years) <b>${{ obj.child_price }}</b></label>
+						<input name="child_count" placeholder="0-15" type="number" min="0" max="15" required="true">
+						<input hidden name="product_id" value="{{ obj.product_id }}">
+					</div>
+					<button class="d-button-fill" type="submit"><b>Add to cart</b></button>
+				</form>
+			</div>
+		</div>
+	{% endfor %}
 {% endblock %}

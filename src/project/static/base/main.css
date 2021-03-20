@@ -84,20 +84,26 @@ button {
 }
 
 .d-message {
+	font-weight: bold;
 	border-radius: 10px;
 	border-width: 2px;
 	border-style: solid;
-	color: var(--color-one);
+	color: #000;
 	padding: 10px;
 	margin: 0;
 	text-align: center;
 }
 
 .d-message a {
-	color: var(--color-five);
+	color: var(--color-one);
 }
 
-#d-prompt {
+.d-message a:hover {
+	color: var(--color-four);
+}
+
+
+.d-prompt {
 	display: none;
 	position: fixed;
 	width: 100vw;
@@ -114,13 +120,21 @@ button {
 	z-index: 201;
 }
 
-#d-prompt > div {
+.d-prompt > div {
 	width: 100%;
 	max-width: 300px;
 	border-radius: 20px;
 	background: #FFF;
 	padding: 25px;
 	margin: auto;
+}
+
+.d-prompt > div > * {
+	margin: 0 0 20px;
+}
+
+.d-prompt > div > *:nth-last-child(1) {
+	margin: 0;
 }
 
 @media only screen and (max-width: 400px) {
