@@ -61,53 +61,48 @@ class UserInfoForm(forms.ModelForm):
 		return data
 
 class PaymentForm(forms.Form):
-	first_name = forms.CharField(
+	full_name = forms.CharField(
 	    widget=forms.TextInput(
 	        attrs={
-	            "placeholder":"First Name"
+	            "placeholder":"Full Name",
+	            "maxlength":"26"
 	        },
 	    ),
-	    label="First Name"
+	    label="Full Name"
 	)
-	last_name = forms.CharField(
+	card_number = forms.CharField(
 	    widget=forms.TextInput(
 	        attrs={
-	            "placeholder":"Last Name"
+	            "placeholder":"1234 5678 1234 5678",
+	            "minlength":"16",
+	            "maxlength":"16"
 	        },
 	    ),
-	    label="Last Name"
+	    label="Card Number"
 	)
-	email = forms.EmailField(
+	cvv = forms.CharField(
 	    widget=forms.TextInput(
 	        attrs={
-	            "placeholder":"Email"
+	            "placeholder":"012",
+	            "minlength":"3",
+	            "maxlength":"3"
 	        },
 	    ),
-	    label="Email Adress"
+	    label="CVV"
 	)
-	phone = forms.CharField(
-	    widget=forms.TextInput(
-	        attrs={
-	            "placeholder":"Phone Number"
-	        }
-	    ),
-	    label="Phone Number"
-	)
-	date = forms.DateTimeField(
-		widget=forms.TextInput(
-	        attrs={
-	            "placeholder":"Phone Number",
-	            "type": "date"
-	        }
-	    ),
-	    label="Arrival Date"
-	)
-	date_repeat = forms.DateTimeField(
-		widget=forms.TextInput(
-	        attrs={
-	            "placeholder":"Phone Number",
-	            "type": "date"
-	        }
-	    ),
-	    label="Repeat Arrival Date"
-	)
+
+	def clean(self):
+		data = super().clean()
+		fn = data.get("full_name").replace(" ", "")
+		cn = data.get("card_number")
+		cvv = data.get("cvv")
+		if fn and cn and cvv:
+			if not fn.isalpha():
+				self._errors["full_name"] = ["First name can only contain A-z and less than 27 letters"]
+			if not cn.isnumeric():
+				self._errors["card_number"] = ["Card number can only contain 0-9"]
+			if not cvv.isnumeric():
+				self._errors["cvv"] = ["CVV can only contain 0-9"]
+		else:
+			self._errors["full_name"] = ["Invalid form data!"]
+		return data

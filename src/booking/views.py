@@ -93,6 +93,8 @@ def checkout_step2_view(request):
 		ctx["total"] += total
 	if request.method == "POST":
 		form = PaymentForm(request.POST)
+		if form.is_valid():
+			data = form.cleaned_data
 	else:
 		form = PaymentForm()
 	ctx["form"] = form

@@ -59,6 +59,20 @@
 	width: 100%;
 }
 
+.checkout form .go-back {
+	width: 100%;
+	background: #000;
+	border-color: #000;
+	box-sizing: border-box;
+	color: #fff;
+	text-align: center;
+}
+
+.checkout form .go-back:hover {
+	border-color: var(--color-one);
+	color: var(--color-one);
+}
+
 .checkout .card {
 	max-width: 250px;
 	height: max-content;
