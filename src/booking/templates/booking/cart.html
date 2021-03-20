@@ -10,10 +10,6 @@
 {% block content %}
 	<script type="text/javascript" src="{% static 'base/no_resubmission.js' %}"></script>
 
-	<script type="text/javascript" src="{% static 'booking/activities/main.js' %}"></script>
-
-	<script type="text/javascript" src="{% static 'base/prompt.js' %}"></script>
-
 	{% include 'booking/checkout_status.html' %}
 
 	<div class="d-container-wrapper cart-container-wrapper">
@@ -49,7 +45,7 @@
 							{% endfor %}
 						</p>
 						<h2>Your cart total is <span>${{ total }}</span></h2>
-						<a class="d-button" href="#"><b>Proceed to checkout</b></a>
+						<a class="d-button" href="{% url 'booking:checkout-step1' %}"><b>Proceed to checkout</b></a>
 					</div>
 				</div>
 			{% endif %}
