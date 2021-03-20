@@ -38,7 +38,7 @@
 					<div class="card">
 						<h2>Order Summary</h2>
 						<p>
-							You have order a total of <b>{{ card_items_count }} item{% if card_items_count > 1 %}s{% endif %}</b>:
+							Your cart has a total of <b>{{ card_items_count }} item{% if card_items_count > 1 %}s{% endif %}</b>:
 							<br>
 							{% for obj in cart %}
 								{{ obj.name }},
