@@ -56,6 +56,8 @@ def cart_view(request):
 def checkout_step1_view(request):
 	ctx = {}
 	ctx["cart"] = cart = request.session.get("cart", [])
+	if not cart:
+		return redirect("booking:activities")
 	ctx["card_items_count"] = len(cart)
 	ctx["total"] = 0
 	for i in range(len(cart)):
@@ -85,6 +87,8 @@ def checkout_step1_view(request):
 def checkout_step2_view(request):
 	ctx = {}
 	ctx["cart"] = cart = request.session.get("cart", [])
+	if not cart:
+		return redirect("booking:activities")
 	ctx["card_items_count"] = len(cart)
 	ctx["total"] = 0
 	for i in range(len(cart)):
