@@ -143,7 +143,8 @@ def success_view(request, success_id=None):
 	cached_success_id = request.session.get("success_id", None)
 	if not (cached_success_id or success_id):
 		raise Http404("Order not found")
-	if cached_success_id:
+	# Incase there are multiple orders
+	if cached_success_id and cached_success_id == success_id or not success_id:
 		ctx["profile"] = get_object_or_404(Profile, slug=cached_success_id)
 	elif success_id:
 		profile = get_object_or_404(Profile, slug=success_id)
