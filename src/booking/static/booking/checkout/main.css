@@ -59,6 +59,10 @@
 	width: 100%;
 }
 
+.checkout form button[type="submit"] {
+	padding: 20px;
+}
+
 .checkout form .go-back {
 	width: 100%;
 	background: #000;
