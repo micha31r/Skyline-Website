@@ -5,6 +5,7 @@ from django.contrib import messages
 from usermgmt.models import Profile
 from .models import Activity, Ticket
 from .forms import UserInfoForm, PaymentForm, UserIdentifyForm
+from .tasks import success_email
 
 def activities_view(request):
 	ctx = {}
@@ -122,6 +123,14 @@ def checkout_step2_view(request):
 			# Delete session data
 			request.session.pop('cart', None)
 			request.session.pop('user_info', None)
+			# Send success email
+			success_email(
+				profile.email, 
+				profile.get_full_name(), 
+				str(len(cart)), 
+				profile.slug,
+				info["date"].split(" ")[0],
+			)
 			return redirect("booking:checkout-success")
 	else:
 		form = PaymentForm()
