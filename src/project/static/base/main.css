@@ -26,8 +26,9 @@ p {
 }
 
 hr {
-	border-style: solid;
-	border-color: var(--color-fill-gray);
+	width: 100%;
+	border: 1px solid #DDD;
+	box-sizing: border-box;
 }
 
 button {
