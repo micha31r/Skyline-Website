@@ -29,6 +29,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# Email Stuff
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "michaelren.dev@gmail.com"
+with open(os.path.join(BASE_DIR, 'project/secrets/email_key.txt')) as f:
+    EMAIL_HOST_PASSWORD = f.read().strip() 
 
 # Application definition
 
