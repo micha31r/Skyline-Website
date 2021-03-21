@@ -17,17 +17,18 @@ def activities_view(request):
 		child_count = data.get("child_count", None)
 		product_id = data.get("product_id", None)
 		if adult_count and child_count and product_id:
-			obj = Activity.objects.get(product_id=product_id)
-			cart.append({
-				"name":obj.name,
-				"description":obj.description,
-				"adult_price":obj.adult_price,
-				"child_price":obj.child_price,
-				"product_id":product_id,
-				"adult_count":adult_count,
-				"child_count":child_count,
-			})
-			request.session["cart"] = cart
+			if int(adult_count) > 0 or int(child_count) > 0:
+				obj = Activity.objects.get(product_id=product_id)
+				cart.append({
+					"name":obj.name,
+					"description":obj.description,
+					"adult_price":obj.adult_price,
+					"child_price":obj.child_price,
+					"product_id":product_id,
+					"adult_count":adult_count,
+					"child_count":child_count,
+				})
+				request.session["cart"] = cart
 	template_file = "booking/activities.html"
 	return render(request, template_file, ctx)
 
