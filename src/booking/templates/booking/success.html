@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'booking/checkout_status.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'booking/success/main.css' %}">
+{% endblock %}
+
+{% block content %}
+	<script type="text/javascript" src="{% static 'base/no_resubmission.js' %}"></script>
+
+	<!-- QR Generator -->
+	<script type="text/javascript" src="https://unpkg.com/qr-code-styling/lib/qr-code-styling.js"></script>
+
+	{% include 'booking/checkout_status.html' %}
+
+	<div class="d-container-wrapper overview-container-wrapper">
+		<div class="overview d-container d-padding">
+			{% if profile %}
+				<div class="success-container">
+					<h1>👋 Thank you {{ profile.get_full_name }} for booking {{ qs.count }} activities at Skyline Rotorua. We are looking forward to seeing you on {{ qs.first.activation_date.date }}. Below are your electronic tickets:</h1>
+					<p>If you have any questions, feel free to email us at <b><a href="mailto:rotorua@skyline.co.nz">rotorua@skyline.co.nz</a></b> or call <b>+ 64 7 347 0027</b></p>
+				</div>
+				<div class="ticket-container">
+					{% for obj in qs %}
+						<div class="item">
+							<div class="grid">
+								<div class="content-container">
+									<h2 class="heading"><a href="#"><span>{{ obj.activity.name }}</span></a></h2>
+									<p>Ticket Holder: <b>{{ profile.get_full_name }}</b></p>
+									<p>Description: <b>{{ obj.activity.description|truncatechars:50 }}</b></p>
+									<p>Number Of Attendees: <span><b>Adult x {{ obj.adult_count }}, Child x {{ obj.child_count }}</b></span></p>
+									<p>Arrival Date: <b>{{ obj.activation_date.date }}</b></p>
+								</div>
+								<!-- https://medium.com/@facucarbonel_97514/how-to-create-a-qr-generator-using-javascript-4b5ce1b6ec27 -->
+								<div class="content-container">
+									<div id="qr-{{ obj.code }}"></div>
+								</div>
+								<script type="text/javascript">
+									new QRCodeStyling({
+										width: 80,
+										height: 80,
+										data: "{{ obj.code }}",
+									}).append(document.getElementById("qr-{{ obj.code }}"));
+								</script>
+							</div>
+							<div class="verifications content-container">
+								<p>Issue ID: <b>{{ obj.code }}</b></p>
+								<p>Issue Date: <b>{{ obj.timestamp.date }}</b></p>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			{% else %}
+				<div class="email-verification">
+					<h2>Please enter your email address to find your order</h2>
+					<p>If you are having trouble locating your order, please email us at <b><a href="mailto:rotorua@skyline.co.nz">rotorua@skyline.co.nz</a></b> or call <b>+ 64 7 347 0027</b> for assistence.</p>
+					<form method="post">
+						{% csrf_token %}
+
+						{% if messages or form.errors %}
+							<div class="messages-container">
+								{% for message in messages %}
+						        	<p class="d-message">{{ message }}</p>
+							    {% endfor %}
+							    {% for field in form %}
+									{% for error in field.errors %}
+							        	<p class="d-message">{{ error }}</p>
+								    {% endfor %}
+								{% endfor %}
+							</div>
+						{% endif %}
+
+						<label><b>Email Address</b></label>
+						{{ form.email }}
+
+						<button class="d-button-fill" type="submit"><b>Find My Order</b></button>
+					</form>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

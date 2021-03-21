@@ -118,3 +118,12 @@ class PaymentForm(forms.Form):
 		else:
 			self._errors["full_name"] = ["Invalid form data!"]
 		return data
+
+class UserIdentifyForm(forms.Form):
+	email = forms.EmailField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder":"example@example.com"
+            },
+        )
+    )

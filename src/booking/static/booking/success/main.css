@@ -1,0 +1,147 @@
+:root {
+	--progress-bar-width: 100% !important;
+}
+
+.overview * {
+	font-family: proxima-nova, sans-serif;
+}
+
+.overview span {
+	color: var(--color-one);
+}
+
+.overview .success-container {
+	max-width: 900px;
+	border: 1px solid #DDD;
+	border-radius: 20px;
+	padding: 20px;
+	margin: auto auto 40px;
+}
+
+.overview .success-container > * {
+	margin: 0 0 20px;
+	text-align: center;
+}
+
+.overview .success-container > *:nth-last-child(1) {
+	margin: 0;
+}
+
+.overview .success-container p, .overview .success-container a {
+	color: #AAA;
+}
+
+.overview .success-container a:hover {
+	color: var(--color-one);
+}
+
+.overview .ticket-container {
+	max-width: 800px;
+	border: 1px solid #DDD;
+	border-radius: 20px;
+	padding: 20px;
+	margin: auto;
+}
+
+.overview .ticket-container > * {
+	margin: 0 0 20px;
+}
+
+.overview .ticket-container > *:nth-last-child(1) {
+	margin: 0;
+}
+
+.overview .item {
+	border: 1px solid #DDD;
+	border-radius: 10px;
+}
+
+.overview .item .grid {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-column-gap: 20px;
+	border: 1px solid #DDD;
+	border-width: 0 0 1px;
+}
+
+.overview .item .content-container {
+	padding: 20px 0;
+}
+
+.overview .item .content-container > * {
+	margin: 0 20px 10px;
+}
+
+.overview .item .content-container > *:nth-last-child(1) {
+	margin: 0 20px 0;
+}
+
+.overview .item .verifications {
+	border-bottom-width: 0;
+	border-radius: 0 0 10px 10px;
+	background: #F5F5F5;
+}
+
+.overview .card {
+	max-width: 250px;
+	height: max-content;
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.overview .card > * {
+	margin: 0 0 20px;
+}
+
+.overview .card > *:nth-last-child(1) {
+	margin: 0;
+}
+
+.overview .email-verification > *:not(form) {
+	margin: 0 0 20px;
+	text-align: center;
+}
+
+.overview .email-verification > *:nth-last-child(1) {
+	margin: 0;
+}
+
+.overview .email-verification {
+	max-width: 350px;
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	padding: 20px;
+	margin: auto;
+}
+
+.overview form {
+	width: 100%;
+}
+
+.overview form * {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.overview form label {
+	margin-bottom: 10px;
+	color: var(--color-one);
+}
+
+.overview form input {
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.overview form input::placeholder {
+	color: #BBB;
+}
+
+.overview form button {
+	text-align: center;
+}
+

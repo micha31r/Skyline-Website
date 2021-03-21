@@ -1,8 +1,10 @@
-import json
-from django.shortcuts import render, redirect
+import datetime
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404
 from django.contrib import messages
-from .models import Activity
-from .forms import UserInfoForm, PaymentForm
+from usermgmt.models import Profile
+from .models import Activity, Ticket
+from .forms import UserInfoForm, PaymentForm, UserIdentifyForm
 
 def activities_view(request):
 	ctx = {}
@@ -73,10 +75,10 @@ def checkout_step1_view(request):
 				"last_name":data.get("last_name"),
 				"email":data.get("email"),
 				"phone":data.get("phone"),
-				"date":data.get("date"),
-				"date_repeat":data.get("date_repeat"),
+				"date":str(data.get("date")),
+				"date_repeat":str(data.get("date_repeat")),
 			}
-			request.session["user_info"] = json.dumps(info, default=str)
+			request.session["user_info"] = info
 			return redirect("booking:checkout-step2")
 	else:
 		form = UserInfoForm()
@@ -99,13 +101,57 @@ def checkout_step2_view(request):
 		form = PaymentForm(request.POST)
 		if form.is_valid():
 			data = form.cleaned_data
+			info = request.session.get("user_info", [])
+			if not info: # Make sure all user data are present
+				return redirect("booking:checkout-step1")
+			profile = Profile.objects.create(
+				first_name=info["first_name"],
+				last_name=info["last_name"],
+				email=info["email"],
+				phone=info["phone"]
+			)
+			for item in cart:
+				obj = Ticket.objects.create(
+					user=profile,
+					activity=get_object_or_404(Activity, product_id=item["product_id"]),
+					adult_count=item["adult_count"],
+					child_count=item["child_count"],
+					activation_date=datetime.datetime.strptime(info["date"].split(" ")[0], '%Y-%m-%d'),
+				)
+			request.session["success_id"] = profile.slug
+			# Delete session data
+			request.session.pop('cart', None)
+			request.session.pop('user_info', None)
+			return redirect("booking:checkout-success")
 	else:
 		form = PaymentForm()
 	ctx["form"] = form
 	template_file = "booking/checkout_step2.html"
 	return render(request, template_file, ctx)
 
-
-
+def success_view(request, success_id=None):
+	ctx = {}
+	cached_success_id = request.session.get("success_id", None)
+	if not (cached_success_id or success_id):
+		raise Http404("Order not found")
+	if cached_success_id:
+		ctx["profile"] = get_object_or_404(Profile, slug=cached_success_id)
+	elif success_id:
+		profile = get_object_or_404(Profile, slug=success_id)
+		if request.method == "POST":
+			form = UserIdentifyForm(request.POST)
+			if form.is_valid():
+				if form.cleaned_data.get("email") == profile.email:
+					ctx["profile"] = profile
+					request.session["success_id"] = success_id
+				else:
+					messages.add_message(request, messages.ERROR, "Order not found")
+		else:
+			form = UserIdentifyForm()
+		ctx["form"] = form
+	if "profile" in ctx:
+		ctx["qs"] = Ticket.objects.filter(user=ctx["profile"])
+	template_file = "booking/success.html"
+	return render(request, template_file, ctx)
 
 

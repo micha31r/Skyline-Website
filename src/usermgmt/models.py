@@ -10,19 +10,17 @@ class Profile(models.Model):
 	last_name = models.CharField(max_length=128)
 	email = models.EmailField(max_length=255)
 	phone = models.CharField(max_length=13)
-	slug = models.SlugField(max_length=32, blank=True, null=True)
+	slug = models.SlugField(max_length=64, blank=True, null=True)
 
 	# Timestamp
 	timestamp = models.DateTimeField(auto_now_add=True)
-
-	def add_item(self):
-		...
 
 	def get_full_name(self):
 		return f"{self.first_name.capitalize()} {self.last_name.capitalize()}"
 
 	def save(self, *args, **kwargs):
-		self.slug = slug_generator(timezone.now(), 32)
+		if not self.slug:
+			self.slug = slug_generator(timezone.now(), 64)
 		super(Profile, self).save(*args, **kwargs)
 
 	def __str__(self):
