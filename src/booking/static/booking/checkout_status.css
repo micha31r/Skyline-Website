@@ -9,7 +9,7 @@
 	top: 77px;
 	background: #CCC;
 	overflow-x: auto;
-	z-index: 100;
+	z-index: 90;
 }
 
 .checkout-status .bg {
