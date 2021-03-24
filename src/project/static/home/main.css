@@ -6,7 +6,6 @@
 
 .intro-container-wrapper {
 	padding: 120px 0;
-	background-color: rgba(0,0,0,0.4);
 }
 
 .intro {
@@ -16,10 +15,22 @@
 
 .intro * {
 	text-align: center;
-	color: #FFF;
 }
 
 .intro .heading {
 	font-size: 5rem;
+	text-shadow: 0 0 40px #FFF;
 	margin: 0;
+}
+
+.intro h2 {
+	text-shadow: 0 0 20px #FFF;
+}
+
+.intro a {
+	background: #000;
+	border-radius: 10px;
+	box-shadow: 0 0 40px rgba(255,255,255,0.5);
+	color: #FFF;
+	padding: 20px 25px;
 }
