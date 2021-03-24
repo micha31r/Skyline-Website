@@ -41,6 +41,10 @@
 	grid-row-gap: 20px;
 }
 
+.checkout form .grid {
+	margin: 0 0 40px;
+}
+
 .checkout form h3 {
 	margin: auto 0;
 }
@@ -99,14 +103,35 @@
 	}
 }
 
-@media only screen and (max-width: 700px) {
-	.checkout > .grid {
+@media only screen and (max-width: 850px) {
+	.checkout form .grid {
 		grid-template-columns: 1fr;
 		grid-row-gap: 20px;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	.checkout > .grid {
+		max-width: 450px;
+		grid-template-columns: 1fr;
+		grid-row-gap: 20px;
+		margin: auto;
 	}
 	.checkout .card {
 		max-width: none;
 		grid-row-start: 1;
 		grid-row-end: 2;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.checkout > .grid {
+		max-width: 450px;
+		grid-template-columns: 1fr;
+		grid-row-gap: 20px;
+		margin: auto;
+	}
+	.checkout form {
+		padding: 20px;
 	}
 }
