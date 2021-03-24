@@ -200,6 +200,7 @@ nav #popup-nav-toggle .close {
 }
 
 #popup-nav .right .active-link {
+	padding: 15px 20px 15px 20px;
 	background: #EEE;
 }
 
