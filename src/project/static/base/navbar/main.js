@@ -21,15 +21,22 @@ function switch_icon(state) {
 	}
 }
 
+// Timeout id
+var id;
+
 function nav_toggle() {
 	if ($(window).width() <= 960) {
 		var popup_nav = $("#popup-nav");
 		let visiblility = popup_nav.css("display");
 		if (visiblility == "block") {
-			$("#popup-nav").hide();
+			// Set ms to the same as animation-duration
+			id = setTimeout(()=>{popup_nav.hide();}, 200);
+			popup_nav.css("animation-name", "hide");
 			switch_icon("close");
 		} else {
-			$("#popup-nav").show();
+			clearTimeout(id);
+			popup_nav.show();
+			popup_nav.css("animation-name", "show");
 			switch_icon("open");
 		}
 	}
