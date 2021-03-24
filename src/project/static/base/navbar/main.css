@@ -225,7 +225,7 @@ nav #popup-nav-toggle .close {
 
 @media only screen and (max-width: 400px) {
 	nav .brand img {
-		display: none;
+		height: 3em;
 	}
 }
 
