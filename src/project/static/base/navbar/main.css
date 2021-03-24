@@ -37,10 +37,18 @@ nav ul {
 	box-sizing: border-box;
 }
 
-nav ul li {
+nav li {
 	display: inline-block;
 	padding: 0;
 	margin: 0;
+}
+
+nav a {
+	transition: color 0.2s;
+}
+
+nav a:hover {
+	color: var(--color-one);
 }
 
 nav .brand {
@@ -67,10 +75,9 @@ nav .right li {
 }
 
 nav .right a {
-	display: inline-block;
+	display: flex;
 	border-radius: 10px;
 	padding: 8px 12px;
-	display: flex;
 }
 
 nav .right li:nth-last-child(1) a {
@@ -79,6 +86,18 @@ nav .right li:nth-last-child(1) a {
 
 nav .right svg {
 	margin-left: 5px;
+}
+
+nav #popup-nav-toggle {
+	display: none;
+}
+
+nav #popup-nav-toggle svg {
+	vertical-align: middle;
+}
+
+nav #popup-nav-toggle .close {
+	display: none;
 }
 
 .nav-activities {
@@ -108,6 +127,67 @@ nav .right svg {
 
 .nav-activities .flex a:hover {
 	color: #000;
+}
+
+#popup-nav {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 300px;
+	height: 100%;
+	background: #FFF;
+	border: 1px solid #DDD;
+	border-width: 0 1px 0 0;
+	padding: 100px 20px 20px;
+	overflow: auto;
+}
+
+#popup-nav .left {
+	display: flex;
+	padding: 10px 0;
+}
+
+#popup-nav .right {
+	display: flex;
+	padding: 10px 0;
+}
+
+#popup-nav ul {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+#popup-nav li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#popup-nav .right li {
+	padding: 0 0 0 10px;
+}
+
+#popup-nav .right a {
+	display: inline-block;
+	border-radius: 10px;
+	padding: 10px 0;
+	display: flex;
+}
+
+#popup-nav .right li:nth-last-child(1) a {
+	padding-right: 0;
+}
+
+#popup-nav .right svg {
+	margin-left: 5px;
+}
+
+@media only screen and (max-width: 960px) {
+	nav #popup-nav-toggle {
+		display: block;
+	}
 }
 
 @media only screen and (max-width: 500px) {
