@@ -63,3 +63,9 @@
 	background: var(--color-four);
 }
 
+@media only screen and (max-width: 500px) {
+	.checkout-status .flex span {
+		display: none;
+	}
+}
+
