@@ -10,12 +10,24 @@
 {% block content %}
 	<script type="text/javascript" src="{% static 'base/no_resubmission.js' %}"></script>
 
+	{% if cart %}
+		<script type="text/javascript" src="{% static 'booking/cart/main.js' %}"></script>
+	{% endif %}
+
 	{% include 'booking/checkout_status.html' %}
 
 	<div class="d-container-wrapper cart-container-wrapper">
 		<div class="cart d-container d-padding">
 			{% if not cart %}
-		        <p class="d-message">Your cart is empty! <a href="{% url 'booking:activities' %}">Continue shopping</a>?</p>
+				<div class="empty-cart-grid">
+					<img src="{% static 'booking/cart/falling.png' %}">
+					<div class="flex">
+						<div>
+							<h1>Oops, your cart is empty!</h1>
+							<a class="d-button-fill" href="{% url 'booking:activities' %}"><b>Continue shopping?</b></a>
+						</div>
+					</div>
+			    </div>
 			{% else %}
 				<div class="grid">
 					<div class="container">
