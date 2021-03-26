@@ -43,7 +43,7 @@
 }
 
 .checkout-status .flex a:not(.active-link):hover {
-	color: var(--color-one);
+	color: var(--color-two);
 }
 
 @keyframes grow {
@@ -60,7 +60,8 @@
 	height: 5px;
 	animation: grow 1s forwards;
 	animation-delay: 1s;
-	background: var(--color-four);
+	background: var(--color-three);
+	background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
 }
 
 @media only screen and (max-width: 500px) {

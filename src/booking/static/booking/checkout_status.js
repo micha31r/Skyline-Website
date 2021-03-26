@@ -1,6 +1,5 @@
 $(function() {
-	$(window).resize(function() {
-		$(".checkout-status").css("top", $("nav").height());
-	});
-	$(".checkout-status").css("top", $("nav").height());
+	let f = () => {$(".checkout-status").css("top", $("nav").height());};
+	$(window).resize(f);
+	f();
 });
