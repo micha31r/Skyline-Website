@@ -11,7 +11,7 @@
 }
 
 .checkout span {
-	color: var(--color-one);
+	color: var(--color-two);
 }
 
 .checkout > .grid {
@@ -77,8 +77,8 @@
 }
 
 .checkout form .go-back:hover {
-	border-color: var(--color-one);
-	color: var(--color-one);
+	border-color: var(--color-two);
+	color: var(--color-two);
 }
 
 .checkout .card {

@@ -11,7 +11,7 @@
 }
 
 .cart span {
-	color: var(--color-one);
+	color: var(--color-two);
 }
 
 .cart .grid {
@@ -40,7 +40,7 @@
 }
 
 .cart .item button:hover {
-	color: blue;
+	color: var(--color-two);
 }
 
 .cart .item button svg {
@@ -85,7 +85,6 @@
 
 .empty-cart-grid a {
 	border-radius: 10px;
-	background: var(--color-one);
 	padding: 20px 25px;
 }
 

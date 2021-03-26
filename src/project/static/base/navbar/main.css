@@ -48,7 +48,7 @@ nav a {
 }
 
 nav a:hover {
-	color: var(--color-one);
+	color: var(--color-two);
 }
 
 nav .brand {
@@ -62,7 +62,7 @@ nav .brand {
 }
 
 nav .brand:hover {
-	color: var(--color-one);
+	color: var(--color-two);
 }
 
 nav .brand img {
@@ -104,7 +104,7 @@ nav #popup-nav-toggle .close {
 	font-weight: bold;
 	padding: 20px 0;
 	overflow-x: auto;
-	background: var(--color-one);
+	background: var(--color-two);
 }
 
 .nav-activities .flex {

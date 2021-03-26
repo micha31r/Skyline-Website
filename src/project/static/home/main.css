@@ -1,7 +1,10 @@
-.intro-bg {
-	background-size: cover;
-	background-repeat: no-repeat; 
-	box-sizing: border-box;
+.bg-video {
+	position: absolute;
+	width: 100vw;
+	/* Height is set to the same as .intro-container-wrapper in JS */
+	filter: brightness(0.4);
+	object-fit: cover; /* Discard aspect ratio */
+	z-index: -1;
 }
 
 .intro-container-wrapper {
@@ -13,24 +16,43 @@
 	font-weight: bold;
 }
 
-.intro * {
+.intro *:not(a) {
+	color: #FFF;
 	text-align: center;
 }
 
 .intro .heading {
 	font-size: 5rem;
-	text-shadow: 0 0 40px #FFF;
 	margin: 0;
+	background: #FFF;
+
+	/* Gradient text fill */
+	/* https://fossheim.io/writing/posts/css-text-gradient/ */
+	/*background: rgb(0,255,145);*/
+	/*background: linear-gradient(90deg, rgba(0,255,145,1) 17%, rgba(0,60,255,1) 100%);*/
+	background-size: cover;
+
+	/* Used text as clipping mask */
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent; 
+	-moz-background-clip: text;
+	-moz-text-fill-color: transparent;
 }
 
 .intro h2 {
-	text-shadow: 0 0 20px #FFF;
+	margin: 20px 0 40px;
 }
 
 .intro a {
-	background: #000;
-	border-radius: 10px;
-	box-shadow: 0 0 40px rgba(255,255,255,0.5);
-	color: #FFF;
-	padding: 20px 25px;
+	border-radius: 50px;
+	padding: 15px 30px;
+	color: var(--color-one);
+	border-color: var(--color-one);
 }
+
+.intro a:hover {
+	color: #000;
+	background: var(--color-one);
+}
+
+

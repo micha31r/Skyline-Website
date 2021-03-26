@@ -7,7 +7,7 @@
 }
 
 .overview span {
-	color: var(--color-one);
+	color: var(--color-two);
 }
 
 .overview .success-container {
@@ -32,7 +32,7 @@
 }
 
 .overview .success-container a:hover {
-	color: var(--color-one);
+	color: var(--color-two);
 }
 
 .overview .ticket-container {
@@ -124,7 +124,7 @@
 
 .overview form label {
 	margin-bottom: 10px;
-	color: var(--color-one);
+	color: var(--color-two);
 }
 
 .overview form input {

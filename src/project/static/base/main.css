@@ -1,11 +1,7 @@
 :root {
-	--color-one: rgb(42,95,251);
-	--color-two: rgb(244,247,255);
-	--color-three: rgb(255,66,104);
-	--color-four: rgb(2,55,211);
-	--color-gray: rgb(204,204,204);
-	--color-fill-gray: rgb(245,245,245);
-	--color-transparent-gray: rgba(0,0,0,0.2);
+	--color-one: rgb(0,230,115);
+	--color-two: rgb(0,150,89);
+	--color-three: rgb(0,110,65);
 }
 
 body {
@@ -38,8 +34,8 @@ button {
 
 .d-button, .d-button-fill {
 	display: inline-block;
-	color: var(--color-one);
-	border-color: var(--color-one);
+	color: var(--color-two);
+	border-color: var(--color-two);
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 10px;
@@ -51,17 +47,17 @@ button {
 
 .d-button:hover {
 	color: #FFF;
-	background: var(--color-one);
+	background: var(--color-two);
 }
 
 .d-button-fill {
 	color: #FFF;
-	background: var(--color-one);
+	background: var(--color-two);
 }
 
 .d-button-fill:hover {
-	border-color: var(--color-four);
-	background: var(--color-four);
+	border-color: var(--color-three);
+	background: var(--color-three);
 }
 
 /* CSS for ".base" elements are defined in this file */
@@ -103,11 +99,11 @@ button {
 }
 
 .d-message a {
-	color: var(--color-one);
+	color: var(--color-two);
 }
 
 .d-message a:hover {
-	color: var(--color-four);
+	color: var(--color-three);
 }
 
 .d-prompt {
@@ -118,7 +114,7 @@ button {
 	top: 0;
 	left: 0;
 	border-width: 2px;
-	border-color: var(--color-one);
+	border-color: var(--color-two);
 	border-style: solid;
 	background: rgba(0,0,0,0.6);
 	box-sizing: border-box;
