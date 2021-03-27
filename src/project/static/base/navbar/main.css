@@ -1,10 +1,11 @@
 nav {
 	position: sticky;
 	top: 0;
-	background: #FFF;
+	background: rgba(255,255,255,0.8);
 	border-width: 0 0 1px;
 	border-style: solid;
 	border-color: #DDD;
+	backdrop-filter: blur(10px);
 	padding: 0 20px;
 	overflow: auto;
 	z-index: 101;
