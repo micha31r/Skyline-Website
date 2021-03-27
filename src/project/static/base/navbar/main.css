@@ -152,10 +152,11 @@ nav #popup-nav-toggle .close {
 	left: 0;
 	width: 300px;
 	height: 100%;
-	background: #FFF;
+	background: rgba(255,255,255,0.8);
 	border: 1px solid #DDD;
 	border-width: 0 1px 0 0;
 	box-sizing: border-box;
+	backdrop-filter: blur(10px);
 	padding: 100px 25px 25px;
 	overflow: auto;
 	animation-duration: 0.2s;
@@ -195,12 +196,12 @@ nav #popup-nav-toggle .close {
 
 #popup-nav .right a:hover {
 	padding: 15px 20px 15px 20px;
-	border: 1px solid #DDD;
+	border: 1px solid var(--color-two);
 }
 
 #popup-nav .right .active-link {
 	padding: 15px 20px 15px 20px;
-	background: #EEE;
+	background: rgba(0,0,0,0.05);
 }
 
 #popup-nav .right li:nth-last-child(1) a {
