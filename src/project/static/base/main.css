@@ -9,7 +9,7 @@ body {
 }
 
 * {
-	font-family: "Roboto", sans-serif;
+	font-family: "proxima-nova", sans-serif;
 }
 
 a {
@@ -43,6 +43,14 @@ button {
 	text-decoration: none;
 	transition: color background;
 	transition-duration: 0.2s;
+}
+
+.d-button-flex {
+	display: inline-flex;
+}
+
+.d-button-flex svg {
+	margin: auto 0 auto 5px;
 }
 
 .d-button:hover {

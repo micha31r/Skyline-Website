@@ -11,7 +11,6 @@ nav {
 }
 
 nav * {
-	font-family: proxima-nova, sans-serif;
 	font-weight: bold;
 }
 
@@ -100,7 +99,6 @@ nav #popup-nav-toggle .close {
 }
 
 .nav-activities {
-	font-family: proxima-nova, sans-serif;
 	font-weight: bold;
 	padding: 20px 0;
 	overflow-x: auto;
