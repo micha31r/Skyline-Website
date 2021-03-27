@@ -2,7 +2,7 @@
 	position: absolute;
 	width: 100vw;
 	/* Height is set to the same as .intro-container-wrapper in JS */
-	filter: brightness(0.4);
+	filter: brightness(0.5);
 	object-fit: cover; /* Discard aspect ratio */
 	z-index: -1;
 }
@@ -12,7 +12,6 @@
 }
 
 .intro {
-	font-family: proxima-nova, sans-serif;
 	font-weight: bold;
 }
 
@@ -24,19 +23,6 @@
 .intro .heading {
 	font-size: 5rem;
 	margin: 0;
-	background: #FFF;
-
-	/* Gradient text fill */
-	/* https://fossheim.io/writing/posts/css-text-gradient/ */
-	/*background: rgb(0,255,145);*/
-	/*background: linear-gradient(90deg, rgba(0,255,145,1) 17%, rgba(0,60,255,1) 100%);*/
-	background-size: cover;
-
-	/* Used text as clipping mask */
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent; 
-	-moz-background-clip: text;
-	-moz-text-fill-color: transparent;
 }
 
 .intro h2 {
@@ -54,5 +40,172 @@
 	color: #000;
 	background: var(--color-one);
 }
+
+.todo-container-wrapper {
+	padding: 120px 0;
+}
+
+.todo .heading {
+	font-size: 3em;
+	margin: 0 0 40px;
+	text-align: center;
+}
+
+.todo .flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	margin: 0 -30px -30px 0;
+}
+
+.todo .card {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	min-width: 300px;
+	max-width: 500px;
+	background: #FFF;
+	border-radius: 15px;
+	border: 1px solid #DDD;
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+	margin: 0 30px 30px 0;
+	transition: transform, box-shadow, 0.1s;
+	overflow: hidden;
+}
+
+.todo .card:hover {
+	transform: translate(5px, 5px);
+	box-shadow: none;
+}
+
+.todo .card .cover-image {
+	width: 100%;
+	height: 200px;
+	background:;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.todo .card .content {
+	padding: 20px;
+}
+
+.todo .card .content > * {
+	margin: 0 0 20px;
+}
+
+.todo .card .content > *:nth-last-child(1) {
+	margin: 0;
+}
+
+.todo .card a {
+	font-weight: bold;
+	display: flex;
+	margin-top: auto;
+	border-radius: 0;
+}
+
+.video-container-wrapper {
+	padding: 120px 0;
+}
+
+.video .grid {
+	display: grid;
+	grid-template-columns: 0.5fr 1fr;
+	grid-column-gap: 80px;
+}
+
+.video .left * {
+	margin: 0 0 20px;
+}
+
+.video .left *:nth-last-child(1) {
+	margin: 0;
+}
+
+.video .heading {
+	font-size: 3em;
+}
+
+.video .author {
+	font-weight: bold;
+	text-align: right;
+}
+
+.video video {
+	width: 100%;
+}
+
+.gallery-container-wrapper {
+	background: #F4F4F4;
+	padding: 120px 0;
+}
+
+.gallery .grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+}
+
+.gallery .grid > div {
+	width: 100%;
+	height: 300px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 0 30px 30px 0;
+}
+
+.booking-container-wrapper {
+	background: #000;
+	padding: 120px 0;
+}
+
+@keyframes tilt {
+	from {
+		transform: rotate(-3deg);
+	}
+	to {
+		transform: rotate(3deg);
+	}
+}
+
+.booking h1 {
+	font-size: 4em;
+	margin: 0 0 40px;
+	text-align: center;
+	animation: tilt infinite alternate-reverse ease-in-out 0.5s;
+	transition: border-color, 0.2s;
+
+	/* Gradient text fill */
+	/* https://fossheim.io/writing/posts/css-text-gradient/ */
+	background: var(--color-two);
+	background: linear-gradient(90deg, rgba(77,255,71,1) 0%, rgba(0,88,45,1) 100%);
+	background-size: cover;
+
+	/* Used text as clipping mask */
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent; 
+	-moz-background-clip: text;
+	-moz-text-fill-color: transparent;
+}
+
+.booking a {
+	display: block;
+	width: max-content;
+	border-radius: 50px;
+	border: 2px solid #FFF;
+	color: #FFF;
+	margin: auto;
+	padding: 15px 30px;
+	transition: color, border-color, 0.2s;
+}
+
+.booking a:hover {
+	color: var(--color-one);
+	border-color: var(--color-one);
+}
+
 
 
