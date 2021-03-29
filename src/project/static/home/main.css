@@ -1,3 +1,7 @@
+:root {
+	--gallery-columns: 4;
+}
+
 .bg-video {
 	position: absolute;
 	width: 100vw;
@@ -110,31 +114,24 @@
 	padding: 120px 0;
 }
 
-.video .grid {
-	display: grid;
-	grid-template-columns: 0.5fr 1fr;
-	grid-column-gap: 80px;
-}
-
-.video .left * {
-	margin: 0 0 20px;
-}
-
-.video .left *:nth-last-child(1) {
-	margin: 0;
-}
-
 .video .heading {
 	font-size: 3em;
+	margin: 0 0 30px;
+	text-align: center;
 }
 
-.video .author {
-	font-weight: bold;
-	text-align: right;
+.video p {
+	font-size: 1.2em;
+	max-width: 900px;
+	text-align: center;
+	margin: 0 auto 60px;
 }
 
 .video video {
+	display: block;
 	width: 100%;
+	max-width: 800px;
+	margin: auto;
 }
 
 .gallery-container-wrapper {
@@ -144,17 +141,18 @@
 
 .gallery .grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: repeat(var(--gallery-columns), 1fr);
 	grid-column-gap: 20px;
+	grid-row-gap: 20px;
 }
 
 .gallery .grid > div {
 	width: 100%;
-	height: 300px;
+	height: calc(90vw / var(--gallery-columns));
+	max-height: 300px;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	margin: 0 30px 30px 0;
 }
 
 .booking-container-wrapper {
@@ -207,5 +205,75 @@
 	border-color: var(--color-one);
 }
 
+@media only screen and (max-width: 900px) {
+	:root {
+		--gallery-columns: 3;
+	}
+}
 
+@media only screen and (max-width: 700px) {
+	:root {
+		--gallery-columns: 2;
+	}
+	.intro .heading {
+		font-size: 4rem;
+	}
+	.todo .heading {
+		font-size: 2.5rem;
+	}
+	.video .heading {
+		font-size: 2.5rem;
+	}
+	.video p {
+		font-size: 1em;
+	}
+	.booking .heading {
+		font-size: 3rem;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.intro .heading {
+		font-size: 3rem;
+	}
+	.intro h2 {
+		font-size: 1.2rem;
+		margin: 10px 0 30px;
+	}
+	.booking .heading {
+		font-size: 2.5rem;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	:root {
+		--gallery-columns: 1;
+	}
+	.intro .heading {
+		font-size: 3.7rem;
+	}
+	.intro h2 {
+		font-size: 1.4rem;
+		margin: 15px 0 35px;
+	}
+	.intro *:not(a) {
+		color: #FFF;
+		text-align: left;
+	}
+	.todo .heading, .video .heading, .video p {
+		text-align: left;	
+	}
+	.todo .card {
+		min-width: calc(300px - 60px);
+	}
+	.intro .heading {
+		font-size: 2rem;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.booking .heading {
+		font-size: 2rem;
+	}
+}
 
