@@ -199,18 +199,29 @@
 .gallery .grid {
 	display: grid;
 	grid-template-columns: repeat(var(--gallery-columns), 1fr);
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+	grid-column-gap: 2px;
+	grid-row-gap: 2px;
+	border-radius: 10px;
+	overflow: hidden;
 }
 
 .gallery .grid > div {
-	width: 100%;
 	height: calc(90vw / var(--gallery-columns));
 	max-height: 300px;
+	overflow: hidden;
+}
+
+.gallery .grid > div div {
+	width: 100%;
+	height: 100%;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	border-radius: 10px;
+	transition: transform 1s;
+}
+
+.gallery .grid > div div:hover {
+	transform: scale(1.1);
 }
 
 .booking-container-wrapper {
