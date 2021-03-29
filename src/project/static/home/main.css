@@ -146,6 +146,7 @@
 
 .todo video {
 	width: 100%;
+	border-radius: 10px;
 }
 
 .video-container-wrapper {
@@ -280,6 +281,12 @@
 	}
 }
 
+@media only screen and (max-width: 800px) {
+	.video .grid {
+		grid-column-gap: 20px;
+	}
+}
+
 @media only screen and (max-width: 700px) {
 	:root {
 		--gallery-columns: 2;
@@ -290,11 +297,17 @@
 	.todo .heading {
 		font-size: 2.5rem;
 	}
+	.video .grid {
+		grid-template-columns: 1fr;
+	}
 	.video .heading {
 		font-size: 2.5rem;
 	}
 	.video p {
 		font-size: 1em;
+	}
+	.video .grid .image {
+		display: none;
 	}
 	.booking .heading {
 		font-size: 3rem;
@@ -315,9 +328,6 @@
 }
 
 @media only screen and (max-width: 500px) {
-	:root {
-		--gallery-columns: 1;
-	}
 	.intro .heading {
 		font-size: 3.7rem;
 	}
@@ -337,6 +347,12 @@
 	}
 	.intro .heading {
 		font-size: 2rem;
+	}
+}
+
+@media only screen and (max-width: 450px) {
+	:root {
+		--gallery-columns: 1;
 	}
 	.gallery::after {
 		content: '';
