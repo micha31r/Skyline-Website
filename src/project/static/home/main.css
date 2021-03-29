@@ -275,6 +275,37 @@
 	border-color: var(--color-one);
 }
 
+.comment-heading .heading {
+	font-size: 3em;
+	margin: 0;
+	text-align: center;
+}
+
+.comment-container-wrapper {
+	overflow-x: auto;
+	padding-top: 0;
+}
+
+.comment {
+	width: max-content;
+	margin: auto;
+}
+
+.comment .flex {
+	display: flex;
+	max-width: 100%;
+	margin: 0 -20px -20px 0;
+}
+
+.comment .flex > div {
+	max-width: 200px;
+	margin: 0 20px 20px 0;
+}
+
+.comment .author {
+	font-weight: bold;
+}
+
 @media only screen and (max-width: 900px) {
 	:root {
 		--gallery-columns: 3;
