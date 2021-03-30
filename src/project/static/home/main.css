@@ -275,15 +275,20 @@
 	border-color: var(--color-one);
 }
 
-.comment-heading .heading {
+.comment-container-wrapper {
+	background: #FAFAFA;
+	padding: 120px 0;
+}
+
+.comment-container-wrapper .heading {
 	font-size: 3em;
-	margin: 0;
+	margin: 0 0 40px;
 	text-align: center;
 }
 
-.comment-container-wrapper {
+.comment-container-wrapper .overflow-container {
+	background: #FAFAFA;
 	overflow-x: auto;
-	padding-top: 0;
 }
 
 .comment {
@@ -293,13 +298,28 @@
 
 .comment .flex {
 	display: flex;
-	max-width: 100%;
-	margin: 0 -20px -20px 0;
 }
 
 .comment .flex > div {
-	max-width: 200px;
-	margin: 0 20px 20px 0;
+	width: 300px;
+	border: 1px solid #DDD;
+	border-width: 0 1px 0 0;
+	padding: 0 20px 0 0;
+	margin: 0 20px 0 0;
+}
+
+.comment .flex > div:nth-last-child(1) {
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+.comment .flex > div p {
+	margin: 0 0 20px;
+}
+
+.comment .flex > div p:nth-last-child(1) {
+	margin: 0;
 }
 
 .comment .author {
@@ -343,6 +363,9 @@
 	.booking .heading {
 		font-size: 3rem;
 	}
+	.comment-container-wrapper .heading {
+		font-size: 2.5em;
+	}
 }
 
 @media only screen and (max-width: 600px) {
@@ -370,7 +393,7 @@
 		color: #FFF;
 		text-align: left;
 	}
-	.todo .heading, .video .heading, .video p {
+	.todo .heading, .video .heading, .video p, .comment-container-wrapper .heading {
 		text-align: left;	
 	}
 	.todo .card {
@@ -385,6 +408,9 @@
 	:root {
 		--gallery-columns: 1;
 	}
+	.d-container-wrapper:not(.intro-container-wrapper):not(.booking-container-wrapper) {
+		padding: 40px 0 !important;
+	}
 	.gallery::after {
 		content: '';
 		position: absolute;
@@ -395,6 +421,10 @@
 	.gallery .grid {
 		max-height: 1000px;
 		overflow-y: hidden;
+	}
+	.comment-container-wrapper {
+		position: relative;
+		z-index: 10; /* Make it on top of gallery blur */
 	}
 }
 

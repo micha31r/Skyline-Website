@@ -6,6 +6,7 @@
 
 body {
 	background: #FFF;
+	visibility: hidden;
 }
 
 * {
