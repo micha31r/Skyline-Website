@@ -1,6 +1,5 @@
 # Skyline Website Redesigned
-For school. 2021 (Level 3)
-Its WIP
+For Level 3 DGT. (WIP)
 
 ![home1](https://github.com/micha31r/Skyline-Website/blob/main/preview_imgs/home1.png)
 
