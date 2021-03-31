@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'booking/admin/booking_list/main.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div class="d-container-wrapper booking-container-wrapper">
+		<div class="booking d-container d-padding">
+			<div class="grid">
+				<div class="container">
+					{% for obj in object_list %}
+						<div class="item">
+							<h3 class="heading"><a href="#">{{ obj.activity.name }}</a></h3>
+							<p class="description">{{ obj.activity.description|truncatechars:50 }}</p>
+							<span>Adult x {{ obj.adult_count }}, Child x {{ obj.child_count }}</span>
+							<p><b>${{ obj.total }}</b></p>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

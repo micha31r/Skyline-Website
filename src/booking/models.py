@@ -19,7 +19,7 @@ class Activity(models.Model):
 
 class Ticket(models.Model):
 	class Meta:
-		ordering = ['activation_date', '-timestamp']
+		ordering = ['-timestamp', 'activation_date']
 
 	user = models.ForeignKey(
 		"usermgmt.Profile",

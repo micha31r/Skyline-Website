@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from . import admin_views
 
 app_name = "booking"
 
@@ -10,4 +11,7 @@ urlpatterns = [
     path('checkout/step2', views.checkout_step2_view, name="checkout-step2"),
     path('checkout/success', views.success_view, name="checkout-success"),
     path('checkout/success/<slug:success_id>', views.success_view, name="checkout-success"),
+    
+    # Admin section
+    path('manager/all', admin_views.BookingListView.as_view(), name="manager-all"),
 ]
