@@ -1,4 +1,5 @@
 import datetime
+from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.contrib import messages
@@ -29,6 +30,10 @@ def activities_view(request):
 					"child_count":child_count,
 				})
 				request.session["cart"] = cart
+				abs_link = reverse('booking:cart')
+				messages.add_message(request, messages.ERROR, f"Successfully added '{obj.name}' to cart. <a href='{abs_link}'>Continue to checkout?</a>")
+			else:
+				messages.add_message(request, messages.ERROR, f"Number of children / adults must be greater than zero")
 	template_file = "booking/activities.html"
 	return render(request, template_file, ctx)
 

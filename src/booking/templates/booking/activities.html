@@ -16,6 +16,13 @@
 
 	<div class="d-container-wrapper activities-container-wrapper">
 		<div class="activities d-container d-padding">
+			{% if messages %}
+				<div class="messages-container">
+					{% for message in messages %}
+			        	<p class="d-message">{{ message|safe }}</p>
+				    {% endfor %}
+				</div>
+			{% endif %}
 			<div class="grid">
 				{% for obj in qs %}
 					<div class="card">
