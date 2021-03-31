@@ -347,23 +347,11 @@
 }
 
 @media only screen and (max-width: 800px) {
-	.video .grid {
-		grid-column-gap: 20px;
-	}
-}
-
-@media only screen and (max-width: 700px) {
-	:root {
-		--gallery-columns: 2;
-	}
 	.intro .heading {
 		font-size: 4rem;
 	}
 	.todo .heading {
 		font-size: 2rem;
-	}
-	.video .grid {
-		grid-template-columns: 1fr;
 	}
 	.video .heading {
 		font-size: 2rem;
@@ -371,8 +359,8 @@
 	.video p {
 		font-size: 1em;
 	}
-	.video .grid .image {
-		display: none;
+	.video .grid {
+		grid-column-gap: 20px;
 	}
 	.gallery .heading {
 		font-size: 2em;
@@ -382,6 +370,22 @@
 	}
 	.booking .heading {
 		font-size: 3rem;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	:root {
+		--gallery-columns: 2;
+	}
+	.video .heading, .video p {
+		margin-bottom: 40px; /* Set the value to the same as other headings */
+		text-align: center;
+	}
+	.video .grid {
+		grid-template-columns: 1fr;
+	}
+	.video .grid .image {
+		display: none;
 	}
 }
 
@@ -411,6 +415,7 @@
 		text-align: left;
 	}
 	.todo .heading, .video .heading, .video p, .gallery .heading, .comment-container-wrapper .heading {
+		margin-bottom: 30px;
 		text-align: left;
 	}
 	.todo .card {
