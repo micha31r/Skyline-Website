@@ -1,0 +1,26 @@
+.overview {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-column-gap: 40px;
+}
+
+.overview .ticket-container {
+	max-width: none;
+	margin: 0;
+}
+
+.overview .settings {
+	/*max-width: 250px;*/
+	height: max-content;
+	/*border: 1px solid #DDD;*/
+	/*border-radius: 10px;*/
+	/*padding: 20px;*/
+}
+
+.overview .settings > * {
+	margin: 0 0 20px;
+}
+
+.overview .settings > *:nth-last-child(1) {
+	margin: 0;
+}
