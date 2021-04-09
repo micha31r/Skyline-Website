@@ -2,23 +2,74 @@
 {% load static %}
 
 {% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'booking/success/main.css' %}">
+
 	<link rel="stylesheet" type="text/css" href="{% static 'booking/admin/booking_list/main.css' %}">
 {% endblock %}
 
 {% block content %}
-	<div class="d-container-wrapper booking-container-wrapper">
-		<div class="booking d-container d-padding">
-			<div class="grid">
-				<div class="container">
-					{% for obj in object_list %}
-						<div class="item">
-							<h3 class="heading"><a href="#">{{ obj.activity.name }}</a></h3>
-							<p class="description">{{ obj.activity.description|truncatechars:50 }}</p>
-							<span>Adult x {{ obj.adult_count }}, Child x {{ obj.child_count }}</span>
-							<p><b>${{ obj.total }}</b></p>
-						</div>
+	<!-- QR Generator -->
+	<script type="text/javascript" src="https://unpkg.com/qr-code-styling/lib/qr-code-styling.js"></script>
+
+	<div class="d-container-wrapper overview-container-wrapper">
+		<div class="overview d-container d-padding">
+			<div class="settings">
+				<h2>Filter</h2>
+				<p>
+					Your cart has a total of <b>{{ card_items_count }} item{% if card_items_count > 1 %}s{% endif %}</b>:
+					<br>
+					{% for obj in cart %}
+						{{ obj.name }},
 					{% endfor %}
+				</p>
+				<!-- <h2>Your cart total is <span>${{ total }}</span></h2> -->
+				<div class="pagination">
+					<span class="step-links">
+					    {% if page_obj.has_previous %}
+					        <a href="?page=1">&laquo; first</a>
+					        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+					    {% endif %}
+
+					    <span class="current">
+					        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+					    </span>
+
+					    {% if page_obj.has_next %}
+					        <a href="?page={{ page_obj.next_page_number }}">next</a>
+					        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+					    {% endif %}
+					</span>
 				</div>
+			</div>
+			<div class="ticket-container">
+				{% for obj in object_list %}
+					<div class="item">
+						<div class="grid">
+							<div class="content-container">
+								<h2 class="heading"><a href="#"><span>{{ obj.activity.name }}</span></a></h2>
+								<p>Ticket Holder: <b>{{ obj.user.get_full_name }}</b></p>
+								<p>Description: <b>{{ obj.activity.description|truncatechars:50 }}</b></p>
+								<p>Number Of Attendees: <span><b>Adult x {{ obj.adult_count }}, Child x {{ obj.child_count }}</b></span></p>
+								<p>Arrival Date: <b>{{ obj.activation_date.date }}</b></p>
+							</div>
+							<!-- https://medium.com/@facucarbonel_97514/how-to-create-a-qr-generator-using-javascript-4b5ce1b6ec27 -->
+							<div class="content-container">
+								<div class="qr-code" id="qr-{{ obj.pk }}"></div>
+							</div>
+							<script type="text/javascript">
+								new QRCodeStyling({
+									width: 80,
+									height: 80,
+									data: "{{ obj.code }}",
+								}).append(document.getElementById("qr-{{ obj.pk }}"));
+							</script>
+						</div>
+						<div class="verifications content-container">
+							<p>Issue ID: <b>{{ obj.code }}</b></p>
+							<p>Issue Date: <b>{{ obj.timestamp.date }}</b></p>
+						</div>
+					</div>
+				{% endfor %}
 			</div>
 		</div>
 	</div>
