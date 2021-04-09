@@ -23,23 +23,25 @@
 					{% endfor %}
 				</p>
 				<!-- <h2>Your cart total is <span>${{ total }}</span></h2> -->
-				<div class="pagination">
-					<span class="step-links">
-					    {% if page_obj.has_previous %}
-					        <a href="?page=1">&laquo; first</a>
-					        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-					    {% endif %}
-
-					    <span class="current">
-					        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-					    </span>
-
-					    {% if page_obj.has_next %}
-					        <a href="?page={{ page_obj.next_page_number }}">next</a>
-					        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-					    {% endif %}
-					</span>
-				</div>
+				{% if page_obj.paginator.num_pages > 1 %}
+					<div class="pagination">
+						{% if page_obj.has_previous %}
+							<a class="previous" href="{{ request.path }}?page=1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16"><path d="M3.86 8.753l5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/></svg>
+							</a>
+				            <a class="first" href="{{ request.path }}?page={{ page_obj.previous_page_number }}">First</a>
+				        {% endif %}
+				    	{% for number in page_range %}
+				    		<a class="next {% if number == page_obj.number %}active{% endif %}" href="{{ request.path }}?page={{ number }}">{{ number }}</a>
+				    	{% endfor %}
+				        {% if page_obj.has_next %}
+				            <a class="next" href="{{ request.path }}?page={{ page_obj.paginator.num_pages }}">Last</a>
+				           	<a class="next" href="{{ request.path }}?page={{ page_obj.next_page_number }}">
+				            	<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>
+				           	</a>
+				        {% endif %}
+				    </div>
+				{% endif %}
 			</div>
 			<div class="ticket-container">
 				{% for obj in object_list %}

@@ -24,3 +24,27 @@
 .overview .settings > *:nth-last-child(1) {
 	margin: 0;
 }
+
+.pagination {
+	width: max-content;
+	margin-left: auto;
+}
+
+.pagination a {
+	margin-right: 10px;
+	text-decoration: none;
+}
+
+.pagination a.active {
+	font-weight: bold;
+}
+
+.pagination a:hover {
+	color: var(--color-two);
+	transition: color;
+	transition-duration: 0.2s;
+}
+
+.pagination svg {
+	vertical-align: top;
+}

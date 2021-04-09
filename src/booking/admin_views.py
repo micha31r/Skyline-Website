@@ -10,7 +10,7 @@ from .models import Activity, Ticket
 @method_decorator(login_required, name='dispatch')
 class BookingListView(ListView):
 	model = Ticket
-	paginate_by = 10
+	paginate_by = 3
 	template_name = 'booking/admin/booking_list.html'
 
 	def dispatch(self, request, *args, **kwargs):
@@ -21,12 +21,15 @@ class BookingListView(ListView):
 	def get_context_data(self, **kwargs):
 		ctx = super(BookingListView, self).get_context_data(**kwargs)
 		qs = list(ctx["object_list"])
-		# ctx["total"] = 0
 		for i in range(len(qs)):
 			item = qs[i]
 			total = item.activity.adult_price * float(item.adult_count) + item.activity.child_price * float(item.child_count)
 			qs[i].total = total
-			# ctx["total"] += total
+		rank_range = range(
+			(self.paginate_by * (ctx["page_obj"].number - 1)) + 1,
+			self.paginate_by * ctx["page_obj"].number + 1
+		)
+		ctx["page_range"] = range(1, ctx["page_obj"].paginator.num_pages+1)
 		return ctx
 
     
