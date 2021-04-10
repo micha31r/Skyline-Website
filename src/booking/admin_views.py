@@ -32,9 +32,9 @@ def booking_list_view(request):
 	if activity:
 		all_qs = all_qs.filter(activity__product_id__in=activity)
 	if issue_date:
-		all_qs = all_qs.filter(timestamp=issue_date)
+		all_qs = all_qs.filter(timestamp__gte=issue_date)
 	if arrival_date:
-		all_qs = all_qs.filter(activation_date=arrival_date)
+		all_qs = all_qs.filter(activation_date__gte=arrival_date)
 	if wildcard:
 		lookups = Q(user__first_name__icontains=wildcard) | \
 			Q(user__last_name__icontains=wildcard) | \
