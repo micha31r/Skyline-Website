@@ -13,5 +13,5 @@ urlpatterns = [
     path('checkout/success/<slug:success_id>', views.success_view, name="checkout-success"),
     
     # Admin section
-    path('admin/all', admin_views.BookingListView.as_view(), name="manager-all"),
+    path('admin/all', admin_views.booking_list_view, name="admin-all"),
 ]
