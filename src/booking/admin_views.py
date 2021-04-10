@@ -10,7 +10,7 @@ from .models import Activity, Ticket
 @method_decorator(login_required, name='dispatch')
 class BookingListView(ListView):
 	model = Ticket
-	paginate_by = 3
+	paginate_by = 10
 	template_name = 'booking/admin/booking_list.html'
 
 	def dispatch(self, request, *args, **kwargs):
@@ -18,8 +18,15 @@ class BookingListView(ListView):
 			return super().dispatch(request, *args, **kwargs)
 		else: return Http404()
 
+	def get_queryset(self, **kwargs):
+		qs = super(BookingListView, self).get_queryset(**kwargs)
+		# qs = qs.filter()
+		self.total_result_count = qs.count()
+		return qs
+
 	def get_context_data(self, **kwargs):
 		ctx = super(BookingListView, self).get_context_data(**kwargs)
+		ctx["total_result_count"] = self.total_result_count
 		qs = list(ctx["object_list"])
 		for i in range(len(qs)):
 			item = qs[i]
@@ -30,6 +37,7 @@ class BookingListView(ListView):
 			self.paginate_by * ctx["page_obj"].number + 1
 		)
 		ctx["page_range"] = range(1, ctx["page_obj"].paginator.num_pages+1)
+		ctx["activities"] = Activity.objects.all()
 		return ctx
 
     

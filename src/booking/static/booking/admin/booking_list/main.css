@@ -10,15 +10,12 @@
 }
 
 .overview .settings {
-	/*max-width: 250px;*/
+	max-width: 300px;
 	height: max-content;
-	/*border: 1px solid #DDD;*/
-	/*border-radius: 10px;*/
-	/*padding: 20px;*/
 }
 
 .overview .settings > * {
-	margin: 0 0 20px;
+	margin: 0 0 10px;
 }
 
 .overview .settings > *:nth-last-child(1) {
@@ -26,7 +23,7 @@
 }
 
 .pagination {
-	width: max-content;
+	margin-top: 40px !important;
 	margin-left: auto;
 }
 

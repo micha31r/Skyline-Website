@@ -14,16 +14,29 @@
 	<div class="d-container-wrapper overview-container-wrapper">
 		<div class="overview d-container d-padding">
 			<div class="settings">
-				<h2>Filter</h2>
-				<p>
-					Your cart has a total of <b>{{ card_items_count }} item{% if card_items_count > 1 %}s{% endif %}</b>:
-					<br>
-					{% for obj in cart %}
-						{{ obj.name }},
-					{% endfor %}
-				</p>
-				<!-- <h2>Your cart total is <span>${{ total }}</span></h2> -->
+				<h2>Filter Orders</h2>
+				<p>{{ total_result_count }} results found</p>
+				<p>{{ object_list.count }} items on this page</p>
+				<p>A max of 10 items are shown per page</p>
+				<form method="post">
+					{% csrf_token %}
+					<label>Activity</label>
+					<select name="activity" multiple>
+						{% for item in activities %}
+							<option value="{{ item.product_id }}">{{ item.name }} ({{ item.product_id }})</option>
+						{% endfor %}
+					</select>
+					<label>Issue Date</label>
+					<input type="date" name="order-date">
+					<label>Arrival Date</label>
+					<input type="date" name="arrival-date">
+					<label>Other</label>
+					<input type="text" name="wildcard" placeholder="Other information">
+					<button class="d-button-fill" type="submit">Search</button>
+				</form>
 				{% if page_obj.paginator.num_pages > 1 %}
+					<!-- Bootstrap Icons -->
+					<!-- https://icons.getbootstrap.com/ -->
 					<div class="pagination">
 						{% if page_obj.has_previous %}
 							<a class="previous" href="{{ request.path }}?page=1">
