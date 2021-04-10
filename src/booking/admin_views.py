@@ -1,43 +1,51 @@
 from django.views.generic.list import ListView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
+from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+# from django.utils.decorators import method_decorator
+from django.db.models import Q
 from usermgmt.models import Profile
 from .models import Activity, Ticket
 
-@method_decorator(login_required, name='dispatch')
-class BookingListView(ListView):
-	model = Ticket
+@login_required
+def booking_list_view(request):
+	if not request.user.is_staff:
+		return Http404()
+
+	ctx = {}
+	all_qs = Ticket.objects.all()
+	# Filter queryset
+	if request.POST:
+		p = request.POST
+		activity = p.getlist("activity")
+		issue_date = p.get("issue-date")
+		arrival_date = p.get("arrival-date")
+		wildcard = p.get("wildcard")
+		if activity:
+			all_qs = all_qs.filter(activity__product_id__in=activity)
+		if issue_date:
+			all_qs = all_qs.filter(timestamp=issue_date)
+		if arrival_date:
+			all_qs = all_qs.filter(activation_date=arrival_date)
+		if wildcard:
+			lookups = Q(user__first_name__icontains=wildcard) | \
+				Q(user__last_name__icontains=wildcard) | \
+				Q(activity__name__icontains=wildcard) | \
+				Q(activity__product_id=wildcard) | \
+				Q(code=wildcard)
+			if wildcard.isdigit() and len(wildcard) < 3:
+				lookups |= Q(adult_count=wildcard) | \
+					Q(child_count=wildcard)
+			all_qs = all_qs.filter(lookups)
+	ctx["total_result_count"] = all_qs.count()
+
 	paginate_by = 10
+	paginator = Paginator(all_qs, paginate_by)
+	ctx["page_obj"] = paginator.page(request.GET.get('page', 1)) # Set current page
+	ctx["page_range"] = range(1, ctx["page_obj"].paginator.num_pages+1)
+	ctx["activities"] = Activity.objects.all()
 	template_name = 'booking/admin/booking_list.html'
-
-	def dispatch(self, request, *args, **kwargs):
-		if self.request.user.is_staff:
-			return super().dispatch(request, *args, **kwargs)
-		else: return Http404()
-
-	def get_queryset(self, **kwargs):
-		qs = super(BookingListView, self).get_queryset(**kwargs)
-		# qs = qs.filter()
-		self.total_result_count = qs.count()
-		return qs
-
-	def get_context_data(self, **kwargs):
-		ctx = super(BookingListView, self).get_context_data(**kwargs)
-		ctx["total_result_count"] = self.total_result_count
-		qs = list(ctx["object_list"])
-		for i in range(len(qs)):
-			item = qs[i]
-			total = item.activity.adult_price * float(item.adult_count) + item.activity.child_price * float(item.child_count)
-			qs[i].total = total
-		rank_range = range(
-			(self.paginate_by * (ctx["page_obj"].number - 1)) + 1,
-			self.paginate_by * ctx["page_obj"].number + 1
-		)
-		ctx["page_range"] = range(1, ctx["page_obj"].paginator.num_pages+1)
-		ctx["activities"] = Activity.objects.all()
-		return ctx
-
+	return render(request, template_name, ctx)
     
