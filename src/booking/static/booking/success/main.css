@@ -116,7 +116,7 @@
 	width: 100%;
 }
 
-.overview form * {
+.overview form *:not([hidden]) {
 	display: block;
 	width: 100%;
 	box-sizing: border-box;
