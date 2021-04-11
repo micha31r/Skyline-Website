@@ -2,8 +2,6 @@
 {% load static %}
 
 {% block css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'booking/success/main.css' %}">
-
 	<link rel="stylesheet" type="text/css" href="{% static 'booking/admin/booking_list/main.css' %}">
 {% endblock %}
 
@@ -17,9 +15,7 @@
 		<div class="overview d-container d-padding">
 			<div class="settings">
 				<h2>Filter Orders</h2>
-				<p>{{ total_result_count }} results found</p>
-				<p>{{ page_obj.object_list.count }} items on this page</p>
-				<p>A max of 10 items are shown per page</p>
+				<button id="reset-search-session" onclick="$('input[hidden]').val('true');">Reset filter</button>
 				<form method="post">
 					{% csrf_token %}
 					<label>Activity</label>
@@ -35,8 +31,8 @@
 					<label>Wildcard</label>
 					<input type="text" name="wildcard" placeholder="Information" {% if current_wildcard %}value="{{ current_wildcard }}"{% endif %}>
 					<input hidden name="reset-filter">
-					<button class="d-button-fill" type="submit">Filter</button>
-					<button class="d-button" id="reset-search-session" onclick="$('input[hidden]').val('true');">Reset filter</button>
+					<button class="d-button-fill" type="submit"><b>Filter</b></button>
+					
 				</form>
 				{% if page_obj.paginator.num_pages > 1 %}
 					<!-- Bootstrap Icons -->
@@ -61,6 +57,7 @@
 				{% endif %}
 			</div>
 			<div class="ticket-container">
+				<p>{{ page_obj.object_list.count }} out of {{ total_result_count }} results are shown on this page</p>
 				{% for obj in page_obj.object_list %}
 					<div class="item">
 						<div class="grid">
