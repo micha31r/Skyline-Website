@@ -4,16 +4,14 @@ from django.http import Http404
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 # from django.utils.decorators import method_decorator
 from django.db.models import Q
 from usermgmt.models import Profile
 from .models import Activity, Ticket
 
-@login_required
+@staff_member_required
 def booking_list_view(request):
-	if not request.user.is_staff:
-		return Http404()
-
 	ctx = {}
 	all_qs = Ticket.objects.all()
 	# Filter queryset
