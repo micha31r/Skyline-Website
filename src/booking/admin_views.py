@@ -21,20 +21,34 @@ def booking_list_view(request):
 	s = request.session
 	if request.POST:
 		p = request.POST
-		s["activity"] = p.getlist("activity")
-		s["issue-date"] = p.get("issue-date")
-		s["arrival-date"] = p.get("arrival-date")
-		s["wildcard"] = p.get("wildcard")
-	activity = s.get("activity", [])
-	issue_date = s.get("issue-date", None)
-	arrival_date = s.get("arrival-date", None)
-	wildcard = s.get("wildcard", None)
+		if p.get("reset-filter", None):
+			s["filter"] = {
+				"activity": [],
+				"issue-date": None,
+				"arrival-date": None,
+				"wildcard": None
+			}
+		else:
+			s["filter"] = {
+				"activity": p.getlist("activity", []),
+				"issue-date": p.get("issue-date", None),
+				"arrival-date": p.get("arrival-date", None),
+				"wildcard": p.get("wildcard", None)
+			}
+	f = s["filter"]
+	activity = f["activity"]
+	issue_date = f["issue-date"]
+	arrival_date = f["arrival-date"]
+	wildcard = f["wildcard"]
 	if activity:
 		all_qs = all_qs.filter(activity__product_id__in=activity)
+		ctx["current_activity"] = activity
 	if issue_date:
 		all_qs = all_qs.filter(timestamp__gte=issue_date)
+		ctx["current_issue_date"] = issue_date
 	if arrival_date:
 		all_qs = all_qs.filter(activation_date__gte=arrival_date)
+		ctx["current_arrival_date"] = arrival_date
 	if wildcard:
 		lookups = Q(user__first_name__icontains=wildcard) | \
 			Q(user__last_name__icontains=wildcard) | \
@@ -45,6 +59,7 @@ def booking_list_view(request):
 			lookups |= Q(adult_count=wildcard) | \
 				Q(child_count=wildcard)
 		all_qs = all_qs.filter(lookups)
+		ctx["current_wildcard"] = wildcard
 	ctx["total_result_count"] = all_qs.count()
 
 	paginate_by = 30
