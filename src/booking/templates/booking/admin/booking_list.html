@@ -15,7 +15,7 @@
 		<div class="overview d-container d-padding">
 			<div class="settings">
 				<h2>Filter Orders</h2>
-				<button id="reset-search-session" onclick="$('input[hidden]').val('true');">Reset filter</button>
+				<button id="reset-search-session" onclick="$('input[hidden]').val('true'); $('button[type=\'submit\']').click();">Reset filter</button>
 				<form method="post">
 					{% csrf_token %}
 					<label>Activity</label>
