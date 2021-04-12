@@ -24,15 +24,14 @@
 							<option value="{{ item.product_id }}" {% if item.product_id in current_activity %}selected{% endif %}>{{ item.name }} ({{ item.product_id }})</option>
 						{% endfor %}
 					</select>
-					<label>(Min) Issue Date</label>
+					<label>Issue Date</label>
 					<input type="date" name="issue-date" {% if current_issue_date %}value="{{ current_issue_date }}"{% endif %}>
-					<label>(Min) Arrival Date</label>
+					<label>Arrival Date</label>
 					<input type="date" name="arrival-date" {% if current_arrival_date %}value="{{ current_arrival_date }}"{% endif %}>
-					<label>Wildcard</label>
-					<input type="text" name="wildcard" placeholder="Information" {% if current_wildcard %}value="{{ current_wildcard }}"{% endif %}>
+					<label>Search</label>
+					<input type="text" name="wildcard" placeholder="Query" {% if current_wildcard %}value="{{ current_wildcard }}"{% endif %}>
 					<input hidden name="reset-filter">
 					<button class="d-button-fill" type="submit"><b>Filter</b></button>
-					
 				</form>
 				{% if page_obj.paginator.num_pages > 1 %}
 					<!-- Bootstrap Icons -->
