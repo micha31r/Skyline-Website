@@ -1,0 +1,91 @@
+.edit {
+	display: grid;
+	/*max-width: 1000px;*/
+	/*margin: auto;*/
+	grid-template-columns: 1fr auto;
+	grid-column-gap: 40px;
+}
+
+.card {
+	height: max-content;
+}
+
+form {
+	max-width: 400px;
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	padding: 20px;
+	/*margin: 40px auto 0;*/
+}
+
+form > * {
+	margin: 0 0 20px;
+}
+
+form > *:nth-last-child(1) {
+	margin: 0;
+}
+
+form .grid {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+form .grid {
+	margin: 0 0 20px;
+}
+
+form label {
+	margin: auto 0;
+}
+
+form input {
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	padding: 10px 10px;
+}
+
+form input::placeholder {
+	color: #BBB;
+}
+
+form button {
+	width: 100%;
+}
+
+form button[type="submit"] {
+	padding: 10px;
+}
+
+.edit .card {
+	border: 1px solid #DDD;
+	border-radius: 10px;
+}
+
+.edit .card .grid {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-column-gap: 20px;
+	border: 1px solid #DDD;
+	border-width: 0 0 1px;
+}
+
+.edit .card .content-container {
+	padding: 20px 0;
+}
+
+.edit .card .content-container > * {
+	margin: 0 20px 10px;
+}
+
+.edit .card .content-container > *:nth-last-child(1) {
+	margin: 0 20px 0;
+}
+
+.edit .card .verifications {
+	border-bottom-width: 0;
+	border-radius: 0 0 10px 10px;
+	background: #F5F5F5;
+}
