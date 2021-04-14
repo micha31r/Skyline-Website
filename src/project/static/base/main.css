@@ -2,6 +2,8 @@
 	--color-one: rgb(0,230,115);
 	--color-two: rgb(0,150,89);
 	--color-three: rgb(0,110,65);
+	--color-danger: rgb(230,41,76);
+	--color-danger-darker: rgb(186,26,56);
 }
 
 body {
@@ -67,6 +69,11 @@ button {
 .d-button-fill:hover {
 	border-color: var(--color-three);
 	background: var(--color-three);
+}
+
+.d-button-danger {
+	--color-two: var(--color-danger);
+	--color-three: var(--color-danger-darker);
 }
 
 /* CSS for ".base" elements are defined in this file */

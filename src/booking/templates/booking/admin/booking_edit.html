@@ -13,7 +13,7 @@
 
 	<div class="d-container-wrapper edit-container-wrapper">
 		<div class="edit d-container d-padding">
-			<div class="card">
+			<div class="ticket">
 				<div class="grid">
 					<div class="content-container">
 						<h2 class="heading"><a href="{% url 'booking:admin-edit' pk=obj.pk %}"><span>{{ obj.activity.name }}</span></a></h2>
@@ -39,23 +39,33 @@
 					<p>Issue Date: <b>{{ obj.timestamp.date }}</b></p>
 				</div>
 			</div>
-			<form method="post">
-				{% csrf_token %}
-				<div class="grid">
-					<label>First Name</b></label>
-					<input name="first_name" placeholder="First name" max="64" value="{{ obj.user.first_name }}" required>
-					<label>Last Name</b></label>
-					<input name="last_name" placeholder="Last name" max="128" value="{{ obj.user.last_name }}" required>
-					<label>Arrival Date</b></label>
-					<input name="arrival_date" type="date" value="{{ obj.activation_date|date:'Y-m-d' }}" required>
-					<label>Adult (15+ years) <b>${{ obj.activity.adult_price }}</b></label>
-					<input name="adult_count" placeholder="0-15" type="number" min="0" max="15" value="{{ obj.adult_count }}" required>
-					<label>Child (5-14 years) <b>${{ obj.activity.child_price }}</b></label>
-					<input name="child_count" placeholder="0-15" type="number" min="0" max="15" value="{{ obj.child_count }}" required>
+			<div class="action-container">
+				<h2>Ticket Information</h2>
+				<form method="post">
+					{% csrf_token %}
+					<div class="grid">
+						<label>First Name</b></label>
+						<input name="first_name" placeholder="First name" max="64" value="{{ obj.user.first_name }}" required>
+						<label>Last Name</b></label>
+						<input name="last_name" placeholder="Last name" max="128" value="{{ obj.user.last_name }}" required>
+						<label>Arrival Date</b></label>
+						<input name="arrival_date" type="date" value="{{ obj.activation_date|date:'Y-m-d' }}" required>
+						<label>Adult (15+ years) ${{ obj.activity.adult_price }}</label>
+						<input name="adult_count" placeholder="0-15" type="number" min="0" max="15" value="{{ obj.adult_count }}" required>
+						<label>Child (5-14 years) ${{ obj.activity.child_price }}</label>
+						<input name="child_count" placeholder="0-15" type="number" min="0" max="15" value="{{ obj.child_count }}" required>
+					</div>
+					<input hidden name="product_id" value="{{ obj.product_id }}">
+					<button class="d-button" type="submit"><b>Save Changes</b></button>
+				</form>
+				<h2>Danger</h2>
+				<div class="card">
+					<div class="grid">
+						<label>Void Ticket<span>This cannot be undone!</span></label>
+						<button class="d-button d-button-danger"><b>Confirm</b></button>
+					</div>
 				</div>
-				<input hidden name="product_id" value="{{ obj.product_id }}">
-				<button class="d-button" type="submit"><b>Save Changes</b></button>
-			</form>
+			</div>
 		</div>
 	</div>
 {% endblock %}

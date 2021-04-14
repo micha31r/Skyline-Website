@@ -1,13 +1,37 @@
 .edit {
 	display: grid;
-	/*max-width: 1000px;*/
-	/*margin: auto;*/
 	grid-template-columns: 1fr auto;
 	grid-column-gap: 40px;
 }
 
-.card {
-	height: max-content;
+.action-container > h2:nth-child(1) {
+	margin: 0 0 20px;
+}
+
+.action-container > h2 {
+	margin: 40px 0 20px;
+}
+
+.action-container .grid {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+.action-container .grid > * {
+	margin: auto 0;
+}
+
+.action-container label {
+	font-weight: bold;
+	color: #000;
+}
+
+.action-container label span {
+	display: block;
+	font-weight: normal;
+	color: #AAA;
 }
 
 form {
@@ -15,7 +39,6 @@ form {
 	border: 1px solid #DDD;
 	border-radius: 10px;
 	padding: 20px;
-	/*margin: 40px auto 0;*/
 }
 
 form > * {
@@ -27,17 +50,11 @@ form > *:nth-last-child(1) {
 }
 
 form .grid {
-	display: grid;
-	grid-template-columns: 1fr auto;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-}
-
-form .grid {
 	margin: 0 0 20px;
 }
 
 form label {
+	font-weight: bold;
 	margin: auto 0;
 }
 
@@ -59,12 +76,19 @@ form button[type="submit"] {
 	padding: 10px;
 }
 
-.edit .card {
+.card {
+	border: 1px solid var(--color-danger);
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.edit .ticket {
+	height: max-content;
 	border: 1px solid #DDD;
 	border-radius: 10px;
 }
 
-.edit .card .grid {
+.edit .ticket .grid {
 	display: grid;
 	grid-template-columns: 1fr auto;
 	grid-column-gap: 20px;
@@ -72,19 +96,19 @@ form button[type="submit"] {
 	border-width: 0 0 1px;
 }
 
-.edit .card .content-container {
+.edit .ticket .content-container {
 	padding: 20px 0;
 }
 
-.edit .card .content-container > * {
+.edit .ticket .content-container > * {
 	margin: 0 20px 10px;
 }
 
-.edit .card .content-container > *:nth-last-child(1) {
+.edit .ticket .content-container > *:nth-last-child(1) {
 	margin: 0 20px 0;
 }
 
-.edit .card .verifications {
+.edit .ticket .verifications {
 	border-bottom-width: 0;
 	border-radius: 0 0 10px 10px;
 	background: #F5F5F5;
