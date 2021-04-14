@@ -67,4 +67,11 @@ def booking_list_view(request):
 	ctx["activities"] = Activity.objects.all()
 	template_name = 'booking/admin/booking_list.html'
 	return render(request, template_name, ctx)
+
+@staff_member_required
+def booking_edit_view(request, pk):
+	ctx = {}
+	ctx["obj"] = obj = get_object_or_404(Ticket, id=pk)
+	template_name = 'booking/admin/booking_edit.html'
+	return render(request, template_name, ctx)
     

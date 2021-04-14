@@ -61,7 +61,7 @@
 					<div class="item">
 						<div class="grid">
 							<div class="content-container">
-								<h2 class="heading"><a href="#"><span>{{ obj.activity.name }}</span></a></h2>
+								<h2 class="heading"><a href="{% url 'booking:admin-edit' pk=obj.pk %}"><span>{{ obj.activity.name }}</span></a></h2>
 								<p>Ticket Holder: <b>{{ obj.user.get_full_name }}</b></p>
 								<p>Description: <b>{{ obj.activity.description|truncatechars:50 }}</b></p>
 								<p>Number Of Attendees: <span><b>Adult x {{ obj.adult_count }}, Child x {{ obj.child_count }}</b></span></p>
