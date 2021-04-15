@@ -4,79 +4,79 @@
 	grid-column-gap: 40px;
 }
 
-.action-container > h2:nth-child(1) {
+.edit .right > h2:nth-child(1) {
 	margin: 0 0 20px;
 }
 
-.action-container > h2 {
+.edit .right > h2 {
 	margin: 40px 0 20px;
 }
 
-.action-container .grid {
+.edit .right .grid {
 	display: grid;
 	grid-template-columns: 1fr auto;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 }
 
-.action-container .grid > * {
+.edit .right .grid > * {
 	margin: auto 0;
 }
 
-.action-container label {
+.edit .right label {
 	font-weight: bold;
 	color: #000;
 }
 
-.action-container label span {
+.edit .right label span {
 	display: block;
 	font-weight: normal;
 	color: #AAA;
 }
 
-form {
+.edit form {
 	max-width: 400px;
 	border: 1px solid #DDD;
 	border-radius: 10px;
 	padding: 20px;
 }
 
-form > * {
+.edit form > * {
 	margin: 0 0 20px;
 }
 
-form > *:nth-last-child(1) {
+.edit form > *:nth-last-child(1) {
 	margin: 0;
 }
 
-form .grid {
+.edit form .grid {
 	margin: 0 0 20px;
 }
 
-form label {
+.edit form label {
 	font-weight: bold;
 	margin: auto 0;
 }
 
-form input {
+.edit form input {
 	border: 1px solid #DDD;
 	border-radius: 10px;
 	padding: 10px 10px;
 }
 
-form input::placeholder {
+.edit form input::placeholder {
 	color: #BBB;
 }
 
-form button {
+.edit form button {
 	width: 100%;
 }
 
-form button[type="submit"] {
+.edit form button[type="submit"] {
 	padding: 10px;
 }
 
-.card {
+.edit .right .card {
 	border: 1px solid var(--color-danger);
 	border-radius: 10px;
 	padding: 20px;
@@ -86,6 +86,7 @@ form button[type="submit"] {
 	height: max-content;
 	border: 1px solid #DDD;
 	border-radius: 10px;
+	margin: 0 0 40px;
 }
 
 .edit .ticket .grid {
@@ -101,7 +102,7 @@ form button[type="submit"] {
 }
 
 .edit .ticket .content-container > * {
-	margin: 0 20px 10px;
+	margin: 0 20px 15px;
 }
 
 .edit .ticket .content-container > *:nth-last-child(1) {
@@ -112,4 +113,19 @@ form button[type="submit"] {
 	border-bottom-width: 0;
 	border-radius: 0 0 10px 10px;
 	background: #F5F5F5;
+}
+
+.edit .left .card {
+	height: max-content;
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.edit .left .card > * {
+	margin: 0 0 15px;
+}
+
+.edit .left .card > *:nth-last-child(1) {
+	margin: 0;
 }
