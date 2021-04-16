@@ -1,7 +1,10 @@
+import datetime
+from django.utils import timezone
 from django.views.generic.list import ListView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.core.paginator import Paginator
+from django.core.validators import validate_email
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
@@ -72,6 +75,44 @@ def booking_list_view(request):
 def booking_edit_view(request, pk):
 	ctx = {}
 	ctx["obj"] = obj = get_object_or_404(Ticket, id=pk)
+	if request.POST:
+		p = request.POST
+		fn = p.get("first_name")
+		ln = p.get("last_name")
+		em = p.get("email")
+		ph = p.get("phone")
+		ad = p.get("date")
+		ac = p.get("adult_count")
+		cc = p.get("child_count")
+		if fn and ln and em and ph and ad and ac and cc:
+			if not fn.isalpha():
+				messages.error(request, "First name can only contain A-z and less than 65 letters")
+			if not ln.isalpha():
+				messages.error(request, "Last name can only contain A-z and less than 129 letters")
+			phone = ph.replace("+","")
+			if (len(phone) > 12 or len(phone) < 9) or not phone.isnumeric():
+				messages.error(request, "Phone number should be between 9-12 digits and only contain 0-9 and +")
+			if ad <= str(datetime.date.today()):
+				messages.error(request, "Arrival date must be a future date")
+			try: 
+				validate_email(em)
+			except:
+				messages.error(request, "Invalid email format")
+			if not (ac.isnumeric() and cc.isnumeric() and int(ac) >= 0 and int(cc) >= 0):
+				messages.error(request, "Number of attendees must be a positive integer")
+		else:
+			messages.error(request, "Invalid form data!")
+		has_error = list(messages.get_messages(request))
+		if not has_error:
+			obj.user.first_name = fn
+			obj.user.last_name = ln
+			obj.user.email = em
+			obj.user.phone = ph
+			obj.user.save()
+			obj.adult_count = ac
+			obj.child_count = cc
+			obj.activation_date = timezone.make_aware(datetime.datetime.strptime(ad, '%Y-%m-%d'))
+			obj.save()
 	template_name = 'booking/admin/booking_edit.html'
 	return render(request, template_name, ctx)
     

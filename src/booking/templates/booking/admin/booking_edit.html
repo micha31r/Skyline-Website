@@ -51,6 +51,13 @@
 			</div>
 			<div class="right">
 				<h2>Ticket Information</h2>
+				{% if messages %}
+					<div class="messages-container">
+						{% for message in messages %}
+							<p class="d-message">{{ message|safe }}</p>
+					    {% endfor %}
+					</div>
+				{% endif %}
 				<form method="post">
 					{% csrf_token %}
 					<div class="grid">
@@ -63,7 +70,7 @@
 						<label>Phone Number</b></label>
 						<input name="phone" placeholder="012 3456 7891" max="13" value="{{ obj.user.phone }}" required>
 						<label>Arrival Date</b></label>
-						<input name="arrival_date" type="date" value="{{ obj.activation_date|date:'Y-m-d' }}" required>
+						<input name="date" type="date" value="{{ obj.activation_date|date:'Y-m-d' }}" required>
 						<label>Adult (15+ years) ${{ obj.activity.adult_price }}</label>
 						<input name="adult_count" placeholder="0-15" type="number" min="0" max="15" value="{{ obj.adult_count }}" required>
 						<label>Child (5-14 years) ${{ obj.activity.child_price }}</label>

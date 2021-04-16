@@ -1,3 +1,8 @@
+.d-message {
+	color: var(--color-danger);
+	max-width: 400px;
+}
+
 .edit {
 	display: grid;
 	grid-template-columns: 1fr auto;
