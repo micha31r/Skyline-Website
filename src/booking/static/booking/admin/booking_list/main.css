@@ -116,6 +116,11 @@
 	text-align: center;
 }
 
+.overview form .settings-flex-container {
+	display: flex !important;
+	justify-content: space-between;
+}
+
 .pagination {
 	margin-top: 40px !important;
 	margin-left: auto;

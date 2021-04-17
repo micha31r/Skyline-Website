@@ -14,7 +14,7 @@
 	<div class="d-container-wrapper overview-container-wrapper">
 		<div class="overview d-container d-padding">
 			<div class="settings">
-				<h2>Filter Orders</h2>
+				<h2>Filter Tickets</h2>
 				<button id="reset-search-session" onclick="$('input[hidden]').val('true'); $('button[type=\'submit\']').click();">Reset filter</button>
 				<form method="post">
 					{% csrf_token %}
@@ -31,13 +31,19 @@
 					<label>Search</label>
 					<input type="text" name="wildcard" placeholder="Query" {% if current_wildcard %}value="{{ current_wildcard }}"{% endif %}>
 					<label>Settings</label>
-					<div>
-						<label>Voided</label>
-						<input type="checkbox" name="void" {% if current_void %}checked{% endif %}>
-						<label>Expired</label>
-						<input type="checkbox" name="expired" {% if current_expired %}checked{% endif %}>
-						<label>Used</label>
-						<input type="checkbox" name="activated" {% if current_activated %}checked{% endif %}>
+					<div class="settings-flex-container">
+						<div>
+							<label>Voided</label>
+							<input type="checkbox" name="void" {% if current_void %}checked{% endif %}>
+						</div>
+						<div>
+							<label>Expired</label>
+							<input type="checkbox" name="expired" {% if current_expired %}checked{% endif %}>
+						</div>
+						<div>
+							<label>Used</label>
+							<input type="checkbox" name="activated" {% if current_activated %}checked{% endif %}>
+						</div>
 					</div>
 					<input hidden name="reset-filter">
 					<button class="d-button-fill" type="submit"><b>Filter</b></button>
