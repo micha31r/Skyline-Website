@@ -31,7 +31,7 @@
 							<div class="d-message-container">
 								{% for field in form %}
 									{% for error in field.errors %}
-							        	<p class="d-message">{{ error }}</p>
+							        	<p class="d-message d-danger">{{ error }}</p>
 								    {% endfor %}
 								{% endfor %}
 							</div>

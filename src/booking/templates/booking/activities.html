@@ -19,7 +19,8 @@
 			{% if messages %}
 				<div class="messages-container">
 					{% for message in messages %}
-			        	<p class="d-message">{{ message|safe }}</p>
+			        	<p class="d-message {% if 'error' in message.tags %}d-danger{% endif %}">{{ message|safe }}</p>
+			        	{{ messages.tags }}
 				    {% endfor %}
 				</div>
 			{% endif %}

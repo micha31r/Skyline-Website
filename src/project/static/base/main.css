@@ -114,11 +114,14 @@ button {
 .d-message {
 	font-weight: bold;
 	border-radius: 10px;
-	border-width: 2px;
-	border-style: solid;
+	border: 1px solid;
 	color: #000;
 	padding: 10px;
 	text-align: center;
+}
+
+.d-message.d-danger {
+	color: var(--color-two);
 }
 
 .d-message a {
