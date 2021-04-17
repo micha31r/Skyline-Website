@@ -37,6 +37,24 @@
 	border-radius: 10px;
 }
 
+.overview .item.activated {
+	border-color: var(--color-two);
+	opacity: 0.3;
+}
+
+.overview .item.activated .verifications {
+	background-color: var(--color-two);
+}
+
+.overview .item.voided {
+	border-color: var(--color-danger);
+	opacity: 0.3;
+}
+
+.overview .item.voided .verifications {
+	background-color: var(--color-danger);
+}
+
 .overview .item .grid {
 	display: grid;
 	grid-template-columns: 1fr auto;

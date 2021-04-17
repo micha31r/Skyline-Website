@@ -3,6 +3,19 @@
 	max-width: 400px;
 }
 
+.d-prompt span {
+	color: var(--color-two);
+}
+
+.d-prompt p {
+	color: #AAA;
+}
+
+.d-prompt a {
+	width: 100%;
+	text-align: center;
+}
+
 .edit {
 	display: grid;
 	grid-template-columns: 1fr auto;
