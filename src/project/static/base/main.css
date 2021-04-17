@@ -71,7 +71,7 @@ button {
 	background: var(--color-three);
 }
 
-.d-button-danger {
+.d-danger {
 	--color-two: var(--color-danger);
 	--color-three: var(--color-danger-darker);
 }

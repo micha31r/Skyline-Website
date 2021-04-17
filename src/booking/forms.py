@@ -123,7 +123,8 @@ class UserIdentifyForm(forms.Form):
 	email = forms.EmailField(
         widget=forms.TextInput(
             attrs={
-                "placeholder":"example@example.com"
+                "placeholder":"example@example.com",
+                "type":"email"
             },
         )
     )

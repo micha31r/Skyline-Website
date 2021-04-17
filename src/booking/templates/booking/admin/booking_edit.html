@@ -8,6 +8,8 @@
 {% block content %}
 	<script type="text/javascript" src="{% static 'base/no_resubmission.js' %}"></script>
 
+	<script type="text/javascript" src="{% static 'base/prompt.js' %}"></script>
+
 	<!-- QR Generator -->
 	<script type="text/javascript" src="https://unpkg.com/qr-code-styling/lib/qr-code-styling.js"></script>
 
@@ -17,7 +19,7 @@
 				<div class="ticket">
 					<div class="grid">
 						<div class="content-container">
-							<h2 class="heading"><a href="{% url 'booking:admin-edit' pk=obj.pk %}"><span>{{ obj.activity.name }}</span></a></h2>
+							<h2 class="heading"><span>{{ obj.activity.name }}</span></h2>
 							<p>Ticket Holder: <b>{{ obj.user.get_full_name }}</b></p>
 							<p>Description: <b>{{ obj.activity.description|truncatechars:50 }}</b></p>
 							<p>Number Of Attendees: <span><b>Adult x {{ obj.adult_count }}, Child x {{ obj.child_count }}</b></span></p>
@@ -83,10 +85,17 @@
 				<div class="card">
 					<div class="grid">
 						<label>Void Ticket<span>This cannot be undone!</span></label>
-						<button class="d-button d-button-danger"><b>Confirm</b></button>
+						<button class="d-button d-danger prompt-toggle"><b>Confirm</b></button>
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<div class="d-prompt d-danger" id="d-prompt">
+		<div class="container">
+			<h3 class="heading">Are you sure you want to void this ticket?</h3>
+			<a class="d-button-fill" href="{% url 'booking:admin-edit-void' user_slug=obj.user.slug ticket_id=obj.id %}">Confirm</a>
 		</div>
 	</div>
 {% endblock %}
