@@ -23,44 +23,58 @@ def booking_list_view(request):
 	if request.POST:
 		p = request.POST
 		if p.get("reset-filter", None):
-			s["filter"] = {
-				"activity": [],
-				"issue-date": None,
-				"arrival-date": None,
-				"wildcard": None
-			}
+			# Clear filter data session
+			s["filter"] = {}
 		else:
+			# Save form data to session
 			s["filter"] = {
 				"activity": p.getlist("activity", []),
 				"issue-date": p.get("issue-date", None),
 				"arrival-date": p.get("arrival-date", None),
-				"wildcard": p.get("wildcard", None)
+				"wildcard": p.get("wildcard", None),
+				"void": p.get("void", None),
+				"expired": p.get("expired", None),
+				"activated": p.get("activated", None)
 			}
+	# Get data from session
 	f = s["filter"]
-	activity = f["activity"]
-	issue_date = f["issue-date"]
-	arrival_date = f["arrival-date"]
-	wildcard = f["wildcard"]
-	if activity:
-		all_qs = all_qs.filter(activity__product_id__in=activity)
-		ctx["current_activity"] = activity
-	if issue_date:
-		all_qs = all_qs.filter(timestamp__date=issue_date)
-		ctx["current_issue_date"] = issue_date
-	if arrival_date:
-		all_qs = all_qs.filter(activation_date__date=arrival_date)
-		ctx["current_arrival_date"] = arrival_date
-	if wildcard:
-		lookups = Q(user__first_name__icontains=wildcard) | \
-			Q(user__last_name__icontains=wildcard) | \
-			Q(activity__name__icontains=wildcard) | \
-			Q(activity__product_id=wildcard) | \
-			Q(code=wildcard)
-		if wildcard.isdigit() and len(wildcard) < 3:
-			lookups |= Q(adult_count=wildcard) | \
-				Q(child_count=wildcard)
-		all_qs = all_qs.filter(lookups)
-		ctx["current_wildcard"] = wildcard
+	if f:
+		activity = f["activity"]
+		issue_date = f["issue-date"]
+		arrival_date = f["arrival-date"]
+		wildcard = f["wildcard"]
+		void = f["void"]
+		expired = f["expired"]
+		activated = f["activated"]
+		if activity:
+			all_qs = all_qs.filter(activity__product_id__in=activity)
+			ctx["current_activity"] = activity
+		if issue_date:
+			all_qs = all_qs.filter(timestamp__date=issue_date)
+			ctx["current_issue_date"] = issue_date
+		if arrival_date:
+			all_qs = all_qs.filter(activation_date__date=arrival_date)
+			ctx["current_arrival_date"] = arrival_date
+		if wildcard:
+			lookups = Q(user__first_name__icontains=wildcard) | \
+				Q(user__last_name__icontains=wildcard) | \
+				Q(activity__name__icontains=wildcard) | \
+				Q(activity__product_id=wildcard) | \
+				Q(code=wildcard)
+			if wildcard.isdigit() and len(wildcard) < 3:
+				lookups |= Q(adult_count=wildcard) | \
+					Q(child_count=wildcard)
+			all_qs = all_qs.filter(lookups)
+			ctx["current_wildcard"] = wildcard
+		if void:
+			all_qs = all_qs.filter(void=True)
+			ctx["current_void"] = void
+		if expired:
+			all_qs = all_qs.filter(activation_date__lt=timezone.now())
+			ctx["current_expired"] = expired
+		if activated:
+			all_qs = all_qs.filter(activated=True)
+			ctx["current_activated"] = activated
 	ctx["total_result_count"] = all_qs.count()
 
 	paginate_by = 30
@@ -72,9 +86,9 @@ def booking_list_view(request):
 	return render(request, template_name, ctx)
 
 @staff_member_required
-def booking_edit_view(request, pk):
+def booking_edit_view(request, user_slug, ticket_id):
 	ctx = {}
-	ctx["obj"] = obj = get_object_or_404(Ticket, id=pk)
+	ctx["obj"] = obj = get_object_or_404(Ticket, id=ticket_id, user__slug=user_slug)
 	if request.POST:
 		p = request.POST
 		fn = p.get("first_name")
@@ -115,4 +129,12 @@ def booking_edit_view(request, pk):
 			obj.save()
 	template_name = 'booking/admin/booking_edit.html'
 	return render(request, template_name, ctx)
+
+@staff_member_required
+def booking_void_view(request, user_slug, ticket_id):
+	obj = get_object_or_404(Ticket, id=ticket_id, user__slug=user_slug)
+	obj.void = True
+	obj.save()
+	return redirect("booking:admin-all")
+
     

@@ -83,7 +83,7 @@
 	width: 100%;
 }
 
-.overview form *:not([hidden]) {
+.overview form > *:not([hidden]) {
 	display: block;
 	width: 100%;
 	box-sizing: border-box;
@@ -97,7 +97,7 @@
 	margin: 0;
 }
 
-.overview form label {
+.overview form > label {
 	font-weight: bold;
 	margin-bottom: 10px;
 }

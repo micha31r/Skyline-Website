@@ -1,8 +1,9 @@
 $(function() {
 	$(".prompt-toggle").each(function() {
 		$(this).click(function() {
-			console.log($(this).attr("id"));
-			var element = $("#d-prompt-" + $(this).prop("id"));
+			const id = $(this).prop("id");
+			const identifier = "#d-prompt" + (id ? '-'+id : '');
+			var element = $(identifier);
 			if (element.css("display") == "none") {
 				element.css("display", "flex");
 			}
