@@ -53,8 +53,11 @@ button {
 	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 	padding: 10px;
 	text-decoration: none;
-	transition: color background;
-	transition-duration: 0.2s;
+	transition: color, background, transform, 0.2s;
+}
+
+.d-button:focus, .d-button-fill:focus {
+	transform: translateY(2px);
 }
 
 .d-button-flex {
