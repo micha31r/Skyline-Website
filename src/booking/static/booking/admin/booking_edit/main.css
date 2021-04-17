@@ -152,3 +152,8 @@
 .edit .left .card > *:nth-last-child(1) {
 	margin: 0;
 }
+
+.edit .left .card .d-button-fill {
+	padding: 0 5px;
+	border-radius: 5px;
+}

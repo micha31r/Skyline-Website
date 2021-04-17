@@ -45,12 +45,12 @@
 				</div>
 				<h2>Other Information</h2>
 				<div class="card">
-					<p>Order Success Page: <a href="{% url 'booking:checkout-success' success_id=obj.user.slug %}"><b></b></a></p>
-					<p>Customer Email: <b>{{ obj.user.email }}</b></p>
+					<p>Booking Page: <a class="d-button-fill" href="{% url 'booking:checkout-success' success_id=obj.user.slug %}"><b>Click here</b></a></p>
+					<p>Customer Email: <a href="mailto:{{ obj.user.email }}"><b>{{ obj.user.email }}</b></a></p>
 					<p>Customer Phone Number: <b>{{ obj.user.phone }}</b></p>
-					<p>Expired: <b>{{ obj.has_expired }}</b></p>
-					<p>Activated: <b>{{ obj.activated }}</b></p>
-					<p>Voided: <b>{{ obj.void }}</b></p>
+					<p>Has Expired: <b>{{ obj.has_expired }}</b></p>
+					<p>Is Activated: <b>{{ obj.activated }}</b></p>
+					<p>Is Voided: <b>{{ obj.void }}</b></p>
 					<p>Product ID: <b>{{ obj.activity.product_id }}</b></p>
 				</div>
 			</div>
