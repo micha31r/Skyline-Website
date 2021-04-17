@@ -33,8 +33,9 @@
 }
 
 .overview .item {
-	border: 1px solid #DDD;
+	border: 1px solid #CCC;
 	border-radius: 10px;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
 .overview .item.activated {
@@ -59,7 +60,7 @@
 	display: grid;
 	grid-template-columns: 1fr auto;
 	grid-column-gap: 20px;
-	border: 1px solid #DDD;
+	border: 1px solid #CCC;
 	border-width: 0 0 1px;
 }
 
@@ -84,7 +85,7 @@
 .overview .card {
 	max-width: 250px;
 	height: max-content;
-	border: 1px solid #DDD;
+	border: 1px solid #CCC;
 	border-radius: 10px;
 	padding: 20px;
 }
@@ -121,7 +122,7 @@
 }
 
 .overview form input, .overview form select {
-	border: 1px solid #DDD;
+	border: 1px solid #CCC;
 	border-radius: 10px;
 	padding: 10px;
 }
