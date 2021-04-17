@@ -73,7 +73,7 @@
 			<div class="ticket-container">
 				<p>{{ page_obj.object_list.count }} out of {{ total_result_count }} items are shown on this page</p>
 				{% for obj in page_obj.object_list %}
-					<div class="item">
+					<div class="item {% if obj.void %}voided{% elif obj.activated %}activated{% endif %}">
 						<div class="grid">
 							<div class="content-container">
 								<h2 class="heading"><a href="{% url 'booking:admin-edit' user_slug=obj.user.slug ticket_id=obj.id %}"><span>{{ obj.activity.name }}</span></a></h2>

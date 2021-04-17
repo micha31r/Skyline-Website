@@ -149,6 +149,7 @@ button {
 }
 
 .d-prompt > div > * {
+	box-sizing: border-box;
 	margin: 0 0 20px;
 }
 
