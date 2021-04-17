@@ -35,13 +35,22 @@ button {
 	border: 0;
 }
 
+.d-danger {
+	--color-two: var(--color-danger);
+	--color-three: var(--color-danger-darker);
+}
+
+.d-danger.d-button {
+	background: rgba(230,41,76,0.02);
+}
+
 .d-button, .d-button-fill {
 	display: inline-block;
 	color: var(--color-two);
-	border-color: var(--color-two);
-	border-style: solid;
-	border-width: 2px;
+	border: 1px solid var(--color-two);
 	border-radius: 10px;
+	background: rgba(0,150,89,0.01);
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 	padding: 10px;
 	text-decoration: none;
 	transition: color background;
@@ -70,13 +79,6 @@ button {
 	border-color: var(--color-three);
 	background: var(--color-three);
 }
-
-.d-danger {
-	--color-two: var(--color-danger);
-	--color-three: var(--color-danger-darker);
-}
-
-/* CSS for ".base" elements are defined in this file */
 
 .d-container-wrapper {
 	padding: 40px 0;
