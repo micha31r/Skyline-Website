@@ -138,6 +138,13 @@ def booking_edit_view(request, user_slug, ticket_id):
 	return render(request, template_name, ctx)
 
 @staff_member_required
+def booking_activate_view(request, user_slug, ticket_id):
+	obj = get_object_or_404(Ticket, id=ticket_id, user__slug=user_slug)
+	obj.activated = True
+	obj.save()
+	return redirect("booking:admin-all")
+
+@staff_member_required
 def booking_void_view(request, user_slug, ticket_id):
 	obj = get_object_or_404(Ticket, id=ticket_id, user__slug=user_slug)
 	obj.void = True
