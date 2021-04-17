@@ -1,7 +1,7 @@
 $(function() {
 	$(".prompt-toggle").each(function() {
 		$(this).click(function() {
-			const id = $(this).prop("id");
+			const id = $(this).prop("value");
 			const identifier = "#d-prompt" + (id ? '-'+id : '');
 			var element = $(identifier);
 			if (element.css("display") == "none") {

@@ -81,22 +81,35 @@
 					<input hidden name="product_id" value="{{ obj.product_id }}">
 					<button class="d-button" type="submit"><b>Save Changes</b></button>
 				</form>
-				<h2>Danger</h2>
-				<div class="card">
-					<div class="grid">
-						<label>Void Ticket<span>This cannot be undone!</span></label>
-						<button class="d-button d-danger prompt-toggle"><b>Confirm</b></button>
+				{% if not obj.activated and not obj.void %}
+					<h2>Danger</h2>
+					<div class="card">
+						<div class="grid">
+							<label>Mark As Used<span>This cannot be undone!</span></label>
+							<button class="d-button d-danger prompt-toggle" value="1"><b>Mark</b></button>
+							<label>Void Ticket<span>This cannot be undone!</span></label>
+							<button class="d-button d-danger prompt-toggle" value="2"><b>Void</b></button>
+						</div>
 					</div>
-				</div>
+				{% endif %}
 			</div>
 		</div>
 	</div>
 
-	<div class="d-prompt d-danger" id="d-prompt">
-		<div class="container">
-			<h3 class="heading">Are you sure you want to void this ticket created on <span>{{ obj.timestamp }}</span>?</h3>
-			<p>This will permanently expire the ticket and cannot be undone!</p>
-			<a class="d-button" href="{% url 'booking:admin-edit-void' user_slug=obj.user.slug ticket_id=obj.id %}"><b>Yes, Void Ticket</b></a>
+	{% if not obj.activated and not obj.void %}
+		<div class="d-prompt d-danger" id="d-prompt-1">
+			<div class="container">
+				<h3 class="heading">You are activating this ticket!</h3>
+				<p>This ticket will be marked as used and cannot be undone!</p>
+				<a class="d-button" href="{% url 'booking:admin-edit-activate' user_slug=obj.user.slug ticket_id=obj.id %}"><b>Mark As Used</b></a>
+			</div>
 		</div>
-	</div>
+		<div class="d-prompt d-danger" id="d-prompt-2">
+			<div class="container">
+				<h3 class="heading">Are you sure you want to void this ticket created on <span>{{ obj.timestamp }}</span>?</h3>
+				<p>This will permanently expire the ticket and cannot be undone!</p>
+				<a class="d-button" href="{% url 'booking:admin-edit-void' user_slug=obj.user.slug ticket_id=obj.id %}"><b>Yes, Void Ticket</b></a>
+			</div>
+		</div>
+	{% endif %}
 {% endblock %}
