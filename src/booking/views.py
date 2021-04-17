@@ -18,7 +18,7 @@ def activities_view(request):
 		child_count = data.get("child_count", None)
 		product_id = data.get("product_id", None)
 		if adult_count and child_count and product_id:
-			if adult_count.isnumeric() and child_count.isnumeric() and int(adult_count) >= 0 and int(child_count) >= 0:
+			if adult_count.isnumeric() and child_count.isnumeric() and (int(adult_count) > 0 or int(child_count) > 0):
 				obj = Activity.objects.get(product_id=product_id)
 				cart.append({
 					"name":obj.name,
@@ -31,9 +31,9 @@ def activities_view(request):
 				})
 				request.session["cart"] = cart
 				abs_link = reverse('booking:cart')
-				messages.add_message(request, messages.ERROR, f"Successfully added '{obj.name}' to cart. <a href='{abs_link}'>Continue to checkout?</a>")
+				messages.info(request, f"Successfully added '{obj.name}' to cart. <a href='{abs_link}'>Continue to checkout?</a>")
 			else:
-				messages.add_message(request, messages.ERROR, f"Number of children / adults must be greater than zero")
+				messages.error(request, f"Number of children / adults must be greater than zero")
 	template_file = "booking/activities.html"
 	return render(request, template_file, ctx)
 
