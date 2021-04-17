@@ -58,8 +58,10 @@ def booking_list_view(request):
 		if wildcard:
 			lookups = Q(user__first_name__icontains=wildcard) | \
 				Q(user__last_name__icontains=wildcard) | \
+				Q(user__email__icontains=wildcard) | \
+				Q(user__phone__icontains=wildcard) | \
 				Q(activity__name__icontains=wildcard) | \
-				Q(activity__product_id=wildcard) | \
+				Q(activity__product_id__icontains=wildcard) | \
 				Q(code=wildcard)
 			if wildcard.isdigit() and len(wildcard) < 3:
 				lookups |= Q(adult_count=wildcard) | \
