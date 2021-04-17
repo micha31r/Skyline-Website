@@ -33,16 +33,16 @@
 					<label>Settings</label>
 					<div class="settings-flex-container">
 						<div>
-							<label>Voided</label>
-							<input type="checkbox" name="void" {% if current_void %}checked{% endif %}>
+							<label for="void">Voided</label>
+							<input type="checkbox" id="void" name="void" {% if current_void %}checked{% endif %}>
 						</div>
 						<div>
-							<label>Expired</label>
-							<input type="checkbox" name="expired" {% if current_expired %}checked{% endif %}>
+							<label for="expired">Expired</label>
+							<input type="checkbox" id="expired" name="expired" {% if current_expired %}checked{% endif %}>
 						</div>
 						<div>
-							<label>Used</label>
-							<input type="checkbox" name="activated" {% if current_activated %}checked{% endif %}>
+							<label for="used">Used</label>
+							<input type="checkbox" id="used" name="activated" {% if current_activated %}checked{% endif %}>
 						</div>
 					</div>
 					<input hidden name="reset-filter">
