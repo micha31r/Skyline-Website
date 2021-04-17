@@ -17,6 +17,7 @@ from .models import Activity, Ticket
 def booking_list_view(request):
 	ctx = {}
 	all_qs = Ticket.objects.all()
+
 	# Filter queryset
 	# Store and get search parameter from session
 	s = request.session
@@ -36,6 +37,7 @@ def booking_list_view(request):
 				"expired": p.get("expired", None),
 				"activated": p.get("activated", None)
 			}
+
 	# Get data from session
 	f = s["filter"]
 	if f:
@@ -68,15 +70,18 @@ def booking_list_view(request):
 					Q(child_count=wildcard)
 			all_qs = all_qs.filter(lookups)
 			ctx["current_wildcard"] = wildcard
-		if void:
-			all_qs = all_qs.filter(void=True)
-			ctx["current_void"] = void
-		if expired:
-			all_qs = all_qs.filter(activation_date__lt=timezone.now())
-			ctx["current_expired"] = expired
-		if activated:
-			all_qs = all_qs.filter(activated=True)
-			ctx["current_activated"] = activated
+
+		# Whether to include voided, used or expired tickets
+		if void: ctx["current_void"] = void
+		else: all_qs = all_qs.filter(void=False)
+		if expired: ctx["current_expired"] = expired
+		else: all_qs = all_qs.filter(activation_date__gt=timezone.now())
+		if activated: ctx["current_activated"] = activated
+		else: all_qs = all_qs.filter(activated=False)
+	else:
+		# Hide voided, used or expired tickets if filter is not set
+		all_qs = all_qs.filter(void=False, activated=False, activation_date__gt=timezone.now())
+	
 	ctx["total_result_count"] = all_qs.count()
 
 	paginate_by = 30
