@@ -54,7 +54,7 @@
 
 .edit form {
 	max-width: 400px;
-	border: 1px solid #DDD;
+	border: 1px solid var(--color-two);
 	border-radius: 10px;
 	padding: 20px;
 }
@@ -98,6 +98,10 @@
 	border: 1px solid var(--color-danger);
 	border-radius: 10px;
 	padding: 20px;
+}
+
+.edit .left > h2 {
+	margin: 0 0 20px;
 }
 
 .edit .ticket {

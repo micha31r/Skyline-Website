@@ -16,6 +16,7 @@
 	<div class="d-container-wrapper edit-container-wrapper">
 		<div class="edit d-container d-padding">
 			<div class="left">
+				<h2>E-Ticket</h2>
 				<div class="ticket">
 					<div class="grid">
 						<div class="content-container">
@@ -42,12 +43,14 @@
 						<p>Issue Date: <b>{{ obj.timestamp.date }}</b></p>
 					</div>
 				</div>
+				<h2>Other Information</h2>
 				<div class="card">
-					<h2>Other Information</h2>
-					<p>User ID: <b>{{ obj.user.slug }}</b></p>
+					<p>Order Success Page: <a href="{% url 'booking:checkout-success' success_id=obj.user.slug %}"><b></b></a></p>
+					<p>Customer Email: <b>{{ obj.user.email }}</b></p>
+					<p>Customer Phone Number: <b>{{ obj.user.phone }}</b></p>
 					<p>Expired: <b>{{ obj.has_expired }}</b></p>
 					<p>Activated: <b>{{ obj.activated }}</b></p>
-					<p>Product ID: <b>{{ obj.activity.product_id }}</b></p>
+					<p>Voided: <b>{{ obj.void }}</b></p>
 					<p>Product ID: <b>{{ obj.activity.product_id }}</b></p>
 				</div>
 			</div>
