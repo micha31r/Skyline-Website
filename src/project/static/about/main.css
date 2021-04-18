@@ -1,0 +1,73 @@
+.about {
+	max-width: 1000px;
+	margin: auto;
+}
+
+.about .grid {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	grid-column-gap: 80px;
+}
+
+.about .left {
+	position: sticky;
+	top: 0;
+	height: max-content;
+	overflow-y: auto;
+}
+
+.about .left a {
+	display: block;
+	margin-bottom: 20px;
+	transition: color 0.2s;
+}
+
+.about .left a:nth-child(1) {
+	margin-top: 40px;
+}
+
+.about .left a:nth-last-child(1) {
+	margin-bottom: 40px;
+}
+
+.about .left a:hover {
+	color: var(--color-two);
+}
+
+.about .right {
+	padding: 40px 0;
+}
+
+.about .right > *:nth-child(1) {
+	margin-top: 0 !important;
+}
+
+.about .right > *:nth-last-child(1) {
+	margin-bottom: 0 !important;
+}
+
+.about .right h2 {
+	color: var(--color-two);
+	margin: 60px 0 20px;
+}
+
+.about .right h1 {
+	border: 1px solid #CCC;
+	border-width: 0 0 1px 0;
+	padding: 0 0 10px;
+	margin: 60px 0 20px;
+}
+
+.about .right p {
+	font-size: 1.1rem;
+	margin: 0 0 20px;
+}
+
+.about .right ul {
+	font-size: 1.2rem;
+	line-height: 1.4em;
+}
+
+.about img {
+	width: 100%;
+}
