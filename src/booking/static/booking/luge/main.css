@@ -106,11 +106,11 @@
 	background-position: center;
 }
 
-.info .grid .right > * {
+.info .grid > div > * {
 	margin: 0 0 40px;
 }
 
-.info .grid .right > *:nth-last-child(1) {
+.info .grid > div > *:nth-last-child(1) {
 	margin: 0;
 }
 
@@ -177,5 +177,22 @@
 	width: 100%;
 }
 
+table {
+	width: 100%;
+	border: 0;
+}
 
+table td {
+	font-size: 1.2em;
+   /*border-left: 40px solid transparent;*/
+   /*border-top: 40px solid transparent;*/
+}
+
+table td:first-child {
+   border-left: 0;
+}
+
+table tr:first-child td {
+   border-top: 0;
+}
 
