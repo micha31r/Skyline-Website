@@ -203,7 +203,7 @@
 
 .night video {
 	width: 100%;
-	border: 2px solid #FFF;
+	/*border: 1px solid #FFF;*/
 	box-sizing: border-box;
 }
 
