@@ -237,6 +237,7 @@ table tr:nth-last-child(1) td:nth-last-child(1) {
 
 .info.other .grid > div {
 	height: max-content;
+	background: #FFF;
 	box-shadow: 0 20px 80px rgba(0,0,0,0.2);
 	padding: 40px;
 }
