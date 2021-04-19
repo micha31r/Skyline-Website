@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'booking/luge/main.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div class="d-container-wrapper intro-container-wrapper">
+		<div class="intro d-container d-padding">
+			<div class="grid">
+				<div class="left">
+					<h1>
+						Rotorua Luge,
+						<br>
+						Fast-Paced
+						<br> 
+						Freedom
+					</h1>
+					<h2>Nestle into a Luge cart and zip off with friends or family to discover who has the skills to master the Luge.</h2>
+					<a><b>Buy Tickets</b></a>
+				</div>
+				<div class="flex">
+					<div class="image" style="background-image: url('https://www.skyline.co.nz/media/2987/skyline-rotorua_luge_two-friends-luging.jpg')"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="d-container-wrapper info-container-wrapper">
+		<div class="info d-container d-padding">
+			<h1 class="overline">Small Size,<br>Endless Fun</h1>
+			<div class="grid">
+				<div class="flex">
+					<div class="image" style="background-image: url('https://www.skyline.co.nz/media/2987/skyline-rotorua_luge_two-friends-luging.jpg')"></div>
+				</div>
+				<div class="right">
+					<p>
+						The part go-cart, part toboggan is gravity fuelled with full rider control over speed and direction using a unique braking and steering system. Pull back on the handlebars to slow down or stop, release slightly to accelerate and enjoy the ride. The Luge is great for any age (our oldest rider is 101) and small children (provided they can walk unassisted) can ride with adults. 
+						<br><br>
+						First up, ride the sweeping bends of the Scenic track through the Redwoods Forest. After a stunning chair-lift ride back to the top, the Intermediate track awaits. Once Is Never Enough! 
+						<br><br>
+						The world-famous Luge opened in 1986 and Skyline Rotorua continues to lead the way with Luge technology - all components are designed and manufactured in Rotorua and then shipped around the world to our other Luge locations.
+					</p>
+					<a><b>Track Information</b><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="d-container-wrapper info-container-wrapper">
+		<div class="info d-container d-padding">
+			<h1 class="overline">Explore The Thrill<br>Of Darkness</h1>
+			<div class="grid">
+				<div class="right">
+					<video controls preload="metadata">
+						<source src="https://php.tbc.school.nz/resources/DGT3/Skyline%20Rotorua/Videos/Luge/Skyline%20Night%20Luge%2030.mp4" type="video/mp4">
+					</video>
+					<p>You can now Luge for longer than ever before on the famous Night Luge! Enjoy the thrill of riding the Luge under the stars, our new colourful disco lights will light the way as you twist and turn your way down one of our exciting Luge tracks.*</p>
+				</div>
+				<div class="flex">
+					<div class="image" style="background-image: url('https://www.skyline.co.nz/media/3434/skyline-rotorua_luge_two-friends-race-each-other-on-the-night-luge.jpg')"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
