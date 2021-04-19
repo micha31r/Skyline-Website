@@ -173,7 +173,7 @@
 
 .night-container-wrapper {
 	background: #000;
-	background: linear-gradient(90deg, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 50%);
+	background: linear-gradient(70deg, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 50%);
 	padding: 80px 0;
 }
 
@@ -185,9 +185,11 @@
 
 .night h1 {
 	font-size: 4em;
+	width: max-content;
 	color: #FFF;
-	margin: 0 0 40px;
+	margin: 0 0 40px auto;
 	text-align: right;
+	text-shadow: 0 0 40px #000;
 }
 
 .night p {
