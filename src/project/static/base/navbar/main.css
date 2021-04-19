@@ -116,10 +116,10 @@ nav #popup-nav-toggle .close {
 .nav-activities .flex a {
 	color: #EEE;
 	transition: color 0.2s;
-	margin: 0 20px;
+	margin: 0 0 0 20px;
 }
 
-.nav-activities .flex a:nth-child(1), .nav-activities .flex a:nth-last-child(1) {
+.nav-activities .flex a:nth-child(1) {
 	margin: 0;
 }
 

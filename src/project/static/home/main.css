@@ -6,7 +6,7 @@
 	position: absolute;
 	width: 100vw;
 	/* Height is set to the same as .intro-container-wrapper in JS */
-	filter: brightness(0.5);
+	filter: brightness(0.7);
 	object-fit: cover; /* Discard aspect ratio */
 	z-index: -1;
 }
