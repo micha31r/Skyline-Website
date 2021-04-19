@@ -244,3 +244,72 @@ table tr:nth-last-child(1) td:nth-last-child(1) {
 .info.other .grid .date {
 	background: var(--color-two);
 }
+
+.faq-container-wrapper {
+	padding: 80px 0;
+}
+
+.faq h1 {
+	font-size: 4em;
+	margin: 0 0 40px;
+}
+
+.faq .question {
+	background: #F4F4F4;
+	margin: 0 0 20px;
+}
+
+.faq .question:nth-last-child(1) {
+	background: #F4F4F4;
+	margin: 0;
+}
+
+.faq .question h3 {
+	border: 1px solid transparent;
+	padding: 20px;
+	margin: 0;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+
+.faq .question h3:hover {
+	border-color: #CCC;
+}
+
+.faq .question .answer {
+	height: 0;
+	background: #F4F4F4;
+	padding: 0 20px;
+	overflow: hidden;
+	opacity: 0;
+	transition: all 0.2s;
+}
+
+.faq .question .answer > * {
+	margin: 0 0 20px;
+}
+
+.faq .question .answer > *:nth-last-child(1) {
+	margin: 0;
+}
+
+.faq .question .answer p {
+	font-size: 1.1em;
+}
+
+/* Expanded */
+
+.faq .question.expand h3 {
+	background: #000;
+	color: #FFF;
+}
+
+.faq .question.expand .answer {
+	height: max-content;
+	padding: 20px;
+	opacity: 1;
+}
+
+
+
+
