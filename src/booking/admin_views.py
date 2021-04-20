@@ -105,7 +105,7 @@ def booking_list_view(request):
 	ctx["total_adults"] = total_adults
 	ctx["total_children"] = total_children
 
-	paginate_by = 30
+	paginate_by = 20
 	paginator = Paginator(all_qs, paginate_by)
 	ctx["page_obj"] = paginator.page(request.GET.get('page', 1)) # Set current page
 	ctx["page_range"] = range(1, ctx["page_obj"].paginator.num_pages+1)
