@@ -29,9 +29,9 @@
 						{% endfor %}
 					</select>
 					<label>Issue Date</label>
-					<input type="date" name="issue-date" {% if current_issue_date %}value="{{ current_issue_date }}"{% endif %}>
+					<input type="date" name="issue-date" {% if current_issue_date %}value="{{ current_issue_date|date:'Y-m-d' }}"{% endif %} placeholder="yyyy-mm-dd">
 					<label>Arrival Date</label>
-					<input type="date" name="arrival-date" {% if current_arrival_date %}value="{{ current_arrival_date }}"{% endif %}>
+					<input type="date" name="arrival-date" {% if current_arrival_date %}value="{{ current_arrival_date|date:'Y-m-d' }}"{% endif %} placeholder="yyyy-mm-dd">
 					<label>Search</label>
 					<input type="text" name="wildcard" placeholder="Query" {% if current_wildcard %}value="{{ current_wildcard }}"{% endif %}>
 					<label>Results Include</label>
