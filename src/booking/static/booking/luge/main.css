@@ -250,9 +250,15 @@ table tr:nth-last-child(1) td:nth-last-child(1) {
 	padding: 80px 0;
 }
 
+.faq {
+	max-width: 900px;
+	margin: auto;
+}
+
 .faq h1 {
 	font-size: 4em;
 	margin: 0 0 40px;
+	text-align: center;
 }
 
 .faq .question {
@@ -275,6 +281,12 @@ table tr:nth-last-child(1) td:nth-last-child(1) {
 
 .faq .question h3:hover {
 	border-color: #CCC;
+}
+
+.faq .question h3 svg {
+	height: 100%;
+	float: right;
+	transition: transform 0.2s;
 }
 
 .faq .question .answer {
@@ -309,6 +321,10 @@ table tr:nth-last-child(1) td:nth-last-child(1) {
 	height: max-content;
 	padding: 20px;
 	opacity: 1;
+}
+
+.faq .question.expand h3 svg {
+	transform: rotate(180deg);
 }
 
 
