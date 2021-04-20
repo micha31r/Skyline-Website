@@ -55,18 +55,18 @@ def booking_list_view(request):
 		if activity:
 			all_qs = all_qs.filter(activity__product_id__in=activity)
 			ctx["current_activity"] = activity
-			if issue_date:
-				try:
-					all_qs = all_qs.filter(timestamp__date=issue_date)
-				except ValidationError:
-					pass
-				ctx["current_issue_date"] = issue_date
-			if arrival_date:
-				try:
-					all_qs = all_qs.filter(activation_date__date=arrival_date)
-				except ValidationError:
-					pass
-				ctx["current_arrival_date"] = arrival_date
+		if issue_date:
+			try:
+				ctx["current_issue_date"] = issue_date = datetime.datetime.strptime(issue_date, '%Y-%m-%d')
+				all_qs = all_qs.filter(timestamp__date=issue_date)
+			except:
+				pass
+		if arrival_date:
+			try:
+				ctx["current_arrival_date"] = arrival_date = datetime.datetime.strptime(arrival_date, '%Y-%m-%d')
+				all_qs = all_qs.filter(activation_date__date=arrival_date)
+			except ValidationError:
+				pass
 		if wildcard:
 			lookups = Q(user__first_name__icontains=wildcard) | \
 				Q(user__last_name__icontains=wildcard) | \
