@@ -132,10 +132,16 @@
 	margin: 0 20px 0;
 }
 
+.edit .qr-code {
+	margin-left: 0 !important;
+}
+
 .edit .ticket .verifications {
 	border-bottom-width: 0;
 	border-radius: 0 0 10px 10px;
 	background: #F5F5F5;
+	overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .edit .left .card {
@@ -147,6 +153,7 @@
 
 .edit .left .card > * {
 	margin: 0 0 15px;
+	overflow-wrap: break-word;
 }
 
 .edit .left .card > *:nth-last-child(1) {
@@ -156,4 +163,45 @@
 .edit .left .card .d-button-fill {
 	padding: 0 5px;
 	border-radius: 5px;
+}
+
+@media only screen and (max-width: 1050px) {
+	.edit .ticket .grid {
+		grid-template-columns: 1fr;
+	}
+	.edit .ticket .content-container:nth-child(1) {
+		padding-bottom: 0;
+	}
+	.edit .qr-code {
+	    margin-left: 20px !important; 
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.edit {
+		grid-column-gap: 20px;
+	}
+	.edit .right .grid {
+		min-width: 250px;
+		grid-template-columns: 1fr;
+	}
+	.edit .ticket .content-container > * {
+	    margin: 0 20px 10px;
+	}
+	.edit .left .card > * {
+    	margin: 0 0 10px;
+    }
+    .edit .right .grid {
+    	grid-row-gap: 15px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+	.edit {
+		grid-template-columns: 1fr;
+		grid-row-gap: 40px;
+	}
+	.edit .right .card {
+		max-width: 400px;
+	}
 }
