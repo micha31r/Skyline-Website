@@ -4,6 +4,98 @@
 	grid-column-gap: 40px;
 }
 
+/* ----Filter (Left)---- */
+
+.settings {
+	max-width: 300px;
+	height: max-content;
+}
+
+.settings h2 {
+	margin: 0 0 5px;
+}
+
+.settings #reset-search-session {
+	color: var(--color-two);
+	padding: 0;
+	margin: 0 0 30px;
+	transition: color 0.2s;
+}
+
+.settings #reset-search-session:hover {
+	color: var(--color-three);
+}
+
+.settings form {
+	width: 100%;
+}
+
+.settings form > *:not([hidden]) {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.settings form > * {
+	margin-bottom: 30px;
+}
+
+.settings form > *:nth-last-child(1) {
+	margin: 0;
+}
+
+.settings form > label {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.settings form input, .settings form select {
+	border: 1px solid #CCC;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.settings form input::placeholder {
+	color: #BBB;
+}
+
+.settings form button {
+	text-align: center;
+}
+
+.settings form .settings-flex-container {
+	display: flex !important;
+	justify-content: space-between;
+}
+
+.pagination {
+	margin-top: 40px !important;
+	margin-left: auto;
+}
+
+.pagination a {
+	margin-right: 10px;
+	text-decoration: none;
+}
+
+.pagination a.active {
+	font-weight: bold;
+}
+
+.pagination a:hover {
+	color: var(--color-two);
+	transition: color;
+	transition-duration: 0.2s;
+}
+
+.pagination svg {
+	vertical-align: top;
+}
+
+/* --------------- */
+
+/* ----Tickets (Right)---- */
+
 .overview .ticket-container > * {
 	margin: 0 0 20px;
 }
@@ -12,24 +104,16 @@
 	margin: 0;
 }
 
-.overview .settings {
-	max-width: 300px;
-	height: max-content;
+.ticket-container > .grid {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-column-gap: 20px;
 }
 
-.overview .settings h2 {
-	margin: 0 0 5px;
-}
-
-.overview .settings #reset-search-session {
-	color: var(--color-two);
-	padding: 0;
-	margin: 0 0 30px;
-	transition: color 0.2s;
-}
-
-.overview .settings #reset-search-session:hover {
-	color: var(--color-three);
+.filter-result {
+	width: fit-content;
+	box-sizing: border-box;
+	margin: 0;
 }
 
 .overview .item {
@@ -76,90 +160,76 @@
 	margin: 0 20px 0;
 }
 
+.overview .qr-code {
+	margin-left: 0 !important;
+}
+
 .overview .item .verifications {
 	border-bottom-width: 0;
 	border-radius: 0 0 10px 10px;
 	background: #F5F5F5;
 }
 
-.overview .card {
-	max-width: 250px;
-	height: max-content;
-	border: 1px solid #CCC;
-	border-radius: 10px;
-	padding: 20px;
+.prompt-toggle {
+	display: none;
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	background: #3d52d5;
+	color: #FFF;
+	padding: 10px 15px;
 }
 
-.overview .card > * {
-	margin: 0 0 20px;
+.prompt-toggle:hover {
+	background: #0d21a1;
 }
 
-.overview .card > *:nth-last-child(1) {
-	margin: 0;
+.prompt-toggle > * {
+	margin: auto;
 }
 
-.overview form {
-	width: 100%;
+.prompt-toggle svg {
+	margin-left: 5px;
 }
 
-.overview form > *:not([hidden]) {
-	display: block;
-	width: 100%;
-	box-sizing: border-box;
+@media only screen and (min-width: 600px) and (max-width: 900px), (max-width: 600px) {
+	.overview .item .grid {
+		grid-template-columns: 1fr;
+	}
+	.overview .item .content-container:nth-child(1) {
+		padding-bottom: 0;
+	}
+	.overview .qr-code {
+	    margin-left: 20px !important; 
+	}
+	.verifications {
+		overflow-wrap: break-word;
+	}
 }
 
-.overview form > * {
-	margin-bottom: 30px;
+@media only screen and (max-width: 700px) {
+	.overview {
+		display: block;
+	}
+	.overview .settings {
+		display: none;
+	}
 }
 
-.overview form > *:nth-last-child(1) {
-	margin: 0;
+@media only screen and (min-width: 600px) and (max-width: 700px) {
+	.overview .item .grid {
+		grid-template-columns: 1fr auto;
+	}
+	.overview .item .content-container:nth-child(1) {
+		padding-bottom: 20px;
+	}
 }
 
-.overview form > label {
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-
-.overview form input, .overview form select {
-	border: 1px solid #CCC;
-	border-radius: 10px;
-	padding: 10px;
-}
-
-.overview form input::placeholder {
-	color: #BBB;
-}
-
-.overview form button {
-	text-align: center;
-}
-
-.overview form .settings-flex-container {
-	display: flex !important;
-	justify-content: space-between;
-}
-
-.pagination {
-	margin-top: 40px !important;
-	margin-left: auto;
-}
-
-.pagination a {
-	margin-right: 10px;
-	text-decoration: none;
-}
-
-.pagination a.active {
-	font-weight: bold;
-}
-
-.pagination a:hover {
-	color: var(--color-two);
-	transition: color;
-	transition-duration: 0.2s;
-}
-
-.pagination svg {
-	vertical-align: top;
+@media only screen and (max-width: 700px) {
+	.prompt-toggle {
+		display: flex;
+	}
+	.filter-result {
+		width: 100%;
+	}
 }
