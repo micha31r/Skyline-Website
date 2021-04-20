@@ -125,8 +125,12 @@ def booking_edit_view(request, user_slug, ticket_id):
 			phone = ph.replace("+","")
 			if (len(phone) > 12 or len(phone) < 9) or not phone.isnumeric():
 				messages.error(request, "Phone number should be between 9-12 digits and only contain 0-9 and +")
-			if ad <= str(datetime.date.today()):
-				messages.error(request, "Arrival date must be a future date")
+			try:
+				ad = timezone.make_aware(datetime.datetime.strptime(ad, '%Y-%m-%d'))
+				if ad.date() != obj.activation_date.date() and ad.date() <= datetime.date.today():
+					messages.error(request, "Arrival date must be a future date")
+			except:
+				messages.error(request, "Invalid date format, must be yyyy-mm-dd")
 			try: 
 				validate_email(em)
 			except:
@@ -144,7 +148,7 @@ def booking_edit_view(request, user_slug, ticket_id):
 			obj.user.save()
 			obj.adult_count = ac
 			obj.child_count = cc
-			obj.activation_date = timezone.make_aware(datetime.datetime.strptime(ad, '%Y-%m-%d'))
+			obj.activation_date = ad
 			obj.save()
 	template_name = 'booking/admin/booking_edit.html'
 	return render(request, template_name, ctx)
