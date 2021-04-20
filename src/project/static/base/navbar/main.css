@@ -1,11 +1,12 @@
 nav {
 	position: sticky;
 	top: 0;
-	background: rgba(255,255,255,0.8);
+	background: rgba(255,255,255,0.9);
 	border-width: 0 0 1px;
 	border-style: solid;
 	border-color: #DDD;
 	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 	padding: 0 20px;
 	overflow: auto;
 	z-index: 101;
@@ -152,11 +153,12 @@ nav #popup-nav-toggle .close {
 	left: 0;
 	width: 300px;
 	height: 100%;
-	background: rgba(255,255,255,0.8);
+	background: rgba(255,255,255,0.9);
 	border: 1px solid #DDD;
 	border-width: 0 1px 0 0;
 	box-sizing: border-box;
 	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 	padding: 100px 25px 25px;
 	overflow: auto;
 	animation-duration: 0.2s;
