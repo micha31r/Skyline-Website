@@ -289,7 +289,6 @@ table tr:nth-last-child(1) td:nth-last-child(1) {
 }
 
 .faq .question h3 svg {
-	height: 100%;
 	margin: auto;
 	transition: transform 0.2s;
 }
