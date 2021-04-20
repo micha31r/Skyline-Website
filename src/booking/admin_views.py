@@ -96,6 +96,15 @@ def booking_list_view(request):
 	
 	ctx["total_result_count"] = all_qs.count()
 
+	# Get the total number of adults and children from all tickets
+	total_adults = 0
+	total_children = 0
+	for ticket in all_qs.all():
+		total_adults += ticket.adult_count
+		total_children += ticket.child_count
+	ctx["total_adults"] = total_adults
+	ctx["total_children"] = total_children
+
 	paginate_by = 30
 	paginator = Paginator(all_qs, paginate_by)
 	ctx["page_obj"] = paginator.page(request.GET.get('page', 1)) # Set current page
