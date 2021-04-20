@@ -69,8 +69,8 @@
 }
 
 .pagination {
+	width: fit-content;
 	margin-top: 40px !important;
-	margin-left: auto;
 }
 
 .pagination a {
@@ -231,5 +231,8 @@
 	}
 	.filter-result {
 		width: 100%;
+	}
+	.pagination {
+		margin-left: auto;
 	}
 }
