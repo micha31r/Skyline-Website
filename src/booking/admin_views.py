@@ -107,7 +107,12 @@ def booking_list_view(request):
 
 	paginate_by = 20
 	paginator = Paginator(all_qs, paginate_by)
-	ctx["page_obj"] = paginator.page(request.GET.get('page', 1)) # Set current page
+
+	current_page = request.GET.get('page', 1)
+	if int(current_page) > paginator.num_pages:
+		current_page = paginator.num_pages
+
+	ctx["page_obj"] = paginator.page(current_page) # Set current page
 	ctx["page_range"] = range(1, ctx["page_obj"].paginator.num_pages+1)
 	ctx["activities"] = Activity.objects.all()
 	template_name = 'booking/admin/booking_list.html'
