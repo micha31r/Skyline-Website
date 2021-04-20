@@ -1,0 +1,54 @@
+.login {
+	max-width: 350px;
+	border: 1px solid #CCC;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.login h2 {
+	text-align: center;
+	margin: 0 auto 10px;
+}
+
+.login .subheading {
+	color: var(--color-gray);
+	text-align: center;
+	margin: 0 auto 30px;
+}
+
+.login form {
+	width: 100%;
+}
+
+.login form *:not([hidden]) {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.login form label {
+	margin-bottom: 10px;
+	color: var(--color-two);
+}
+
+.login form input {
+	border: 1px solid #CCC;
+	border-radius: 10px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.login form input::placeholder {
+	color: #BBB;
+}
+
+.login form button {
+	text-align: center;
+}
+
+@media only screen and (max-width: 500px) {
+	.login {
+		border: 0;
+	}
+}
+
