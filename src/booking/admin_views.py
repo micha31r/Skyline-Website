@@ -37,6 +37,9 @@ def booking_list_view(request):
 				"expired": p.get("expired", None),
 				"activated": p.get("activated", None)
 			}
+			
+	if "filter" not in s:
+		s["filter"] = {}
 
 	# Get data from session
 	f = s["filter"]
