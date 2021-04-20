@@ -60,13 +60,13 @@
 						{% csrf_token %}
 
 						{% if messages or form.errors %}
-							<div class="messages-container d-danger">
+							<div class="messages-container">
 								{% for message in messages %}
-						        	<p class="d-message">{{ message }}</p>
+						        	<p class="d-message d-danger">{{ message }}</p>
 							    {% endfor %}
 							    {% for field in form %}
 									{% for error in field.errors %}
-							        	<p class="d-message">{{ error }}</p>
+							        	<p class="d-message d-danger">{{ error }}</p>
 								    {% endfor %}
 								{% endfor %}
 							</div>
