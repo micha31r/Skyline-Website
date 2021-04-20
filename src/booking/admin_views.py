@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.core.paginator import Paginator
 from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
@@ -54,12 +55,18 @@ def booking_list_view(request):
 		if activity:
 			all_qs = all_qs.filter(activity__product_id__in=activity)
 			ctx["current_activity"] = activity
-		if issue_date:
-			all_qs = all_qs.filter(timestamp__date=issue_date)
-			ctx["current_issue_date"] = issue_date
-		if arrival_date:
-			all_qs = all_qs.filter(activation_date__date=arrival_date)
-			ctx["current_arrival_date"] = arrival_date
+			if issue_date:
+				try:
+					all_qs = all_qs.filter(timestamp__date=issue_date)
+				except ValidationError:
+					pass
+				ctx["current_issue_date"] = issue_date
+			if arrival_date:
+				try:
+					all_qs = all_qs.filter(activation_date__date=arrival_date)
+				except ValidationError:
+					pass
+				ctx["current_arrival_date"] = arrival_date
 		if wildcard:
 			lookups = Q(user__first_name__icontains=wildcard) | \
 				Q(user__last_name__icontains=wildcard) | \
