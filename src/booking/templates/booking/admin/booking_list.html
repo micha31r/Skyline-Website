@@ -8,6 +8,10 @@
 {% block content %}
 	<script type="text/javascript" src="{% static 'base/no_resubmission.js' %}"></script>
 
+	<script type="text/javascript" src="{% static 'base/prompt.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'booking/admin/booking_list/main.js' %}"></script>
+
 	<!-- QR Generator -->
 	<script type="text/javascript" src="https://unpkg.com/qr-code-styling/lib/qr-code-styling.js"></script>
 
@@ -71,7 +75,10 @@
 				{% endif %}
 			</div>
 			<div class="ticket-container">
-				<p>{{ page_obj.object_list.count }} out of {{ total_result_count }} items are shown on this page</p>
+				{% if filter_applied %}
+					<p class="d-message {% if total_result_count == 0 %}d-danger{% endif %} filter-result">{{ page_obj.object_list.count }} out of {{ total_result_count }} items are shown on this page</p>
+				{% endif %}
+
 				{% for obj in page_obj.object_list %}
 					<div class="item {% if obj.void %}voided{% elif obj.activated %}activated{% endif %}">
 						<div class="grid">
@@ -101,6 +108,14 @@
 					</div>
 				{% endfor %}
 			</div>
+		</div>
+	</div>
+
+	<button class="d-button-fill prompt-toggle"><b>Show Filter</b><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg></button>
+
+	<div class="d-prompt" id="d-prompt">
+		<div class="container">
+			<!-- Content (.settings) will be appended here -->
 		</div>
 	</div>
 {% endblock %}

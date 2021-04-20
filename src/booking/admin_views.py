@@ -78,6 +78,8 @@ def booking_list_view(request):
 		else: all_qs = all_qs.filter(activation_date__gt=timezone.now())
 		if activated: ctx["current_activated"] = activated
 		else: all_qs = all_qs.filter(activated=False)
+
+		ctx["filter_applied"] = True
 	else:
 		# Hide voided, used or expired tickets if filter is not set
 		all_qs = all_qs.filter(void=False, activated=False, activation_date__gt=timezone.now())
