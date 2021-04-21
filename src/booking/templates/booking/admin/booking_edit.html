@@ -24,7 +24,7 @@
 							<p>Ticket Holder: <b>{{ obj.user.get_full_name }}</b></p>
 							<p>Description: <b>{{ obj.activity.description|truncatechars:50 }}</b></p>
 							<p>Number Of Attendees: <span><b>Adult x {{ obj.adult_count }}, Child x {{ obj.child_count }}</b></span></p>
-							<p>Arrival Date: <b>{{ obj.activation_date.date }}</b></p>
+							<p>Arrival Date: <b>{{ obj.expected_activation_date.date }}</b></p>
 						</div>
 						<!-- https://medium.com/@facucarbonel_97514/how-to-create-a-qr-generator-using-javascript-4b5ce1b6ec27 -->
 						<div class="content-container">
@@ -75,7 +75,7 @@
 						<label>Phone Number</b></label>
 						<input name="phone" placeholder="012 3456 7891" max="13" value="{{ obj.user.phone }}" required>
 						<label>Arrival Date</b></label>
-						<input name="date" type="date" value="{{ obj.activation_date|date:'Y-m-d' }}" placeholder="yyyy-mm-dd" required>
+						<input name="date" type="date" value="{{ obj.expected_activation_date|date:'Y-m-d' }}" placeholder="yyyy-mm-dd" required>
 						<label>Adult (15+ years) ${{ obj.activity.adult_price }}</label>
 						<input name="adult_count" placeholder="0-15" type="number" min="0" max="15" value="{{ obj.adult_count }}" required>
 						<label>Child (5-14 years) ${{ obj.activity.child_price }}</label>
