@@ -171,7 +171,7 @@ def booking_edit_view(request, user_slug, ticket_id):
 def booking_activate_view(request, user_slug, ticket_id):
 	obj = get_object_or_404(Ticket, id=ticket_id, user__slug=user_slug)
 	obj.activated = True
-	obj.activation_date = timezone.now()
+	obj.activation_date = timezone.now().date()
 	obj.save()
 	return redirect("booking:admin-all")
 
@@ -179,7 +179,7 @@ def booking_activate_view(request, user_slug, ticket_id):
 def booking_void_view(request, user_slug, ticket_id):
 	obj = get_object_or_404(Ticket, id=ticket_id, user__slug=user_slug)
 	obj.void = True
-	obj.void_date = timezone.now()
+	obj.void_date = timezone.now().date()
 	obj.save()
 	return redirect("booking:admin-all")
 

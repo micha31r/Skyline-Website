@@ -36,10 +36,10 @@ class Ticket(models.Model):
 	adult_count = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(15)])
 	child_count = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(15)])
 
-	expected_activation_date = models.DateTimeField()
-	activation_date = models.DateTimeField(blank=True, null=True)
+	expected_activation_date = models.DateField()
+	activation_date = models.DateField(blank=True, null=True)
 	activated = models.BooleanField(default=False)
-	void_date = models.DateTimeField(blank=True, null=True)
+	void_date = models.DateField(blank=True, null=True)
 	void = models.BooleanField(default=False)
 	code = models.SlugField(max_length=32, blank=True, null=True, unique=True)
 
