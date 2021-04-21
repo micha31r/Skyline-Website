@@ -47,7 +47,7 @@ class Ticket(models.Model):
 	timestamp = models.DateTimeField(auto_now_add=True)
 
 	def has_expired(self):
-		if timezone.now() > self.expected_activation_date:
+		if timezone.now().date() > self.expected_activation_date:
 			return True
 		return False
 

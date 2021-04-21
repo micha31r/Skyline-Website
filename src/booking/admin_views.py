@@ -64,7 +64,7 @@ def booking_list_view(request):
 		if arrival_date:
 			try:
 				ctx["current_arrival_date"] = arrival_date = datetime.datetime.strptime(arrival_date, '%Y-%m-%d')
-				all_qs = all_qs.filter(expected_activation_date__date=arrival_date)
+				all_qs = all_qs.filter(expected_activation_date=arrival_date)
 			except ValidationError:
 				pass
 		if wildcard:
@@ -85,14 +85,14 @@ def booking_list_view(request):
 		if void: ctx["current_void"] = void
 		else: all_qs = all_qs.filter(void=False)
 		if expired: ctx["current_expired"] = expired
-		else: all_qs = all_qs.filter(expected_activation_date__gt=timezone.now())
+		else: all_qs = all_qs.filter(expected_activation_date__gt=timezone.now().date())
 		if activated: ctx["current_activated"] = activated
 		else: all_qs = all_qs.filter(activated=False)
 
 		ctx["filter_applied"] = True
 	else:
 		# Hide voided, used or expired tickets if filter is not set
-		all_qs = all_qs.filter(void=False, activated=False, expected_activation_date__gt=timezone.now())
+		all_qs = all_qs.filter(void=False, activated=False, expected_activation_date__gt=timezone.now().date())
 	
 	ctx["total_result_count"] = all_qs.count()
 
@@ -140,8 +140,8 @@ def booking_edit_view(request, user_slug, ticket_id):
 			if (len(phone) > 12 or len(phone) < 9) or not phone.isnumeric():
 				messages.error(request, "Phone number should be between 9-12 digits and only contain 0-9 and +")
 			try:
-				ad = timezone.make_aware(datetime.datetime.strptime(ad, '%Y-%m-%d'))
-				if ad.date() != obj.expected_activation_date.date() and ad.date() <= datetime.date.today():
+				ad = datetime.datetime.strptime(ad, '%Y-%m-%d').date()
+				if ad != obj.expected_activation_date and ad <= timezone.now().date():
 					messages.error(request, "Arrival date must be a future date")
 			except:
 				messages.error(request, "Invalid date format, must be yyyy-mm-dd")
