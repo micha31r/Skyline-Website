@@ -140,6 +140,10 @@
 	background-color: var(--color-danger);
 }
 
+.overview .item.expired {
+	opacity: 0.3;
+}
+
 .overview .item .grid {
 	display: grid;
 	grid-template-columns: 1fr auto;
