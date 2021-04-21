@@ -6,7 +6,7 @@ from django.contrib import messages
 from usermgmt.models import Profile
 from .models import Activity, Ticket
 from .forms import UserInfoForm, PaymentForm, UserIdentifyForm
-from .tasks import success_email
+from .task_functions import success_email
 
 def activities_view(request):
 	ctx = {}
