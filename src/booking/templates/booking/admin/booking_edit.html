@@ -48,9 +48,9 @@
 					<p>Booking Page: <a class="d-button-fill" href="{% url 'booking:checkout-success' success_id=obj.user.slug %}"><b>Click here</b></a></p>
 					<p>Customer Email: <a href="mailto:{{ obj.user.email }}"><b>{{ obj.user.email }}</b></a></p>
 					<p>Customer Phone Number: <b>{{ obj.user.phone }}</b></p>
-					<p>Has Expired: <b>{{ obj.has_expired }}</b></p>
-					<p>Is Activated: <b>{{ obj.activated }}</b></p>
-					<p>Is Voided: <b>{{ obj.void }}</b></p>
+					<p>Has Expired: <b>{{ obj.has_expired }}</b>{% if obj.has_expired %}, on the {{ obj.expected_activation_date }}{% endif %}</p>
+					<p>Is Activated: <b>{{ obj.activated }}</b>{% if obj.activated %}, on the {{ obj.activation_date }}{% endif %}</p>
+					<p>Is Voided: <b>{{ obj.void }}</b>{% if obj.void %}, on the {{ obj.void_date }}{% endif %}</p>
 					<p>Product ID: <b>{{ obj.activity.product_id }}</b></p>
 				</div>
 			</div>
