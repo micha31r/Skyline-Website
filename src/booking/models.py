@@ -39,7 +39,7 @@ class Ticket(models.Model):
 	activation_date = models.DateTimeField()
 	activated = models.BooleanField(default=False)
 	void = models.BooleanField(default=False)
-	code = models.SlugField(max_length=32, blank=True, null=True)
+	code = models.SlugField(max_length=32, blank=True, null=True, unique=True)
 
 	# Timestamp
 	timestamp = models.DateTimeField(auto_now_add=True)
