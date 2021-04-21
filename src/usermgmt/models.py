@@ -10,7 +10,7 @@ class Profile(models.Model):
 	last_name = models.CharField(max_length=128)
 	email = models.EmailField(max_length=255)
 	phone = models.CharField(max_length=13)
-	slug = models.SlugField(max_length=64, blank=True, null=True)
+	slug = models.SlugField(max_length=64, blank=True, null=True, unique=True)
 
 	# Timestamp
 	timestamp = models.DateTimeField(auto_now_add=True)
