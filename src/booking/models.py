@@ -1,4 +1,4 @@
-import string, uuid
+import uuid
 from django.db import models
 from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -41,7 +41,7 @@ class Ticket(models.Model):
 	activated = models.BooleanField(default=False)
 	void_date = models.DateField(blank=True, null=True)
 	void = models.BooleanField(default=False)
-	code = models.SlugField(max_length=32, blank=True, null=True, unique=True)
+	code = models.UUIDField(default=uuid.uuid1, editable=False)
 
 	# Timestamp
 	timestamp = models.DateTimeField(auto_now_add=True)
@@ -50,12 +50,6 @@ class Ticket(models.Model):
 		if timezone.now().date() > self.expected_activation_date:
 			return True
 		return False
-
-	def save(self, *args, **kwargs):
-		if not self.code:
-			# self.code = slug_generator(timezone.now(), 32, string.digits)
-			self.code = uuid.uuid1().hex
-		super(Ticket, self).save(*args, **kwargs)
 
 	def __str__(self):
 		return f"{self.activity} #{self.id}"
