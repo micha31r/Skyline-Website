@@ -164,6 +164,14 @@
 	margin: 0 20px 0;
 }
 
+.overview .item a {
+	transition: color 0.2s;
+}
+
+.overview .item a:hover {
+	color: var(--color-two);
+}
+
 .overview .qr-code {
 	margin-left: 0 !important;
 }
