@@ -1,4 +1,4 @@
-import string
+import string, uuid
 from django.db import models
 from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -51,7 +51,8 @@ class Ticket(models.Model):
 
 	def save(self, *args, **kwargs):
 		if not self.code:
-			self.code = slug_generator(timezone.now(), 32, string.digits)
+			# self.code = slug_generator(timezone.now(), 32, string.digits)
+			self.code = uuid.uuid1().hex
 		super(Ticket, self).save(*args, **kwargs)
 
 	def __str__(self):
