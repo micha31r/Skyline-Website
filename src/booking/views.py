@@ -123,7 +123,7 @@ def checkout_step2_view(request):
 					activity=get_object_or_404(Activity, product_id=item["product_id"]),
 					adult_count=item["adult_count"],
 					child_count=item["child_count"],
-					activation_date=datetime.datetime.strptime(info["date"].split(" ")[0], '%Y-%m-%d'),
+					expected_activation_date=datetime.datetime.strptime(info["date"].split(' ')[0], '%Y-%m-%d'),
 				)
 			request.session["success_id"] = profile.slug
 			# Delete session data

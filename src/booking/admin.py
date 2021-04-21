@@ -6,7 +6,7 @@ class ActivityAdmin(admin.ModelAdmin):
 	search_fields = ('name', 'product_id', 'adult_price', 'child_price')
 
 class TicketAdmin(admin.ModelAdmin):
-	list_display = ('user', 'activity', 'activation_date', 'activated', 'void', 'timestamp', 'pk')
+	list_display = ('user', 'activity', 'expected_activation_date', 'activated', 'void', 'timestamp', 'pk')
 	search_fields = ('user', 'activity__product_id', 'expiry_date')
 	readonly_fields = ["timestamp"]
 

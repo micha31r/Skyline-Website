@@ -19,7 +19,7 @@ class Activity(models.Model):
 
 class Ticket(models.Model):
 	class Meta:
-		ordering = ['-timestamp', 'activation_date']
+		ordering = ['-timestamp', 'expected_activation_date']
 
 	user = models.ForeignKey(
 		"usermgmt.Profile",
@@ -36,7 +36,8 @@ class Ticket(models.Model):
 	adult_count = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(15)])
 	child_count = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(15)])
 
-	activation_date = models.DateTimeField()
+	expected_activation_date = models.DateTimeField()
+	activation_date = models.DateTimeField(blank=True, null=True)
 	activated = models.BooleanField(default=False)
 	void_date = models.DateTimeField(blank=True, null=True)
 	void = models.BooleanField(default=False)
@@ -46,7 +47,7 @@ class Ticket(models.Model):
 	timestamp = models.DateTimeField(auto_now_add=True)
 
 	def has_expired(self):
-		if timezone.now() > self.activation_date:
+		if timezone.now() > self.expected_activation_date:
 			return True
 		return False
 
