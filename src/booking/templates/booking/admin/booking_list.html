@@ -75,13 +75,12 @@
 				{% endif %}
 			</div>
 			<div class="ticket-container">
-				{% if filter_applied %}
-					{% if total_result_count == 0 %}
-						<p class="d-message d-danger filter-result">No tickets match the given requirements</p>
-					{% else %}
-						<p class="d-message filter-result">{{ page_obj.object_list.count }} out of {{ total_result_count }} items are shown on this page</p>
-						<p class="d-message filter-result">The results include {{ total_adults }} adults and {{ total_children }} children, a total of {{ total_adults|add:total_children }} attendees</p>
-					{% endif %}
+				{% if total_result_count == 0 %}
+					<p class="d-message d-danger filter-result">No tickets match the given requirements</p>
+				{% endif %}
+				{% if filter_applied and total_result_count %}
+					<p class="d-message filter-result">{{ page_obj.object_list.count }} out of {{ total_result_count }} items are shown on this page</p>
+					<p class="d-message filter-result">The results include {{ total_adults }} adults and {{ total_children }} children, a total of {{ total_adults|add:total_children }} attendees</p>
 				{% endif %}
 
 				{% for obj in page_obj.object_list %}
