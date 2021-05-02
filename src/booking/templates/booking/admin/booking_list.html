@@ -76,7 +76,11 @@
 			</div>
 			<div class="ticket-container">
 				{% if total_result_count == 0 %}
-					<p class="d-message d-danger filter-result">No tickets match the given requirements</p>
+					{% if filter_applied %}
+						<p class="d-message d-danger filter-result">No tickets match the given requirements</p>
+					{% else %}
+						<p class="d-message d-danger filter-result">No tickets in database</p>
+					{% endif %}
 				{% endif %}
 				{% if filter_applied and total_result_count %}
 					<p class="d-message filter-result">{{ page_obj.object_list.count }} out of {{ total_result_count }} items are shown on this page</p>
