@@ -114,6 +114,28 @@
 	margin: 0 0 40px;
 }
 
+.edit .ticket.activated {
+	border-color: var(--color-two);
+	opacity: 0.3;
+}
+
+.edit .ticket.activated .verifications {
+	background-color: var(--color-two);
+}
+
+.edit .ticket.voided {
+	border-color: var(--color-danger);
+	opacity: 0.3;
+}
+
+.edit .ticket.voided .verifications {
+	background-color: var(--color-danger);
+}
+
+.edit .ticket.expired {
+	opacity: 0.3;
+}
+
 .edit .ticket .grid {
 	display: grid;
 	grid-template-columns: 1fr auto;
