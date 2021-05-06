@@ -12,7 +12,7 @@ class Activity(models.Model):
 	adult_price = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(500)])
 	child_price = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(500)])
 	description = models.CharField(max_length=255)
-	product_id = models.CharField(max_length=16)
+	product_id = models.CharField(max_length=16, unique=True)
 
 	def __str__(self):
 		return f"{self.name} / {self.product_id}"
