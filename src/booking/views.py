@@ -152,6 +152,8 @@ def success_view(request, success_id=None):
 	# Incase there are multiple orders
 	if cached_success_id and cached_success_id == success_id or not success_id:
 		ctx["profile"] = get_object_or_404(Profile, slug=cached_success_id)
+	elif request.user.is_staff:
+		ctx["profile"] = get_object_or_404(Profile, slug=success_id)
 	elif success_id:
 		profile = get_object_or_404(Profile, slug=success_id)
 		if request.method == "POST":
