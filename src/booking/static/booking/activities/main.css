@@ -83,6 +83,7 @@
 }
 
 .d-prompt form input {
+	width: calc(1ch * 4 + 10px);
 	border: 0;
 	border-radius: 5px;
 	background: #EEE;
