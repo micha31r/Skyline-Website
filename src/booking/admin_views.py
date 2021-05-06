@@ -74,7 +74,7 @@ def booking_list_view(request):
 				Q(user__phone__icontains=wildcard) | \
 				Q(activity__name__icontains=wildcard) | \
 				Q(activity__product_id__icontains=wildcard) | \
-				Q(code=wildcard)
+				Q(code__icontains=wildcard)
 			if wildcard.isdigit() and len(wildcard) < 3:
 				lookups |= Q(adult_count=wildcard) | \
 					Q(child_count=wildcard)
