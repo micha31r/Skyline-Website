@@ -112,6 +112,7 @@
 	border-radius: 10px;
 	box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 	margin: 0 0 40px;
+	overflow: hidden;
 }
 
 .edit .ticket.activated {
@@ -162,7 +163,6 @@
 
 .edit .ticket .verifications {
 	border-bottom-width: 0;
-	border-radius: 0 0 10px 10px;
 	background: #F5F5F5;
 	overflow-wrap: break-word;
     word-break: break-all;
