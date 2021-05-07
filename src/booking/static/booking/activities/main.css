@@ -60,6 +60,8 @@
 }
 
 .view-cart svg {
+	/* Shift svg to the left to make it look centered */
+	padding-right: 2px;
 	margin: auto;
 }
 

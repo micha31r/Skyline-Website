@@ -7,16 +7,13 @@ $(function() {
 
 	// Set input value to 0 if empty on form submission
 	$("button[type='submit']").click(function(e) {
-		e.preventDefault();
 		let parent = $(this).parent();
 		let adult = parent.find("input[name='adult_count']");
 		let child = parent.find("input[name='child_count']");
 		if (!adult.val() && child.val()) {
 			adult.val("0");
-		}
-		if (!child.val() && adult.val()) {
+		} else if (!child.val() && adult.val()) {
 			child.val("0");
 		}
-		parent.submit();
 	});
 });
