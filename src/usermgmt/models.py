@@ -4,7 +4,7 @@ from project.utils import slug_generator
 
 class Profile(models.Model):
 	class Meta:
-		ordering = ['last_name', 'first_name', '-timestamp']
+		ordering = ['-pk', 'last_name', 'first_name']
 
 	first_name = models.CharField(max_length=64)
 	last_name = models.CharField(max_length=128)
