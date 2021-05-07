@@ -82,13 +82,24 @@ def checkout_step1_view(request):
 				"last_name":data.get("last_name"),
 				"email":data.get("email"),
 				"phone":data.get("phone"),
-				"date":str(data.get("date")),
-				"date_repeat":str(data.get("date_repeat")),
+				"date":str(data.get("date").date()),
+				"date_repeat":str(data.get("date_repeat").date()),
 			}
 			request.session["user_info"] = info
 			return redirect("booking:checkout-step2")
 	else:
-		form = UserInfoForm()
+		initial = {}
+		info = request.session.get("user_info")
+		if info:
+			initial = {
+				"first_name": info["first_name"],
+				"last_name": info["last_name"],
+				"email": info["email"],
+				"phone": info["phone"],
+				"date": datetime.datetime.strptime(info["date"], '%Y-%m-%d').date(),
+				"date_repeat": datetime.datetime.strptime(info["date_repeat"], '%Y-%m-%d').date(),
+			}
+		form = UserInfoForm(initial=initial)
 	ctx["form"] = form
 	template_file = "booking/checkout_step1.html"
 	return render(request, template_file, ctx)
