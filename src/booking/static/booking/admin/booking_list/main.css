@@ -52,7 +52,8 @@
 .settings form input, .settings form select {
 	border: 1px solid #CCC;
 	border-radius: 10px;
-	padding: 10px;
+	padding: 10px 0;
+	text-indent: 10px;
 }
 
 .settings form input::placeholder {
