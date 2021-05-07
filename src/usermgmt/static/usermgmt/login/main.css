@@ -7,7 +7,7 @@
 
 .login h2 {
 	text-align: center;
-	margin: 0 auto 10px;
+	margin: 0 auto 20px;
 }
 
 .login .subheading {
@@ -43,6 +43,7 @@
 }
 
 .login form button {
+	margin-top: 20px;
 	text-align: center;
 }
 
