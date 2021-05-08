@@ -12,11 +12,14 @@
 }
 
 .intro-container-wrapper {
+	display: flex;
+	box-sizing: border-box;
 	padding: 120px 0;
 }
 
 .intro {
 	font-weight: bold;
+	margin: auto;
 }
 
 .intro *:not(a) {
