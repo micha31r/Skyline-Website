@@ -79,16 +79,14 @@
 	overflow: hidden;
 }
 
-.todo .card .cover-image {
+.todo .card img {
 	width: 100%;
 	height: 200px;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
+	object-fit: cover;
 	transition: transform, margin, 0.2s;
 }
 
-.todo .card:hover .cover-image {
+.todo .card:hover img {
 	transform: translateY(-200px);
 }
 
@@ -184,15 +182,14 @@
 	overflow: hidden;
 }
 
-.video .grid .image {
+.video .grid img {
 	width: 100%;
 	height: 100%;
-	background-size: cover;
-	background-position: center;
+	object-fit: cover;
 	transition: transform 1s;
 }
 
-.video .grid .image:hover {
+.video .grid img:hover {
 	transform: scale(1.1);
 }
 
@@ -221,16 +218,14 @@
 	overflow: hidden;
 }
 
-.gallery .grid > div div {
+.gallery .grid > div img {
 	width: 100%;
 	height: 100%;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
+	object-fit: cover;
 	transition: transform 1s;
 }
 
-.gallery .grid > div div:hover {
+.gallery .grid > div img:hover {
 	transform: scale(1.1);
 }
 
@@ -387,7 +382,7 @@
 	.video .grid {
 		grid-template-columns: 1fr;
 	}
-	.video .grid .image {
+	.video .grid img {
 		display: none;
 	}
 }
