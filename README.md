@@ -4,10 +4,14 @@ For Level 3 DGT.
 ## Python virtual environment / Django setup on Mac 
 
 ```Bash
+# Navigate to the project folder
 cd Downloads
 cd Skyline-Website
+# Create a Python virtual environment
 python3 -m venv .
+# Activate the virtual environment
 source bin/activate
+# Install required Python packages
 pip install -r requirements.txt
 cd src
 cd project
