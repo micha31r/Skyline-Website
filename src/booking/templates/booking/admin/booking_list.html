@@ -53,6 +53,8 @@
 					<button class="d-button-fill" type="submit"><b>Filter</b></button>
 				</form>
 				{% if page_obj.paginator.num_pages > 1 %}
+			        <!-- Bootstrap Icons -->
+			        <!-- https://icons.getbootstrap.com/ -->
 					<div class="pagination">
 						{% if page_obj.has_previous %}
 							<a class="previous" href="{{ request.path }}?page={{ page_obj.previous_page_number }}">
