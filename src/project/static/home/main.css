@@ -67,7 +67,7 @@
 
 .todo .card {
 	flex: 1;
-	display: flex;
+	display: grid;
 	flex-direction: column;
 	min-width: 300px;
 	max-width: 500px;
@@ -79,63 +79,42 @@
 	overflow: hidden;
 }
 
-.todo .card img {
-	width: 100%;
-	height: 200px;
-	object-fit: cover;
-	transition: transform, margin, 0.2s;
+.todo .card .vp {
+	overflow: hidden;
 }
 
-.todo .card:hover img {
-	transform: translateY(-200px);
-}
-
-.todo .card .content {
-	padding: 20px;
+.todo .card .slide {
 	transition: transform, 0.2s;
 }
 
-.todo .card:hover .content {
-	transform: translateY(-200px);
-}
-
-.todo .card .content > * {
-	margin: 0 0 20px;
-}
-
-.todo .card .content > *:nth-last-child(1) {
-	margin: 0;
-}
-
-@keyframes show {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-.todo .card .content > *[hidden] {
-	position: absolute;
+.todo .card img {
+	width: 100%;
+	min-height: 200px;
 	height: 200px;
-	overflow: scroll;
-	animation: show 0.2s forwards 0.1s;
-	margin: 0 20px 0 0;
-	box-sizing: content-box;
+	object-fit: cover;
+	transition: transform 0.2s;
+}
+
+.todo .card .text-container > *:not(.initial) {
 	opacity: 0;
 }
 
-.todo .card:hover .content > *[hidden] {
-	display: block;
+.todo .card .initial > *, .todo .card .text-container > *:not(.initial) {
+	margin: 0;
+	padding: 0 0 20px;
 }
 
-.todo .card .content > p:not([hidden])::after {
+.todo .card .text-container > *:not(.initial):nth-last-child(1) {
+	padding: 0;
+}
+
+.todo .card .text-container {
+	padding: 20px;
+	overflow: visible;
+}
+
+.todo .card .initial p::after {
 	content: ' ...';
-}
-
-.todo .card:hover .content > p:not([hidden])::after {
-	content: '';
 }
 
 .todo .card a {
@@ -148,6 +127,22 @@
 .todo video {
 	width: 100%;
 	border-radius: 10px;
+}
+
+.todo .card:hover .slide {
+	transform: translateY(-200px);
+}
+
+.todo .card:hover .text-container > *:not(.initial) {
+	opacity: 1;
+}
+
+.todo .card:hover .text-container {
+	overflow: auto;
+}
+
+.todo .card:hover .initial p:not(.initial)::after {
+	content: '';
 }
 
 .video-container-wrapper {
