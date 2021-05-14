@@ -422,7 +422,7 @@
 		--gallery-columns: 1;
 	}
 	.d-container-wrapper:not(.intro-container-wrapper):not(.booking-container-wrapper) {
-		padding: 40px 0 !important;
+		padding: 80px 0 !important;
 	}
 	.gallery::after {
 		content: '';
