@@ -84,7 +84,7 @@
 }
 
 .todo .card .slide {
-	transition: transform, 0.2s;
+	transition: transform, 0.4s;
 }
 
 .todo .card img {
@@ -93,11 +93,11 @@
 	min-height: 200px;
 	height: 200px;
 	object-fit: cover;
-	transition: transform 0.2s;
 }
 
 .todo .card .text-container > *:not(.initial) {
 	opacity: 0;
+	transition: opacity, 0.2s;
 }
 
 .todo .card .initial > *, .todo .card .text-container > *:not(.initial) {
