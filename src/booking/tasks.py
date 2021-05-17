@@ -1,5 +1,5 @@
 from background_task.models import Task
-from .task_functions import remove_expired_tickets
+from .task_functions import remove_voided_tickets
 
 # Repeat daily
-remove_expired_tickets(repeat=Task.DAILY, repeat_until=None)
+remove_voided_tickets(repeat=Task.DAILY, repeat_until=None)

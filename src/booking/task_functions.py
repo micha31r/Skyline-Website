@@ -17,10 +17,8 @@ def success_email(email, name, item_count, code, date):
 	)
 
 @background(schedule=0)
-def remove_expired_tickets():
-	# Delete expired, voided, or activated tickets after 90 days
+def remove_voided_tickets():
+	# Delete voided tickets after 90 days
 	limit = (timezone.now() - timedelta(days=90)).date()
-	lookups = Q(activation_date__lt=limit) | \
-		Q(expected_activation_date__lt=limit) | \
-		Q(void_date__lt=limit)
+	lookups = Q(void_date__lt=limit)
 	qs = Ticket.objects.filter(lookups).delete()
