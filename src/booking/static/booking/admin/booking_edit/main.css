@@ -17,7 +17,11 @@
 	text-align: center;
 }
 
-.edit {
+.edit:not(.grid) {
+	max-width: 800px;
+}
+
+.edit.grid {
 	display: grid;
 	grid-template-columns: 1fr auto;
 	grid-column-gap: 40px;

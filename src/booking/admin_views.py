@@ -125,7 +125,7 @@ def booking_list_view(request):
 def booking_edit_view(request, user_slug, ticket_id):
 	ctx = {}
 	ctx["obj"] = obj = get_object_or_404(Ticket, id=ticket_id, user__slug=user_slug)
-	if request.POST:
+	if not obj.activated and not obj.void and request.POST:
 		p = request.POST
 		fn = p.get("first_name")
 		ln = p.get("last_name")
