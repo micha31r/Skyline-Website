@@ -9,15 +9,18 @@ from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-# from django.utils.decorators import method_decorator
-from django.db.models import Q
+from django.db.models import Q, Value
+from django.db.models.functions import Concat   
 from usermgmt.models import Profile
 from .models import Activity, Ticket
 
 @staff_member_required
 def booking_list_view(request):
 	ctx = {}
-	all_qs = Ticket.objects.all()
+
+	# Create new query field -> full_name
+	# https://stackoverflow.com/questions/7681708/querying-full-name-in-django
+	all_qs = Ticket.objects.annotate(user__full_name=Concat('user__first_name', Value(' '), 'user__last_name')).all()
 
 	# Filter queryset
 	# Store and get search parameter from session
@@ -68,8 +71,8 @@ def booking_list_view(request):
 			except ValidationError:
 				pass
 		if wildcard:
-			lookups = Q(user__first_name__icontains=wildcard) | \
-				Q(user__last_name__icontains=wildcard) | \
+			
+			lookups = Q(user__full_name__icontains=wildcard) | \
 				Q(user__email__icontains=wildcard) | \
 				Q(user__phone__icontains=wildcard) | \
 				Q(activity__name__icontains=wildcard) | \

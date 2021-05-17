@@ -19,7 +19,7 @@
 		<div class="overview d-container d-padding">
 			{% if profile %}
 				<div class="success-container">
-					<h1>👋 Thank you {{ profile.get_full_name }} for booking {{ qs.count }} activit{% if qs.count == 1 %}y{% else %}ies{% endif %} at Skyline Rotorua. We are looking forward to seeing you on {{ qs.first.expected_activation_date }}. Below are your electronic tickets:</h1>
+					<h1>👋 Thank you {{ profile.get_full_name }} for booking {{ qs.count }} activit{% if qs.count == 1 %}y{% else %}ies{% endif %} at Skyline Rotorua. We are looking forward to seeing you on {{ qs.first.expected_activation_date }}. Below {% if qs.count == 1 %}is{% else %}are{% endif %} your electronic ticket{% if qs.count > 1 %}s{% endif %}:</h1>
 					<p>If you have any questions, feel free to email us at <b><a href="mailto:rotorua@skyline.co.nz">rotorua@skyline.co.nz</a></b> or call <b>+ 64 7 347 0027</b></p>
 				</div>
 				<div class="ticket-container">
