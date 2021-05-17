@@ -54,7 +54,7 @@
 						You have order a total of <b>{{ card_items_count }} item{% if card_items_count > 1 %}s{% endif %}</b>:
 						<br>
 						{% for obj in cart %}
-							{{ obj.name }},
+							{{ obj.name }}{% if not forloop.last %}, {% endif %}
 						{% endfor %}
 					</p>
 					<h2>Your cart total is <span>${{ total }}</span></h2>
