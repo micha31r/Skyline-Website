@@ -14,7 +14,7 @@
 	<script type="text/javascript" src="https://unpkg.com/qr-code-styling/lib/qr-code-styling.js"></script>
 
 	<div class="d-container-wrapper edit-container-wrapper">
-		<div class="edit d-container d-padding">
+		<div class="edit {% if not obj.activated and not obj.void %}grid{% endif %} d-container d-padding">
 			<div class="left">
 				<h2>E-Ticket</h2>
 				<div class="ticket {% if obj.void %}voided{% elif obj.activated %}activated{% elif obj.has_expired %}expired{% endif %}">
@@ -54,37 +54,37 @@
 					<p>Product ID: <b>{{ obj.activity.product_id }}</b></p>
 				</div>
 			</div>
-			<div class="right">
-				<h2>Ticket Information</h2>
-				{% if messages %}
-					<div class="messages-container">
-						{% for message in messages %}
-							<p class="d-message">{{ message|safe }}</p>
-					    {% endfor %}
-					</div>
-				{% endif %}
-				<form method="post">
-					{% csrf_token %}
-					<div class="grid">
-						<label>First Name</b></label>
-						<input name="first_name" placeholder="First name" max="64" value="{{ obj.user.first_name }}" required>
-						<label>Last Name</b></label>
-						<input name="last_name" placeholder="Last name" max="128" value="{{ obj.user.last_name }}" required>
-						<label>Email</b></label>
-						<input type="email" name="email" placeholder="example@example.com" max="255" value="{{ obj.user.email }}" required>
-						<label>Phone Number</b></label>
-						<input name="phone" placeholder="012 3456 7891" max="13" value="{{ obj.user.phone }}" required>
-						<label>Arrival Date</b></label>
-						<input name="date" type="date" value="{{ obj.expected_activation_date|date:'Y-m-d' }}" placeholder="yyyy-mm-dd" required>
-						<label>Adult (15+ years) ${{ obj.activity.adult_price }}</label>
-						<input name="adult_count" placeholder="0-15" type="number" min="0" max="15" value="{{ obj.adult_count }}" required>
-						<label>Child (5-14 years) ${{ obj.activity.child_price }}</label>
-						<input name="child_count" placeholder="0-15" type="number" min="0" max="15" value="{{ obj.child_count }}" required>
-					</div>
-					<input hidden name="product_id" value="{{ obj.product_id }}">
-					<button class="d-button" type="submit"><b>Save Changes</b></button>
-				</form>
-				{% if not obj.activated and not obj.void %}
+			{% if not obj.activated and not obj.void %}
+				<div class="right">
+					<h2>Ticket Information</h2>
+					{% if messages %}
+						<div class="messages-container">
+							{% for message in messages %}
+								<p class="d-message">{{ message|safe }}</p>
+						    {% endfor %}
+						</div>
+					{% endif %}
+					<form method="post">
+						{% csrf_token %}
+						<div class="grid">
+							<label>First Name</b></label>
+							<input name="first_name" placeholder="First name" max="64" value="{{ obj.user.first_name }}" required>
+							<label>Last Name</b></label>
+							<input name="last_name" placeholder="Last name" max="128" value="{{ obj.user.last_name }}" required>
+							<label>Email</b></label>
+							<input type="email" name="email" placeholder="example@example.com" max="255" value="{{ obj.user.email }}" required>
+							<label>Phone Number</b></label>
+							<input name="phone" placeholder="012 3456 7891" max="13" value="{{ obj.user.phone }}" required>
+							<label>Arrival Date</b></label>
+							<input name="date" type="date" value="{{ obj.expected_activation_date|date:'Y-m-d' }}" placeholder="yyyy-mm-dd" required>
+							<label>Adult (15+ years) ${{ obj.activity.adult_price }}</label>
+							<input name="adult_count" placeholder="0-15" type="number" min="0" max="15" value="{{ obj.adult_count }}" required>
+							<label>Child (5-14 years) ${{ obj.activity.child_price }}</label>
+							<input name="child_count" placeholder="0-15" type="number" min="0" max="15" value="{{ obj.child_count }}" required>
+						</div>
+						<input hidden name="product_id" value="{{ obj.product_id }}">
+						<button class="d-button" type="submit"><b>Save Changes</b></button>
+					</form>
 					<h2>Danger</h2>
 					<div class="card">
 						<div class="grid">
@@ -94,8 +94,8 @@
 							<button class="d-button d-danger prompt-toggle" value="2"><b>Void</b></button>
 						</div>
 					</div>
-				{% endif %}
-			</div>
+				</div>
+			{% endif %}
 		</div>
 	</div>
 
