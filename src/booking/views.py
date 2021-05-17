@@ -1,4 +1,5 @@
 import datetime
+from datetime import timedelta
 from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
@@ -100,6 +101,8 @@ def checkout_step1_view(request):
 				"date_repeat": datetime.datetime.strptime(info["date_repeat"], '%Y-%m-%d').date(),
 			}
 		form = UserInfoForm(initial=initial)
+		form.fields["date"].widget.attrs.update({'min': datetime.date.today() + timedelta(days=1)})
+		form.fields["date_repeat"].widget.attrs.update({'min': datetime.date.today() + timedelta(days=1)})
 	ctx["form"] = form
 	template_file = "booking/checkout_step1.html"
 	return render(request, template_file, ctx)
