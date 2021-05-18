@@ -4,7 +4,7 @@
 
 .bg-video {
 	position: absolute;
-	width: 100vw;
+	width: 100%;
 	/* Height is set to the same as .intro-container-wrapper in JS */
 	filter: brightness(0.7);
 	object-fit: cover; /* Discard aspect ratio */
