@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from project.utils import slug_generator
 
+# Profile table
 class Profile(models.Model):
 	class Meta:
 		ordering = ['-pk', 'last_name', 'first_name']

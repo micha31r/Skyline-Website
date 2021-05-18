@@ -14,12 +14,14 @@ def activities_view(request):
 	ctx["qs"] = Activity.objects.all().order_by("child_price")
 	ctx["cart"] = cart = request.session.get("cart", [])
 	if request.method == "POST":
+		# Get form data
 		data = request.POST
 		adult_count = data.get("adult_count", None)
 		child_count = data.get("child_count", None)
 		product_id = data.get("product_id", None)
 		if adult_count and child_count and product_id:
-			if adult_count.isnumeric() and child_count.isnumeric() and (int(adult_count) > 0 or int(child_count) > 0):
+			if adult_count.isdigit() and child_count.isdigit() and (int(adult_count) > 0 or int(child_count) > 0):
+				# Save item to cart
 				obj = Activity.objects.get(product_id=product_id)
 				cart.append({
 					"name":obj.name,
@@ -40,20 +42,24 @@ def activities_view(request):
 
 def cart_view(request):
 	ctx = {}
+	# Get card data from session
 	ctx["cart"] = cart = request.session.get("cart", [])
 	ctx["card_items_count"] = len(cart)
 	ctx["total"] = 0
+	# Calculate the total cost of all cart items
 	for i in range(len(cart)):
 		item = cart[i]
 		cart[i]["total"] = total = item["adult_price"] * float(item["adult_count"]) + item["child_price"] * float(item["child_count"])
 		ctx["total"] += total
 	if request.method == "POST":
+		# Get form data
 		data = request.POST
 		adult_count = data.get("adult_count", None)
 		child_count = data.get("child_count", None)
 		product_id = data.get("product_id", None)
 		if adult_count and child_count and product_id:
 			cart = request.session.get("cart", [])
+			# If cart item match the item submitted in form then delete it from cart 
 			for i in range(len(cart)):
 				v = cart[i]
 				if v["adult_count"] == adult_count and v["child_count"] == child_count and v["product_id"] == product_id:
@@ -67,8 +73,9 @@ def checkout_step1_view(request):
 	ctx = {}
 	ctx["cart"] = cart = request.session.get("cart", [])
 	if not cart:
-		return redirect("booking:activities")
+		return redirect("booking:activities") # Redirect if there are no cart items
 	ctx["card_items_count"] = len(cart)
+	# Calculate the total cost of all cart items
 	ctx["total"] = 0
 	for i in range(len(cart)):
 		item = cart[i]
@@ -77,6 +84,7 @@ def checkout_step1_view(request):
 	if request.method == "POST":
 		form = UserInfoForm(request.POST)
 		if form.is_valid():
+			# Get form data and save it to sessions
 			data = form.cleaned_data
 			info = {
 				"first_name":data.get("first_name"),
@@ -89,6 +97,7 @@ def checkout_step1_view(request):
 			request.session["user_info"] = info
 			return redirect("booking:checkout-step2")
 	else:
+		# Pre-populate form fields with existing user data
 		initial = {}
 		info = request.session.get("user_info")
 		if info:
@@ -101,6 +110,7 @@ def checkout_step1_view(request):
 				"date_repeat": datetime.datetime.strptime(info["date_repeat"], '%Y-%m-%d').date(),
 			}
 		form = UserInfoForm(initial=initial)
+		# Set min, max values for date inputs
 		form.fields["date"].widget.attrs.update({'min': datetime.date.today() + timedelta(days=1)})
 		form.fields["date_repeat"].widget.attrs.update({'min': datetime.date.today() + timedelta(days=1)})
 	ctx["form"] = form
@@ -113,6 +123,7 @@ def checkout_step2_view(request):
 	if not cart:
 		return redirect("booking:activities")
 	ctx["card_items_count"] = len(cart)
+	# Calculate the total cost of all cart items
 	ctx["total"] = 0
 	for i in range(len(cart)):
 		item = cart[i]
@@ -125,12 +136,14 @@ def checkout_step2_view(request):
 			info = request.session.get("user_info", [])
 			if not info: # Make sure all user data are present
 				return redirect("booking:checkout-step1")
+			# Create a user profile
 			profile = Profile.objects.create(
 				first_name=info["first_name"],
 				last_name=info["last_name"],
 				email=info["email"],
 				phone=info["phone"]
 			)
+			# Create a ticket object for every cart item
 			for item in cart:
 				obj = Ticket.objects.create(
 					user=profile,
@@ -139,6 +152,7 @@ def checkout_step2_view(request):
 					child_count=item["child_count"],
 					expected_activation_date=datetime.datetime.strptime(info["date"].split(' ')[0], '%Y-%m-%d'),
 				)
+			# Set success id in sessions
 			request.session["success_id"] = profile.slug
 			# Delete session data
 			request.session.pop('cart', None)
@@ -163,12 +177,13 @@ def success_view(request, success_id=None):
 	cached_success_id = request.session.get("success_id", None)
 	if not (cached_success_id or success_id):
 		raise Http404("Order not found")
-	# Incase there are multiple orders
+	# Success id validation
 	if cached_success_id and cached_success_id == success_id or not success_id:
 		ctx["profile"] = get_object_or_404(Profile, slug=cached_success_id)
 	elif request.user.is_staff:
 		ctx["profile"] = get_object_or_404(Profile, slug=success_id)
 	elif success_id:
+		# Show email verification form if cached success id is not present or does not match the success id in url
 		profile = get_object_or_404(Profile, slug=success_id)
 		if request.method == "POST":
 			form = UserIdentifyForm(request.POST)
@@ -182,6 +197,7 @@ def success_view(request, success_id=None):
 			form = UserIdentifyForm()
 		ctx["form"] = form
 	if "profile" in ctx:
+		# Get all tickets linked to this user
 		ctx["qs"] = Ticket.objects.filter(user=ctx["profile"])
 	template_file = "booking/success.html"
 	return render(request, template_file, ctx)

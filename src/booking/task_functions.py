@@ -6,6 +6,7 @@ from background_task import background
 from django.db.models import Q
 from .models import Ticket
 
+# Sent payment success email
 @background(schedule=10)
 def success_email(email, name, item_count, code, date):
     send_mail(
@@ -16,9 +17,9 @@ def success_email(email, name, item_count, code, date):
 		fail_silently=True,
 	)
 
+# Delete voided tickets after 90 days
 @background(schedule=0)
 def remove_voided_tickets():
-	# Delete voided tickets after 90 days
 	limit = (timezone.now() - timedelta(days=90)).date()
 	lookups = Q(void_date__lt=limit)
 	qs = Ticket.objects.filter(lookups).delete()
