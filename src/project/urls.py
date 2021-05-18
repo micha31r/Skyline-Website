@@ -22,8 +22,6 @@ from . import views
 urlpatterns = [
     path('', views.HomeView.as_view(), name="home"),
     path('about', views.AboutView.as_view(), name="about"),
-    # path('404', views.handler404, name="404"),
-    # path('500', views.handler500, name="500"),
     path('booking/', include('booking.urls')),
     path('user/', include('usermgmt.urls')),
     path('admin/', admin.site.urls),

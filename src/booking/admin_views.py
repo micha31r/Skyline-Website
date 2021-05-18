@@ -45,9 +45,9 @@ def booking_list_view(request):
 	if "filter" not in s:
 		s["filter"] = {}
 
-	# Get data from session
 	f = s["filter"]
 	if f:
+		# Get data from session
 		activity = f["activity"]
 		issue_date = f["issue-date"]
 		arrival_date = f["arrival-date"]
@@ -55,6 +55,7 @@ def booking_list_view(request):
 		void = f["void"]
 		expired = f["expired"]
 		activated = f["activated"]
+		# If search values are set then filter the queryset
 		if activity:
 			all_qs = all_qs.filter(activity__product_id__in=activity)
 			ctx["current_activity"] = activity
@@ -71,13 +72,14 @@ def booking_list_view(request):
 			except ValidationError:
 				pass
 		if wildcard:
-			
+			# Complex queries (this OR that OR those)
 			lookups = Q(user__full_name__icontains=wildcard) | \
 				Q(user__email__icontains=wildcard) | \
 				Q(user__phone__icontains=wildcard) | \
 				Q(activity__name__icontains=wildcard) | \
 				Q(activity__product_id__icontains=wildcard) | \
 				Q(code__icontains=wildcard)
+			# Also filter by integer fields if search value is a number
 			if wildcard.isdigit() and len(wildcard) < 3:
 				lookups |= Q(adult_count=wildcard) | \
 					Q(child_count=wildcard)
@@ -108,6 +110,7 @@ def booking_list_view(request):
 	ctx["total_adults"] = total_adults
 	ctx["total_children"] = total_children
 
+	# Split search results in to multiple pages if needed
 	paginate_by = 20
 	paginator = Paginator(all_qs, paginate_by)
 
@@ -124,8 +127,10 @@ def booking_list_view(request):
 @staff_member_required
 def booking_edit_view(request, user_slug, ticket_id):
 	ctx = {}
+	# Get ticket object
 	ctx["obj"] = obj = get_object_or_404(Ticket, id=ticket_id, user__slug=user_slug)
-	if not obj.activated and not obj.void and request.POST:
+	if not obj.activated and not obj.void and request.POST: # If the ticket can be edited
+		# Get form data
 		p = request.POST
 		fn = p.get("first_name")
 		ln = p.get("last_name")
@@ -134,13 +139,14 @@ def booking_edit_view(request, user_slug, ticket_id):
 		ad = p.get("date")
 		ac = p.get("adult_count")
 		cc = p.get("child_count")
+		# Form validation
 		if fn and ln and em and ph and ad and ac and cc:
 			if not fn.isalpha():
 				messages.error(request, "First name can only contain A-z and less than 65 letters")
 			if not ln.isalpha():
 				messages.error(request, "Last name can only contain A-z and less than 129 letters")
 			phone = ph.replace("+","")
-			if (len(phone) > 12 or len(phone) < 9) or not phone.isnumeric():
+			if (len(phone) > 12 or len(phone) < 9) or not phone.isdigit():
 				messages.error(request, "Phone number should be between 9-12 digits and only contain 0-9 and +")
 			try:
 				ad = datetime.datetime.strptime(ad, '%Y-%m-%d').date()
@@ -152,12 +158,13 @@ def booking_edit_view(request, user_slug, ticket_id):
 				validate_email(em)
 			except:
 				messages.error(request, "Invalid email format")
-			if not (ac.isnumeric() and cc.isnumeric() and int(ac) >= 0 and int(cc) >= 0):
+			if not (ac.isdigit() and cc.isdigit() and int(ac) >= 0 and int(cc) >= 0):
 				messages.error(request, "Number of attendees must be a positive integer")
 		else:
 			messages.error(request, "Invalid form data!")
 		has_error = list(messages.get_messages(request))
 		if not has_error:
+			# Save changes if form data is valid 
 			obj.user.first_name = fn
 			obj.user.last_name = ln
 			obj.user.email = em

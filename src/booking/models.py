@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
 from project.utils import slug_generator
 
+# Activity table
 class Activity(models.Model):
 	class Meta:
 		ordering = ['name', 'product_id', 'adult_price', 'child_price']
@@ -17,6 +18,7 @@ class Activity(models.Model):
 	def __str__(self):
 		return f"{self.name} / {self.product_id}"
 
+# Ticket table
 class Ticket(models.Model):
 	class Meta:
 		ordering = ['-pk', 'expected_activation_date']

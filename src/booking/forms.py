@@ -9,6 +9,7 @@ class UserInfoForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
+		# Set html attributes
 		self.fields['first_name'].widget.attrs.update({'placeholder': 'First Name'})
 		self.fields['first_name'].label = "First Name"
 		self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
@@ -37,6 +38,7 @@ class UserInfoForm(forms.ModelForm):
 	    label="Repeat Arrival Date"
 	)
 
+	# Get form data and perform validation
 	def clean(self):
 		data = super().clean()
 		fn = data.get("first_name")
@@ -100,6 +102,7 @@ class PaymentForm(forms.Form):
 	    label="Expiry Date"
 	)
 
+	# Get form data and perform validation
 	def clean(self):
 		data = super().clean()
 		fn = data.get("full_name").replace(" ", "")
