@@ -52,7 +52,7 @@ class UserInfoForm(forms.ModelForm):
 			if not ln.isalpha():
 				self._errors["last_name"] = ["Last name can only contain A-z and less than 129 letters"]
 			phone = ph.replace("+","")
-			if (len(phone) > 12 or len(phone) < 9) or not phone.isnumeric():
+			if (len(phone) > 12 or len(phone) < 9) or not phone.isdigit():
 				self._errors["phone"] = ["Phone number should be between 9-12 digits and only contain 0-9 and +"]
 			if ad.date() <= datetime.date.today():
 				self._errors["date"] = ["Arrival date must be a future date"]
@@ -112,9 +112,9 @@ class PaymentForm(forms.Form):
 		if fn and cn and cvv and ed:
 			if not fn.isalpha():
 				self._errors["full_name"] = ["First name can only contain A-z and less than 27 letters"]
-			if not cn.isnumeric():
+			if not cn.isdigit():
 				self._errors["card_number"] = ["Card number can only contain 0-9"]
-			if not cvv.isnumeric():
+			if not cvv.isdigit():
 				self._errors["cvv"] = ["CVV can only contain 0-9"]
 			if ed.date() <= datetime.date.today():
 				self._errors["expiry_date"] = ["Expiry date must a future date"]
