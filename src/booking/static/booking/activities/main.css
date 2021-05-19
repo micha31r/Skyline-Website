@@ -45,7 +45,7 @@
 	height: 60px;
 	right: 20px;
 	bottom: 40px;
-	background: #000;
+	background: var(--color-two);
 	box-shadow: 0 0 20px rgba(0,0,0,0.3);
 	border: 1px solid #444;
 	border-radius: 100%;
@@ -55,7 +55,7 @@
 }
 
 .view-cart:hover {
-	color: var(--color-one);
+	background: var(--color-three);
 	box-shadow: none;
 }
 
