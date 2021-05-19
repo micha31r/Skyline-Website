@@ -22,7 +22,7 @@ class UserInfoForm(forms.ModelForm):
 	date = forms.DateTimeField(
 		widget=forms.TextInput(
 	        attrs={
-	            "placeholder":"Date",
+	            "placeholder":"yyyy-mm-dd",
 	            "type": "date"
 	        }
 	    ),
@@ -31,7 +31,7 @@ class UserInfoForm(forms.ModelForm):
 	date_repeat = forms.DateTimeField(
 		widget=forms.TextInput(
 	        attrs={
-	            "placeholder":"Repeat Date",
+	            "placeholder":"yyyy-mm-dd",
 	            "type": "date"
 	        }
 	    ),
