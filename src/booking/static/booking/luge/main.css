@@ -59,6 +59,7 @@
 	color: #FFF;
 }
 
+/* Create a pseudo element to fill the button */
 .intro a::before {
 	content: '';
 	position: absolute;
@@ -70,6 +71,7 @@
 	z-index: -1;
 }
 
+/* Expand the pseudo element on hover */
 .intro a:hover::before {
 	width: 100%;
 }
