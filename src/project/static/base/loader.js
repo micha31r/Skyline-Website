@@ -5,7 +5,7 @@ document.onreadystatechange = function() {
         bd.style.visibility = "hidden"; 
         ld.style.visibility = "visible";
     } else { 
-        ld.style.display = "none";  
-        bd.style.visibility = "visible"; 
+        bd.style.visibility = "visible";
+        ld.style.display = "none";
     } 
 };
