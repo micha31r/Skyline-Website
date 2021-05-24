@@ -115,8 +115,8 @@ nav #popup-nav-toggle .close {
 }
 
 .nav-activities .flex a {
-	color: #EEE;
-	transition: color 0.2s;
+	color: #FFF;
+	transition: transform 0.2s;
 	margin: 0 0 0 20px;
 }
 
@@ -125,7 +125,7 @@ nav #popup-nav-toggle .close {
 }
 
 .nav-activities .flex a:hover {
-	color: #000;
+	transform: scale(0.9);
 }
 
 @keyframes show {
