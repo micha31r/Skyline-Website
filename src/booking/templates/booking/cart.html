@@ -19,6 +19,7 @@
 	<div class="d-container-wrapper cart-container-wrapper">
 		<div class="cart d-container d-padding">
 			{% if not cart %}
+				<!-- Empty cart message -->
 				<div class="empty-cart-grid">
 					<img src="{% static 'booking/cart/falling.png' %}">
 					<div class="flex">
@@ -30,6 +31,7 @@
 			    </div>
 			{% else %}
 				<div class="grid">
+					<!-- Cart items -->
 					<div class="container">
 						{% for obj in cart %}
 							<div class="item">
@@ -47,6 +49,7 @@
 							</div>
 						{% endfor %}
 					</div>
+					<!-- Cart summary -->
 					<div class="card">
 						<h2>Order Summary</h2>
 						<p>

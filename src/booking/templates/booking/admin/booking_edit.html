@@ -15,6 +15,7 @@
 
 	<div class="d-container-wrapper edit-container-wrapper">
 		<div class="edit {% if not obj.activated and not obj.void %}grid{% endif %} d-container d-padding">
+			<!-- Ticket information -->
 			<div class="left">
 				<h2>E-Ticket</h2>
 				<div class="ticket {% if obj.void %}voided{% elif obj.activated %}activated{% elif obj.has_expired %}expired{% endif %}">
@@ -54,6 +55,7 @@
 					<p>Product ID: <b>{{ obj.activity.product_id }}</b></p>
 				</div>
 			</div>
+			<!-- Only show edit form if the ticket has not been activated or voided -->
 			{% if not obj.activated and not obj.void %}
 				<div class="right">
 					<h2>Ticket Information</h2>
@@ -99,6 +101,7 @@
 		</div>
 	</div>
 
+	<!-- Pop-up prompt to confirm "activate" and "void" actions -->
 	{% if not obj.activated and not obj.void %}
 		<div class="d-prompt d-danger" id="d-prompt-1">
 			<div class="container">
