@@ -54,6 +54,7 @@
         <!-- Footer js -->
         <script type="text/javascript" src="{% static 'base/footer/main.js' %}"></script>
 
+        <!-- Navbar -->
         <nav>
             <div class="grid d-container">
                 <div class="left">
@@ -82,8 +83,11 @@
             </div>
         </nav>
 
-        <div id="popup-nav"></div>
+        <div id="popup-nav">
+            <!-- When the viewport is small the links in <nav> will be appended here -->
+        </div>
 
+        <!-- Links to all activities -->
         <div class="nav-activities">
             <div class="d-container flex">
                 <a href="#">Gondola</a>
@@ -98,8 +102,10 @@
         </div>
 
         {% block content %}
+            <!-- This is where the body content will be-->
         {% endblock %}
 
+        <!-- Footer -->
         <footer>
             <div class="d-container">
                 <div class="grid1">

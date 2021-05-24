@@ -19,7 +19,9 @@
 		<div class="overview d-container d-padding">
 			<div class="settings">
 				<h2>Filter Tickets</h2>
+				<!-- Reset button -->
 				<button id="reset-search-session" onclick="$('input[hidden]').val('true'); $('button[type=\'submit\']').click();">Reset filter</button>
+				<!-- Advanced search form -->
 				<form method="post">
 					{% csrf_token %}
 					<label>Activity</label>
@@ -75,6 +77,7 @@
 				{% endif %}
 			</div>
 			<div class="ticket-container">
+				<!-- Show search result message -->
 				{% if total_result_count == 0 %}
 					{% if filter_applied %}
 						<p class="d-message d-danger filter-result">No tickets match the given requirements</p>
@@ -87,6 +90,7 @@
 					<p class="d-message filter-result">The results include {{ total_adults }} adults and {{ total_children }} children, a total of {{ total_adults|add:total_children }} attendees</p>
 				{% endif %}
 
+				<!-- Display result items -->
 				{% for obj in page_obj.object_list %}
 					<div class="item {% if obj.void %}voided{% elif obj.activated %}activated{% elif obj.has_expired %}expired{% endif %}">
 						<div class="grid">
@@ -115,7 +119,9 @@
 						</div>
 					</div>
 				{% endfor %}
-				<div id="paginator-append-target"></div>
+				<div id="paginator-append-target">
+					<!-- Paginator (.pagination) will be appended here if the viewport is small -->
+				</div>
 			</div>
 		</div>
 	</div>
