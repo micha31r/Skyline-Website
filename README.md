@@ -24,7 +24,7 @@ nano project_key.txt
 # ctrl-x, then y to save
 cd ..
 nano settings.py
-# Change EMAIL_HOST_USER = "michaelren.dev@gmail.com" to set your own email address
+# Change EMAIL_HOST_USER = "" to set your own email address
 # ctrl-x, then y to save
 cd ..
 python manage.py makemigrations
